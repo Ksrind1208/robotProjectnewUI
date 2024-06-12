@@ -1,0 +1,5 @@
+module robotProject2
+typeinfo approbotProject2.qmltypes
+prefer :/robotProject2/
+Main 1.0 Main.qml
+
