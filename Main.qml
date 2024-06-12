@@ -31,7 +31,7 @@ Window {
                 x:4/1423*Screen.width
                 y:4/800*Screen.height
                 width: 470/1423*Screen.width
-                height: 796/800*Screen.height
+                height: 275/800*Screen.height
                 border.color: "white"
                 border.width: 1.5/1423*Screen.width
                 radius: 10
@@ -181,11 +181,11 @@ Window {
                                     if(containsMouse==true){
                                         moveJoint.color="black"
                                         shadowJoint.color="#6C757D"
-                                        textmoveJoint.color="white"
+
                                     }else{
                                         moveJoint.color="#6C757D"
                                         shadowJoint.color="black"
-                                        textmoveJoint.color="white"
+
                                     }
                                 }
 
@@ -287,13 +287,13 @@ Window {
                                 onEntered: {
                                     moveTCP.color = "black"
                                     shadowTCP.color="#6C757D"
-                                    textmoveTCP.color = "white"
+
                                 }
 
                                 onExited: {
                                     moveTCP.color = "#6C757D"
                                     shadowTCP.color="black"
-                                    textmoveTCP.color = "white"
+
                                 }
 
                                 onClicked: {
@@ -364,11 +364,11 @@ Window {
                                     if(containsMouse==true){
                                         moveSLI.color="black"
                                         shadowSLI.color="#6C757D"
-                                        textmoveSLI.color="white"
+
                                     }else{
                                         moveSLI.color="#6C757D"
                                         shadowSLI.color="black"
-                                        textmoveSLI.color="white"
+
                                     }
                                 }
                             }
@@ -434,11 +434,11 @@ Window {
                                     if(containsMouse==true){
                                         moveCI.color="black"
                                         shadowCI.color="#6C757D"
-                                        textmoveCI.color="white"
+
                                     }else{
                                         moveCI.color="#6C757D"
                                         shadowCI.color="black"
-                                        textmoveCI.color="white"
+
                                     }
                                 }
                             }
@@ -527,11 +527,11 @@ Window {
                                     if(containsMouse==true){
                                         draganddrop.color="black"
                                         shadowdraganddrop.color="#6C757D"
-                                        textDragandDrop.color="white"
+
                                     }else{
                                         draganddrop.color="#6C757D"
                                         shadowdraganddrop.color="black"
-                                        textDragandDrop.color="white"
+
                                     }
                                 }
 
@@ -610,11 +610,11 @@ Window {
                                     if(containsMouse==true){
                                         simulation.color="black"
                                         shadowSimulation.color="#6C757D"
-                                        textSimulation.color="white"
+
                                     }else{
                                         simulation.color="#6C757D"
                                         shadowSimulation.color="black"
-                                        textSimulation.color="white"
+
                                     }
                                 }
 
@@ -688,11 +688,9 @@ Window {
                                     if(containsMouse==true){
                                         quit.color="black"
                                         shadowQuit.color="#6C757D"
-                                        textQuit.color="white"
                                     }else{
                                         quit.color="#6C757D"
                                         shadowQuit.color="black"
-                                        textQuit.color="white"
                                     }
                                 }
 
@@ -716,6 +714,65 @@ Window {
                         }
                     }
                 }
+            }
+
+            Rectangle {
+                id: controllRectangle
+                color: "#252525"
+                x: 4 / 1423 * Screen.width
+                y: settingRectangle.y + settingRectangle.height + 4 / 800 * Screen.height
+                width: 470 / 1423 * Screen.width
+                height: Screen.height - (settingRectangle.y + settingRectangle.height + 2 * 4 / 800 * Screen.height)
+                border.color: "white"
+                border.width: 1.5 / 1423 * Screen.width
+                radius: 10
+
+                Text{
+                    id:joy1
+                    text: "JOY 1"
+                    color: "white"
+                    x:0.15*controllRectangle.width
+                    y:0.05*controllRectangle.height
+                    font.family: "Helvetica"
+                    font.pointSize: 20
+                    font.bold: true
+                }
+
+                Canvas {
+                        id: leftArrow
+                        width: 0.15*controllRectangle.width
+                        height: 0.15*controllRectangle.height
+                        x: joy1.x+joy1.implicitWidth/2-leftArrow.width-10
+                        y:joy1.y+joy1.implicitHeight+10
+                        property color arrowColor: "white"
+
+                        onPaint: {
+                            var ctx = getContext("2d");
+                            ctx.clearRect(0, 0, width, height);
+
+                            ctx.beginPath();
+                            ctx.moveTo(width, 0);
+                            ctx.lineTo(0, height / 2);
+                            ctx.lineTo(width, height);
+                            ctx.closePath();
+
+                            ctx.fillStyle = arrowColor;
+                            ctx.fill();
+                        }
+                }
+            }
+
+
+            Rectangle{
+                id:positionRectangle
+                color:"#252525"
+                x:settingRectangle.x+settingRectangle.width+4/1423*Screen.width
+                y:simulationRectangle.y+simulationRectangle.height+4/800*Screen.height
+                width: Screen.width-(settingRectangle.x+settingRectangle.width+4/1423*Screen.width+4/1423*Screen.width)
+                height: Screen.height-(simulationRectangle.y+simulationRectangle.height+2*4/800*Screen.height)
+                border.color: "white"
+                border.width: 1.5/1423*Screen.width
+                radius: 10
             }
         }
     }
