@@ -1,6 +1,10 @@
-import QtQuick
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 
 Window {
+    property var curPosition: [1,0,0]
+    property var curAngle: [0,0,0,0]
     id: root
     // w:1423
     // h:800
@@ -8,6 +12,7 @@ Window {
     height: Screen.height
     visible: true
     title: qsTr("Robot Project")
+
 
     Item {
         id: secondScreen
@@ -99,18 +104,38 @@ Window {
                                 anchors.fill: parent
                                 hoverEnabled:true
 
+                                property int mouseX: 0
+                                property int mouseY: 0
+
+                                onPositionChanged: {
+                                    mouseX = mouse.x;
+                                    mouseY = mouse.y;
+                                }
+
                                 onHoveredChanged: {
                                     if(containsMouse==true){
                                         home.color="black"
                                         shadowSetting.color="#6C757D"
-                                        textHome.color="white"
                                     }else{
                                         home.color="#6C757D"
                                         shadowSetting.color="black"
-                                        textHome.color="white"
                                     }
                                 }
+                                ToolTip {
+                                    Text{
+                                        id:textHome
+                                        text:"Trở về vị trí gốc"
+                                        color:"black"
+                                        font.pointSize: 24
+                                    }
+                                    visible: mouseHome.containsMouse
+                                    x: mouseHome.mouseX + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    y: mouseHome.mouseY + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    width:textHome.implicitWidth+10
+                                    height:textHome.implicitHeight+10
+                                }
                             }
+
 
                             // Hiệu ứng đổ bóng bằng một Rectangle mờ
                             Rectangle {
@@ -177,6 +202,13 @@ Window {
                                 anchors.fill: parent
                                 hoverEnabled:true
 
+                                property int mouseX: 0
+                                property int mouseY: 0
+
+                                onPositionChanged: {
+                                    mouseX = mouse.x;
+                                    mouseY = mouse.y;
+                                }
                                 onHoveredChanged: {
                                     if(containsMouse==true){
                                         moveJoint.color="black"
@@ -193,6 +225,19 @@ Window {
                                     myBackend.turnOnLed();
                                     windowmoveJoint.visible=true
                                     secondScreen.visible=false
+                                }
+                                ToolTip {
+                                    Text{
+                                        id:textmoveJoint
+                                        text:"Di chuyển theo góc"
+                                        color:"black"
+                                        font.pointSize: 24
+                                    }
+                                    visible: mousemoveJoint.containsMouse
+                                    x: mousemoveJoint.mouseX + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    y: mousemoveJoint.mouseY + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    width:textmoveJoint.implicitWidth+10
+                                    height:textmoveJoint.implicitHeight+10
                                 }
                             }
 
@@ -283,7 +328,13 @@ Window {
                                 id: mousemoveTCP
                                 anchors.fill: parent
                                 hoverEnabled: true
+                                property int mouseX: 0
+                                property int mouseY: 0
 
+                                onPositionChanged: {
+                                    mouseX = mouse.x;
+                                    mouseY = mouse.y;
+                                }
                                 onEntered: {
                                     moveTCP.color = "black"
                                     shadowTCP.color="#6C757D"
@@ -301,6 +352,19 @@ Window {
                                     myBackend.turnOffLed();
                                     windowmoveTCP.visible = true;
                                     secondScreen.visible = false; // Assuming secondScreen is your main screen
+                                }
+                                ToolTip {
+                                    Text{
+                                        id:textmoveTCP
+                                        text:"Di chuyển theo tọa độ"
+                                        color:"black"
+                                        font.pointSize: 24
+                                    }
+                                    visible: mousemoveTCP.containsMouse
+                                    x: mousemoveTCP.mouseX + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    y: mousemoveTCP.mouseY + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    width:textmoveTCP.implicitWidth+10
+                                    height:textmoveTCP.implicitHeight+10
                                 }
                             }
 
@@ -359,7 +423,13 @@ Window {
                                 id:mousemoveSLI
                                 anchors.fill: parent
                                 hoverEnabled:true
+                                property int mouseX: 0
+                                property int mouseY: 0
 
+                                onPositionChanged: {
+                                    mouseX = mouse.x;
+                                    mouseY = mouse.y;
+                                }
                                 onHoveredChanged: {
                                     if(containsMouse==true){
                                         moveSLI.color="black"
@@ -370,6 +440,19 @@ Window {
                                         shadowSLI.color="black"
 
                                     }
+                                }
+                                ToolTip {
+                                    Text{
+                                        id:textmoveSLI
+                                        text:"Nội suy đường thẳng"
+                                        color:"black"
+                                        font.pointSize: 24
+                                    }
+                                    visible: mousemoveSLI.containsMouse
+                                    x: mousemoveSLI.mouseX + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    y: mousemoveSLI.mouseY + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    width:textmoveSLI.implicitWidth+10
+                                    height:textmoveSLI.implicitHeight+10
                                 }
                             }
 
@@ -429,7 +512,13 @@ Window {
                                 id:mousemoveCI
                                 anchors.fill: parent
                                 hoverEnabled:true
+                                property int mouseX: 0
+                                property int mouseY: 0
 
+                                onPositionChanged: {
+                                    mouseX = mouse.x;
+                                    mouseY = mouse.y;
+                                }
                                 onHoveredChanged: {
                                     if(containsMouse==true){
                                         moveCI.color="black"
@@ -440,6 +529,19 @@ Window {
                                         shadowCI.color="black"
 
                                     }
+                                }
+                                ToolTip {
+                                    Text{
+                                        id:textmoveCI
+                                        text:"Nội suy cung tròn"
+                                        color:"black"
+                                        font.pointSize: 24
+                                    }
+                                    visible: mousemoveCI.containsMouse
+                                    x: mousemoveCI.mouseX + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    y: mousemoveCI.mouseY + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    width:textmoveCI.implicitWidth+10
+                                    height:textmoveCI.implicitHeight+10
                                 }
                             }
 
@@ -522,7 +624,13 @@ Window {
                                 id:mouseDragandDrop
                                 anchors.fill: parent
                                 hoverEnabled:true
+                                property int mouseX: 0
+                                property int mouseY: 0
 
+                                onPositionChanged: {
+                                    mouseX = mouse.x;
+                                    mouseY = mouse.y;
+                                }
                                 onHoveredChanged: {
                                     if(containsMouse==true){
                                         draganddrop.color="black"
@@ -538,6 +646,19 @@ Window {
                                 onClicked: {
                                     myBackend.closeSerialPort();
                                     Qt.quit()
+                                }
+                                ToolTip {
+                                    Text{
+                                        id:textdraganddrop
+                                        text:"Gắp thả vật"
+                                        color:"black"
+                                        font.pointSize: 24
+                                    }
+                                    visible: mouseDragandDrop.containsMouse
+                                    x: mouseDragandDrop.mouseX + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    y: mouseDragandDrop.mouseY + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    width:textdraganddrop.implicitWidth+10
+                                    height:textdraganddrop.implicitHeight+10
                                 }
                             }
 
@@ -605,7 +726,13 @@ Window {
                                 id:mouseSimulation
                                 anchors.fill: parent
                                 hoverEnabled:true
+                                property int mouseX: 0
+                                property int mouseY: 0
 
+                                onPositionChanged: {
+                                    mouseX = mouse.x;
+                                    mouseY = mouse.y;
+                                }
                                 onHoveredChanged: {
                                     if(containsMouse==true){
                                         simulation.color="black"
@@ -620,6 +747,19 @@ Window {
 
                                 onClicked: {
                                     console.log("Simulated");
+                                }
+                                ToolTip {
+                                    Text{
+                                        id:textSimulation
+                                        text:"Khởi động lại giả lập"
+                                        color:"black"
+                                        font.pointSize: 24
+                                    }
+                                    visible: mouseSimulation.containsMouse
+                                    x: mouseSimulation.mouseX + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    y: mouseSimulation.mouseY + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    width:textSimulation.implicitWidth+10
+                                    height:textSimulation.implicitHeight+10
                                 }
                             }
 
@@ -683,7 +823,13 @@ Window {
                                 id:mouseQuit
                                 anchors.fill: parent
                                 hoverEnabled:true
+                                property int mouseX: 0
+                                property int mouseY: 0
 
+                                onPositionChanged: {
+                                    mouseX = mouse.x;
+                                    mouseY = mouse.y;
+                                }
                                 onHoveredChanged: {
                                     if(containsMouse==true){
                                         quit.color="black"
@@ -696,6 +842,19 @@ Window {
 
                                 onClicked: {
                                     Qt.quit()
+                                }
+                                ToolTip {
+                                    Text{
+                                        id:textQuit
+                                        text:"Thoát chương trình"
+                                        color:"black"
+                                        font.pointSize: 24
+                                    }
+                                    visible: mouseQuit.containsMouse
+                                    x: mouseQuit.mouseX + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    y: mouseQuit.mouseY + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    width:textQuit.implicitWidth+10
+                                    height:textQuit.implicitHeight+10
                                 }
                             }
 
@@ -716,6 +875,7 @@ Window {
                 }
             }
 
+
             Rectangle {
                 id: controllRectangle
                 color: "#252525"
@@ -727,41 +887,424 @@ Window {
                 border.width: 1.5 / 1423 * Screen.width
                 radius: 10
 
-                Text{
-                    id:joy1
-                    text: "JOY 1"
-                    color: "white"
+                Row{
                     x:0.15*controllRectangle.width
                     y:0.05*controllRectangle.height
-                    font.family: "Helvetica"
-                    font.pointSize: 20
-                    font.bold: true
+                    spacing:0.3*controllRectangle.width
+                    Text{
+                        id:joy1
+                        text: "JOY 1"
+                        color: "white"
+                        font.family: "Helvetica"
+                        font.pointSize: 20
+                        font.bold: true
+                    }
+
+                    Text{
+                        id:joy4
+                        text: "JOY 4"
+                        color: "white"
+                        font.family: "Helvetica"
+                        font.pointSize: 20
+                        font.bold: true
+                    }
+
+                }
+                Row{
+                    x:0.15*controllRectangle.width
+                    y:0.05*controllRectangle.height+leftArrow.height+0.1*controllRectangle.height
+                    spacing:0.3*controllRectangle.width
+                    Text{
+                        id:joy2
+                        text: "JOY 2"
+                        color: "white"
+                        font.family: "Helvetica"
+                        font.pointSize: 20
+                        font.bold: true
+                    }
+
+                    Text{
+                        id:joy3
+                        text: "JOY 3"
+                        color: "white"
+                        font.family: "Helvetica"
+                        font.pointSize: 20
+                        font.bold: true
+                    }
                 }
 
-                Canvas {
-                        id: leftArrow
-                        width: 0.15*controllRectangle.width
-                        height: 0.15*controllRectangle.height
-                        x: joy1.x+joy1.implicitWidth/2-leftArrow.width-10
-                        y:joy1.y+joy1.implicitHeight+10
-                        property color arrowColor: "white"
+                Row{
+                    x:0.15*controllRectangle.width+joy1.implicitWidth/2-leftArrow.width-10
+                    y:0.05*controllRectangle.height+joy1.implicitHeight+10
+                    spacing:68
+                    Row{
+                        spacing:10
+                        Canvas {
+                                id: leftArrow
+                                width: 0.15*controllRectangle.width
+                                height: 0.15*controllRectangle.height
 
-                        onPaint: {
-                            var ctx = getContext("2d");
-                            ctx.clearRect(0, 0, width, height);
+                                property color arrowColor: "white"
 
-                            ctx.beginPath();
-                            ctx.moveTo(width, 0);
-                            ctx.lineTo(0, height / 2);
-                            ctx.lineTo(width, height);
-                            ctx.closePath();
+                                onPaint: {
+                                    var ctx = getContext("2d");
+                                    ctx.clearRect(0, 0, width, height);
 
-                            ctx.fillStyle = arrowColor;
-                            ctx.fill();
+                                    ctx.beginPath();
+                                    ctx.moveTo(width, 0);
+                                    ctx.lineTo(0, height / 2);
+                                    ctx.lineTo(width, height);
+                                    ctx.closePath();
+
+                                    ctx.fillStyle = arrowColor;
+                                    ctx.fill();
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+
+                                    onEntered: {
+                                        leftArrow.arrowColor = "#FFCC99";
+                                        leftArrow.requestPaint();
+                                    }
+
+                                    onExited: {
+                                        leftArrow.arrowColor = "white";
+                                        leftArrow.requestPaint();
+                                    }
+
+                                    onClicked: {
+                                        console.log("Left arrow clicked");
+                                    }
+                                }
+                            }
+                        Canvas {
+                            id: rightArrow
+                            width: 0.15*controllRectangle.width
+                            height: 0.15*controllRectangle.height
+                            property color arrowColor: "white"
+
+                            onPaint: {
+                                var ctx = getContext("2d");
+                                ctx.clearRect(0, 0, width, height);
+
+                                ctx.beginPath();
+                                ctx.moveTo(0, 0);
+                                ctx.lineTo(width, height / 2);
+                                ctx.lineTo(0, height);
+                                ctx.closePath();
+
+                                ctx.fillStyle = arrowColor;
+                                ctx.fill();
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onEntered: {
+                                    rightArrow.arrowColor = "#FFCC99";
+                                    rightArrow.requestPaint();
+                                }
+
+                                onExited: {
+                                    rightArrow.arrowColor = "white";
+                                    rightArrow.requestPaint();
+                                }
+
+                                onClicked: {
+                                    console.log("Right arrow clicked");
+                                }
+                            }
                         }
+                    }
+
+                    Row{
+                        spacing:10
+                        Canvas {
+                                id: leftArrow4
+                                width: 0.15*controllRectangle.width
+                                height: 0.15*controllRectangle.height
+                                property color arrowColor: "white"
+
+                                onPaint: {
+                                    var ctx = getContext("2d");
+                                    ctx.clearRect(0, 0, width, height);
+
+                                    ctx.beginPath();
+                                    ctx.moveTo(width, 0);
+                                    ctx.lineTo(0, height / 2);
+                                    ctx.lineTo(width, height);
+                                    ctx.closePath();
+
+                                    ctx.fillStyle = arrowColor;
+                                    ctx.fill();
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+
+                                    onEntered: {
+                                        leftArrow4.arrowColor = "#FFCC99";
+                                        leftArrow4.requestPaint();
+                                    }
+
+                                    onExited: {
+                                        leftArrow4.arrowColor = "white";
+                                        leftArrow4.requestPaint();
+                                    }
+
+                                    onClicked: {
+                                        console.log("Left arrow clicked");
+                                    }
+                                }
+                            }
+                        Canvas {
+                            id: rightArrow4
+                            width: 0.15*controllRectangle.width
+                            height: 0.15*controllRectangle.height
+                            property color arrowColor: "white"
+
+                            onPaint: {
+                                var ctx = getContext("2d");
+                                ctx.clearRect(0, 0, width, height);
+
+                                ctx.beginPath();
+                                ctx.moveTo(0, 0);
+                                ctx.lineTo(width, height / 2);
+                                ctx.lineTo(0, height);
+                                ctx.closePath();
+
+                                ctx.fillStyle = arrowColor;
+                                ctx.fill();
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onEntered: {
+                                    rightArrow4.arrowColor = "#FFCC99";
+                                    rightArrow4.requestPaint();
+                                }
+
+                                onExited: {
+                                    rightArrow4.arrowColor = "white";
+                                    rightArrow4.requestPaint();
+                                }
+
+                                onClicked: {
+                                    console.log("Right arrow clicked");
+                                }
+                            }
+                        }
+                    }
+                }
+                Row{
+                    x:0.15*controllRectangle.width
+                    y:0.05*controllRectangle.height+leftArrow.height+0.1*controllRectangle.height+joy2.implicitHeight+15
+                    spacing:0.30*controllRectangle.width
+                    Canvas {
+                            id: upArrow
+                            width: 0.15*controllRectangle.width
+                            height: 0.15*controllRectangle.height
+                            property color arrowColor: "white"
+
+                            onPaint: {
+                                var ctx = getContext("2d");
+                                ctx.clearRect(0, 0, width, height);
+
+                                ctx.beginPath();
+                                ctx.moveTo(width / 2, 0);
+                                ctx.lineTo(0, height);
+                                ctx.lineTo(width, height);
+                                ctx.closePath();
+
+                                ctx.fillStyle = arrowColor;
+                                ctx.fill();
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onEntered: {
+                                    upArrow.arrowColor = "#FFCC99";
+                                    upArrow.requestPaint();
+                                }
+
+                                onExited: {
+                                    upArrow.arrowColor = "white";
+                                    upArrow.requestPaint();
+                                }
+
+                                onClicked: {
+                                    console.log("Up arrow clicked");
+                                }
+                            }
+                        }
+                    Canvas {
+                            id: upArrow3
+                            width: 0.15*controllRectangle.width
+                            height: 0.15*controllRectangle.height
+                            property color arrowColor: "white"
+
+                            onPaint: {
+                                var ctx = getContext("2d");
+                                ctx.clearRect(0, 0, width, height);
+
+                                ctx.beginPath();
+                                ctx.moveTo(width / 2, 0);
+                                ctx.lineTo(0, height);
+                                ctx.lineTo(width, height);
+                                ctx.closePath();
+
+                                ctx.fillStyle = arrowColor;
+                                ctx.fill();
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onEntered: {
+                                    upArrow3.arrowColor = "#FFCC99";
+                                    upArrow3.requestPaint();
+                                }
+
+                                onExited: {
+                                    upArrow3.arrowColor = "white";
+                                    upArrow3.requestPaint();
+                                }
+
+                                onClicked: {
+                                    console.log("Up arrow clicked");
+                                }
+                            }
+                        }
+                    }
+                Row{
+                    x:0.15*controllRectangle.width
+                    y:0.05*controllRectangle.height+leftArrow.height+0.1*controllRectangle.height+joy2.implicitHeight+15+upArrow.height+10
+                    spacing:0.30*controllRectangle.width
+                    Canvas {
+                            id: downArrow
+                            width: 0.15*controllRectangle.width
+                            height: 0.15*controllRectangle.height
+                            property color arrowColor: "white"
+
+                            onPaint: {
+                                var ctx = getContext("2d");
+                                ctx.clearRect(0, 0, width, height);
+
+                                ctx.beginPath();
+                                ctx.moveTo(0, 0);
+                                ctx.lineTo(width, 0);
+                                ctx.lineTo(width / 2, height);
+                                ctx.closePath();
+
+                                ctx.fillStyle = arrowColor;
+                                ctx.fill();
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onEntered: {
+                                    downArrow.arrowColor = "#FFCC99";
+                                    downArrow.requestPaint();
+                                }
+
+                                onExited: {
+                                    downArrow.arrowColor = "white";
+                                    downArrow.requestPaint();
+                                }
+
+                                onClicked: {
+                                    console.log("Down arrow clicked");
+                                }
+                            }
+                        }
+                    Canvas {
+                            id: downArrow3
+                            width: 0.15*controllRectangle.width
+                            height: 0.15*controllRectangle.height
+                            property color arrowColor: "white"
+
+                            onPaint: {
+                                var ctx = getContext("2d");
+                                ctx.clearRect(0, 0, width, height);
+
+                                ctx.beginPath();
+                                ctx.moveTo(0, 0);
+                                ctx.lineTo(width, 0);
+                                ctx.lineTo(width / 2, height);
+                                ctx.closePath();
+
+                                ctx.fillStyle = arrowColor;
+                                ctx.fill();
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onEntered: {
+                                    downArrow3.arrowColor = "#FFCC99";
+                                    downArrow3.requestPaint();
+                                }
+
+                                onExited: {
+                                    downArrow3.arrowColor = "white";
+                                    downArrow3.requestPaint();
+                                }
+
+                                onClicked: {
+                                    console.log("Down arrow clicked");
+                                }
+                            }
+                        }
+                    }
+                Row{
+                    x:controllRectangle.width/2-dial.width/1.5
+                    y:0.65*controllRectangle.height
+                    Dial {
+                        id: dial
+                        from: 0
+                        to: 100
+                        value: 50
+                        stepSize: 1
+                        width: 150
+                        height: 150
+                        onValueChanged: {
+                            console.log("Dial value:", dial.value)
+                        }
+                    }
+
+                    Text {
+                        y:100
+                        text: "Speed: " + dial.value
+                        font.pointSize: 20
+                        color:"white"
+                        horizontalAlignment: Text.AlignHCenter
+                    }
                 }
             }
 
+            Rectangle{
+                id:simulationRectangle
+                color:"#252525"
+                x:settingRectangle.x+settingRectangle.width+4/1423*Screen.width
+                y:4/800*Screen.height
+                width: Screen.width-(settingRectangle.x+settingRectangle.width+4/1423*Screen.width+4/1423*Screen.width)
+                height: 500/800*Screen.height
+                border.color: "white"
+                border.width: 1.5/1423*Screen.width
+                radius: 10
+            }
 
             Rectangle{
                 id:positionRectangle
@@ -773,6 +1316,151 @@ Window {
                 border.color: "white"
                 border.width: 1.5/1423*Screen.width
                 radius: 10
+
+                Column {
+                    x:30
+                    y:60
+                    spacing: 50/800*Screen.height
+
+                    Row {
+                        spacing: 20/1423*Screen.width
+
+                        Text {
+                            text: "Position"
+                            color: "white"
+                            font.family: "Helvetica"
+                            font.pointSize: 18
+                            font.bold: true
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
+                        Row {
+                            spacing: 50/1423*Screen.width
+
+                            Rectangle {
+                                width: 150/1423*Screen.width
+                                height: 40/800*Screen.height
+                                border.color: "white"
+                                border.width: 2/1423*Screen.width
+                                radius: 5
+                                Text {
+                                    id:x
+                                    anchors.centerIn: parent
+                                    text: "x: "+curPosition[0]
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                            }
+
+                            Rectangle {
+                                width: 150/1423*Screen.width
+                                height: 40/800*Screen.height
+                                border.color: "white"
+                                border.width: 2/1423*Screen.width
+                                radius: 5
+                                Text {
+                                    id:y
+                                    anchors.centerIn: parent
+                                    text: "y: "+curPosition[1]
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                            }
+
+                            Rectangle {
+                                width: 150/1423*Screen.width
+                                height: 40/800*Screen.height
+                                border.color: "white"
+                                border.width: 2/1423*Screen.width
+                                radius: 5
+                                Text {
+                                    id:z
+                                    anchors.centerIn: parent
+                                    text: "z: "+curPosition[2]
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                            }
+                        }
+                    }
+
+                    Row {
+                        spacing: 44.5/1423*Screen.width
+
+                        Text {
+                            text: "Angle"
+                            color: "white"
+                            font.family: "Helvetica"
+                            font.pointSize: 18
+                            font.bold: true
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
+                        Row {
+                            spacing: 50/1423*Screen.width
+
+                            Rectangle {
+                                width: 150/1423*Screen.width
+                                height: 40/800*Screen.height
+                                border.color: "white"
+                                border.width: 2/1423*Screen.width
+                                radius: 5
+                                Text {
+                                    id:q1
+                                    anchors.centerIn: parent
+                                    text: "q1: "+curAngle[0]
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                            }
+
+                            Rectangle {
+                                width: 150/1423*Screen.width
+                                height: 40/800*Screen.height
+                                border.color: "white"
+                                border.width: 2/1423*Screen.width
+                                radius: 5
+                                Text {
+                                    id:q2
+                                    anchors.centerIn: parent
+                                    text: "q2: "+curAngle[1]
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                            }
+
+                            Rectangle {
+                                width: 150/1423*Screen.width
+                                height: 40/800*Screen.height
+                                border.color: "white"
+                                border.width: 2/1423*Screen.width
+                                radius: 5
+                                Text {
+                                    id:q3
+                                    anchors.centerIn: parent
+                                    text: "q3: "+curAngle[2]
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                            }
+
+                            Rectangle {
+                                width: 150/1423*Screen.width
+                                height: 40/800*Screen.height
+                                border.color: "white"
+                                border.width: 2/1423*Screen.width
+                                radius: 5
+                                Text {
+                                    id:q4
+                                    anchors.centerIn: parent
+                                    text: "q4: "+curAngle[3]
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
