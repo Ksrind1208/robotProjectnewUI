@@ -751,7 +751,7 @@ Window {
                                 ToolTip {
                                     Text{
                                         id:textSimulation
-                                        text:"Khởi động lại giả lập"
+                                        text:"Khởi động lại mô phỏng"
                                         color:"black"
                                         font.pointSize: 24
                                     }
@@ -877,7 +877,7 @@ Window {
 
 
             Rectangle {
-                id: controllRectangle
+                id: positionRectangle
                 color: "#252525"
                 x: 4 / 1423 * Screen.width
                 y: settingRectangle.y + settingRectangle.height + 4 / 800 * Screen.height
@@ -888,103 +888,267 @@ Window {
                 radius: 10
 
                 Row{
-                    x:0.15*controllRectangle.width
+                    x:0.15*positionRectangle.width
+                    y:0.05*positionRectangle.height
+                    spacing:0.3*positionRectangle.width
+
+                    Text {
+                        text: "Angle"
+                        color: "white"
+                        font.family: "Helvetica"
+                        font.pointSize: 18
+                        font.bold: true
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    Text {
+                        text: "Position"
+                        color: "white"
+                        font.family: "Helvetica"
+                        font.pointSize: 18
+                        font.bold: true
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                }
+                Row{
+                    x:0.15*positionRectangle.width-40
+                    y:0.05*positionRectangle.height+70
+                    spacing:0.15*positionRectangle.width
+                    Column{
+                        spacing:0.1*positionRectangle.height
+                        Rectangle {
+                            width: 0.3*positionRectangle.width
+                            height: 0.08*positionRectangle.height
+                            border.color: "white"
+                            border.width: 2/1423*Screen.width
+                            radius: 5
+                            Text {
+                                id:q1
+                                anchors.centerIn: parent
+                                text: "Q1: "+curAngle[0]
+                                color: "black"
+                                font.pointSize: 20
+                            }
+                        }
+                        Rectangle {
+                            width: 0.3*positionRectangle.width
+                            height: 0.08*positionRectangle.height
+                            border.color: "white"
+                            border.width: 2/1423*Screen.width
+                            radius: 5
+                            Text {
+                                id:q2
+                                anchors.centerIn: parent
+                                text: "Q2: "+curAngle[1]
+                                color: "black"
+                                font.pointSize: 20
+                            }
+                        }
+
+                        Rectangle {
+                            width: 0.3*positionRectangle.width
+                            height: 0.08*positionRectangle.height
+                            border.color: "white"
+                            border.width: 2/1423*Screen.width
+                            radius: 5
+                            Text {
+                                id:q3
+                                anchors.centerIn: parent
+                                text: "Q3: "+curAngle[2]
+                                color: "black"
+                                font.pointSize: 20
+                            }
+                        }
+
+                        Rectangle {
+                            width: 0.3*positionRectangle.width
+                            height: 0.08*positionRectangle.height
+                            border.color: "white"
+                            border.width: 2/1423*Screen.width
+                            radius: 5
+                            Text {
+                                id:q4
+                                anchors.centerIn: parent
+                                text: "Q4: "+curAngle[3]
+                                color: "black"
+                                font.pointSize: 20
+                            }
+                        }
+                    }
+
+                    Column{
+                        spacing:0.1*positionRectangle.height
+                        Rectangle {
+                            width: 0.3*positionRectangle.width
+                            height: 0.08*positionRectangle.height
+                            border.color: "white"
+                            border.width: 2/1423*Screen.width
+                            radius: 5
+                            Text {
+                                id:x
+                                anchors.centerIn: parent
+                                text: "x: "+curPosition[0]
+                                color: "black"
+                                font.pointSize: 20
+                            }
+                        }
+
+                        Rectangle {
+                            width: 0.3*positionRectangle.width
+                            height: 0.08*positionRectangle.height
+                            border.color: "white"
+                            border.width: 2/1423*Screen.width
+                            radius: 5
+                            Text {
+                                id:y
+                                anchors.centerIn: parent
+                                text: "y: "+curPosition[1]
+                                color: "black"
+                                font.pointSize: 20
+                            }
+                        }
+
+                        Rectangle {
+                            width: 0.3*positionRectangle.width
+                            height: 0.08*positionRectangle.height
+                            border.color: "white"
+                            border.width: 2/1423*Screen.width
+                            radius: 5
+                            Text {
+                                id:z
+                                anchors.centerIn: parent
+                                text: "z: "+curPosition[2]
+                                color: "black"
+                                font.pointSize: 20
+                            }
+                        }
+                    }
+                }
+            }
+
+            Rectangle{
+                id:simulationRectangle
+                color:"#252525"
+                x:settingRectangle.x+settingRectangle.width+4/1423*Screen.width
+                y:4/800*Screen.height
+                width: Screen.width-(settingRectangle.x+settingRectangle.width+4/1423*Screen.width+4/1423*Screen.width)
+                height: 420/800*Screen.height
+                border.color: "white"
+                border.width: 1.5/1423*Screen.width
+                radius: 10
+
+
+            }
+
+            Rectangle{
+                id:controllRectangle
+                color:"#252525"
+                x:settingRectangle.x+settingRectangle.width+4/1423*Screen.width
+                y:simulationRectangle.y+simulationRectangle.height+4/800*Screen.height
+                width: Screen.width-(settingRectangle.x+settingRectangle.width+4/1423*Screen.width+4/1423*Screen.width)
+                height: Screen.height-(simulationRectangle.y+simulationRectangle.height+2*4/800*Screen.height)
+                border.color: "white"
+                border.width: 1.5/1423*Screen.width
+                radius: 10
+
+                Row{
+                    x:0.1*controllRectangle.width
                     y:0.05*controllRectangle.height
-                    spacing:0.3*controllRectangle.width
-                    Text{
-                        id:joy1
-                        text: "JOY 1"
-                        color: "white"
-                        font.family: "Helvetica"
-                        font.pointSize: 20
-                        font.bold: true
-                    }
-
-                    Text{
-                        id:joy4
-                        text: "JOY 4"
-                        color: "white"
-                        font.family: "Helvetica"
-                        font.pointSize: 20
-                        font.bold: true
-                    }
-
-                }
-                Row{
-                    x:0.15*controllRectangle.width
-                    y:0.05*controllRectangle.height+leftArrow.height+0.1*controllRectangle.height
-                    spacing:0.3*controllRectangle.width
-                    Text{
-                        id:joy2
-                        text: "JOY 2"
-                        color: "white"
-                        font.family: "Helvetica"
-                        font.pointSize: 20
-                        font.bold: true
-                    }
-
-                    Text{
-                        id:joy3
-                        text: "JOY 3"
-                        color: "white"
-                        font.family: "Helvetica"
-                        font.pointSize: 20
-                        font.bold: true
-                    }
-                }
-
-                Row{
-                    x:0.15*controllRectangle.width+joy1.implicitWidth/2-leftArrow.width-10
-                    y:0.05*controllRectangle.height+joy1.implicitHeight+10
-                    spacing:68
+                    spacing:0.2*controllRectangle.width
                     Row{
-                        spacing:10
+                        spacing:0.15*controllRectangle.width
+                        Text{
+                            id:joy1_2
+                            text: "JOY 1&2"
+                            color: "white"
+                            font.family: "Helvetica"
+                            font.pointSize: 20
+                            font.bold: true
+                        }
+
+                        Text{
+                            id:joy3_4
+                            text: "JOY 3&4"
+                            color: "white"
+                            font.family: "Helvetica"
+                            font.pointSize: 20
+                            font.bold: true
+                        }
+                    }
+
+                    Text{
+                        id:moveLast
+                        text: "Move last step"
+                        color: "white"
+                        font.family: "Helvetica"
+                        font.pointSize: 20
+                        font.bold: true
+                    }
+                }
+                Row{
+                    x:0.1*controllRectangle.width-65
+                    y:0.05*controllRectangle.height+joy1_2.implicitHeight+100
+                    spacing:0.03*controllRectangle.width
+                    Row{
+                        spacing:0.08*controllRectangle.width
                         Canvas {
-                                id: leftArrow
-                                width: 0.15*controllRectangle.width
-                                height: 0.15*controllRectangle.height
+                            id: leftArrow
+                            width: 0.08*controllRectangle.width
+                            height: 0.08*controllRectangle.width
 
-                                property color arrowColor: "white"
+                            property color arrowColor: "white"
+                            property string arrowText: "J1-"
+                            property color textColor: "black" // Color of the text
+                            onPaint: {
+                                var ctx = getContext("2d");
+                                ctx.clearRect(0, 0, width, height);
 
-                                onPaint: {
-                                    var ctx = getContext("2d");
-                                    ctx.clearRect(0, 0, width, height);
+                                ctx.beginPath();
+                                ctx.moveTo(width, 0);
+                                ctx.lineTo(0, height / 2);
+                                ctx.lineTo(width, height);
+                                ctx.closePath();
 
-                                    ctx.beginPath();
-                                    ctx.moveTo(width, 0);
-                                    ctx.lineTo(0, height / 2);
-                                    ctx.lineTo(width, height);
-                                    ctx.closePath();
+                                ctx.fillStyle = arrowColor;
+                                ctx.fill();
 
-                                    ctx.fillStyle = arrowColor;
-                                    ctx.fill();
+                                // Add the text
+                                ctx.fillStyle = textColor;
+                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.textAlign = "center";
+                                ctx.textBaseline = "middle";
+
+                                // Calculate the center position of the triangle
+                                var centerX = width / 2;
+                                var centerY = height / 2;
+
+                                ctx.fillText(arrowText, centerX, centerY);
+                            }
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onEntered: {
+                                    leftArrow.arrowColor = "#FFCC99";
+                                    leftArrow.requestPaint();
                                 }
 
-                                MouseArea {
-                                    anchors.fill: parent
-                                    hoverEnabled: true
+                                onExited: {
+                                    leftArrow.arrowColor = "white";
+                                    leftArrow.requestPaint();
+                                }
 
-                                    onEntered: {
-                                        leftArrow.arrowColor = "#FFCC99";
-                                        leftArrow.requestPaint();
-                                    }
-
-                                    onExited: {
-                                        leftArrow.arrowColor = "white";
-                                        leftArrow.requestPaint();
-                                    }
-
-                                    onClicked: {
-                                        console.log("Left arrow clicked");
-                                    }
+                                onClicked: {
+                                    console.log("Left arrow clicked");
                                 }
                             }
+                        }
                         Canvas {
                             id: rightArrow
-                            width: 0.15*controllRectangle.width
-                            height: 0.15*controllRectangle.height
+                            width: 0.08*controllRectangle.width
+                            height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
-
+                            property string arrowText: "J1+"
+                            property color textColor: "black" // Color of the text
                             onPaint: {
                                 var ctx = getContext("2d");
                                 ctx.clearRect(0, 0, width, height);
@@ -997,8 +1161,19 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
-                            }
 
+                                // Add the text
+                                ctx.fillStyle = textColor;
+                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.textAlign = "center";
+                                ctx.textBaseline = "middle";
+
+                                // Calculate the center position of the triangle
+                                var centerX = width / 2;
+                                var centerY = height / 2;
+
+                                ctx.fillText(arrowText, centerX, centerY);
+                            }
                             MouseArea {
                                 anchors.fill: parent
                                 hoverEnabled: true
@@ -1021,13 +1196,14 @@ Window {
                     }
 
                     Row{
-                        spacing:10
+                        spacing:0.08*controllRectangle.width
                         Canvas {
                                 id: leftArrow4
-                                width: 0.15*controllRectangle.width
-                                height: 0.15*controllRectangle.height
+                                width: 0.08*controllRectangle.width
+                                height: 0.08*controllRectangle.width
                                 property color arrowColor: "white"
-
+                                property string arrowText: "J4-"
+                                property color textColor: "black" // Color of the text
                                 onPaint: {
                                     var ctx = getContext("2d");
                                     ctx.clearRect(0, 0, width, height);
@@ -1040,8 +1216,19 @@ Window {
 
                                     ctx.fillStyle = arrowColor;
                                     ctx.fill();
-                                }
 
+                                    // Add the text
+                                    ctx.fillStyle = textColor;
+                                    ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                    ctx.textAlign = "center";
+                                    ctx.textBaseline = "middle";
+
+                                    // Calculate the center position of the triangle
+                                    var centerX = width / 2;
+                                    var centerY = height / 2;
+
+                                    ctx.fillText(arrowText, centerX, centerY);
+                                }
                                 MouseArea {
                                     anchors.fill: parent
                                     hoverEnabled: true
@@ -1063,10 +1250,11 @@ Window {
                             }
                         Canvas {
                             id: rightArrow4
-                            width: 0.15*controllRectangle.width
-                            height: 0.15*controllRectangle.height
+                            width: 0.08*controllRectangle.width
+                            height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
-
+                            property string arrowText: "J4+"
+                            property color textColor: "black" // Color of the text
                             onPaint: {
                                 var ctx = getContext("2d");
                                 ctx.clearRect(0, 0, width, height);
@@ -1079,8 +1267,19 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
-                            }
+                                // Add the text
+                                ctx.fillStyle = textColor;
+                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.textAlign = "center";
+                                ctx.textBaseline = "middle";
 
+                                // Calculate the center position of the triangle
+                                var centerX = width / 2;
+                                var centerY = height / 2;
+
+                                ctx.fillText(arrowText, centerX, centerY);
+
+                            }
                             MouseArea {
                                 anchors.fill: parent
                                 hoverEnabled: true
@@ -1103,15 +1302,126 @@ Window {
                     }
                 }
                 Row{
-                    x:0.15*controllRectangle.width
-                    y:0.05*controllRectangle.height+leftArrow.height+0.1*controllRectangle.height+joy2.implicitHeight+15
-                    spacing:0.30*controllRectangle.width
+                    x:0.1*controllRectangle.width-65+0.6*controllRectangle.width
+                    y:0.05*controllRectangle.height+joy1_2.implicitHeight+100
+                    spacing:0.08*controllRectangle.width
+                    Canvas {
+                            id: leftArrowLastStep
+                            width: 0.08*controllRectangle.width
+                            height: 0.08*controllRectangle.width
+                            property color arrowColor: "white"
+                            property string arrowText: "X-"
+                            property color textColor: "black" // Color of the text
+                            onPaint: {
+                                var ctx = getContext("2d");
+                                ctx.clearRect(0, 0, width, height);
+
+                                ctx.beginPath();
+                                ctx.moveTo(width, 0);
+                                ctx.lineTo(0, height / 2);
+                                ctx.lineTo(width, height);
+                                ctx.closePath();
+
+                                ctx.fillStyle = arrowColor;
+                                ctx.fill();
+                                // Add the text
+                                ctx.fillStyle = textColor;
+                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.textAlign = "center";
+                                ctx.textBaseline = "middle";
+
+                                // Calculate the center position of the triangle
+                                var centerX = width / 2;
+                                var centerY = height / 2;
+
+                                ctx.fillText(arrowText, centerX, centerY);
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onEntered: {
+                                    leftArrowLastStep.arrowColor = "#FFCC99";
+                                    leftArrowLastStep.requestPaint();
+                                }
+
+                                onExited: {
+                                    leftArrowLastStep.arrowColor = "white";
+                                    leftArrowLastStep.requestPaint();
+                                }
+
+                                onClicked: {
+                                    console.log("Up arrow clicked");
+                                }
+                            }
+                        }
+                    Canvas {
+                        id: rightArrowLastStep
+                        width: 0.08*controllRectangle.width
+                        height: 0.08*controllRectangle.width
+                        property color arrowColor: "white"
+                        property string arrowText: "X+"
+                        property color textColor: "black" // Color of the text
+                        onPaint: {
+                            var ctx = getContext("2d");
+                            ctx.clearRect(0, 0, width, height);
+
+                            ctx.beginPath();
+                            ctx.moveTo(0, 0);
+                            ctx.lineTo(width, height / 2);
+                            ctx.lineTo(0, height);
+                            ctx.closePath();
+
+                            ctx.fillStyle = arrowColor;
+                            ctx.fill();
+
+                            // Add the text
+                            ctx.fillStyle = textColor;
+                            ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                            ctx.textAlign = "center";
+                            ctx.textBaseline = "middle";
+
+                            // Calculate the center position of the triangle
+                            var centerX = width / 2;
+                            var centerY = height / 2;
+
+                            ctx.fillText(arrowText, centerX, centerY);
+
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+
+                            onEntered: {
+                                rightArrowLastStep.arrowColor = "#FFCC99";
+                                rightArrowLastStep.requestPaint();
+                            }
+
+                            onExited: {
+                                rightArrowLastStep.arrowColor = "white";
+                                rightArrowLastStep.requestPaint();
+                            }
+
+                            onClicked: {
+                                console.log("Up arrow clicked");
+                            }
+                        }
+                    }
+                }
+
+                Row{
+                    x:0.1*controllRectangle.width-65+0.08*controllRectangle.width
+                    y:joy1_2.height+joy1_2.implicitHeight
+                    spacing:0.19*controllRectangle.width
                     Canvas {
                             id: upArrow
-                            width: 0.15*controllRectangle.width
-                            height: 0.15*controllRectangle.height
+                            width: 0.08*controllRectangle.width
+                            height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
-
+                            property string arrowText: "J2+"
+                            property color textColor: "black" // Color of the text
                             onPaint: {
                                 var ctx = getContext("2d");
                                 ctx.clearRect(0, 0, width, height);
@@ -1124,6 +1434,17 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
+                                // Add the text
+                                ctx.fillStyle = textColor;
+                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.textAlign = "center";
+                                ctx.textBaseline = "middle";
+
+                                // Calculate the center position of the triangle
+                                var centerX = width / 2;
+                                var centerY = height / 2;
+
+                                ctx.fillText(arrowText, centerX, centerY);
                             }
 
                             MouseArea {
@@ -1147,10 +1468,11 @@ Window {
                         }
                     Canvas {
                             id: upArrow3
-                            width: 0.15*controllRectangle.width
-                            height: 0.15*controllRectangle.height
+                            width: 0.08*controllRectangle.width
+                            height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
-
+                            property string arrowText: "J3+"
+                            property color textColor: "black" // Color of the text
                             onPaint: {
                                 var ctx = getContext("2d");
                                 ctx.clearRect(0, 0, width, height);
@@ -1163,8 +1485,18 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
-                            }
+                                // Add the text
+                                ctx.fillStyle = textColor;
+                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.textAlign = "center";
+                                ctx.textBaseline = "middle";
 
+                                // Calculate the center position of the triangle
+                                var centerX = width / 2;
+                                var centerY = height / 2;
+
+                                ctx.fillText(arrowText, centerX, centerY);
+                            }
                             MouseArea {
                                 anchors.fill: parent
                                 hoverEnabled: true
@@ -1186,14 +1518,16 @@ Window {
                         }
                     }
                 Row{
-                    x:0.15*controllRectangle.width
-                    y:0.05*controllRectangle.height+leftArrow.height+0.1*controllRectangle.height+joy2.implicitHeight+15+upArrow.height+10
-                    spacing:0.30*controllRectangle.width
+                    x:0.1*controllRectangle.width-65+0.08*controllRectangle.width
+                    y:joy1_2.height+joy1_2.implicitHeight+0.084*controllRectangle.width*2
+                    spacing:0.19*controllRectangle.width
                     Canvas {
                             id: downArrow
-                            width: 0.15*controllRectangle.width
-                            height: 0.15*controllRectangle.height
+                            width: 0.08*controllRectangle.width
+                            height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
+                            property string arrowText: "J2-"
+                            property color textColor: "black" // Color of the text
 
                             onPaint: {
                                 var ctx = getContext("2d");
@@ -1207,8 +1541,18 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
-                            }
+                                // Add the text
+                                ctx.fillStyle = textColor;
+                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.textAlign = "center";
+                                ctx.textBaseline = "middle";
 
+                                // Calculate the center position of the triangle
+                                var centerX = width / 2;
+                                var centerY = height / 2;
+
+                                ctx.fillText(arrowText, centerX, centerY);
+                            }
                             MouseArea {
                                 anchors.fill: parent
                                 hoverEnabled: true
@@ -1230,9 +1574,11 @@ Window {
                         }
                     Canvas {
                             id: downArrow3
-                            width: 0.15*controllRectangle.width
-                            height: 0.15*controllRectangle.height
+                            width: 0.08*controllRectangle.width
+                            height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
+                            property string arrowText: "J4-"
+                            property color textColor: "black" // Color of the text
 
                             onPaint: {
                                 var ctx = getContext("2d");
@@ -1246,8 +1592,18 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
-                            }
+                                // Add the text
+                                ctx.fillStyle = textColor;
+                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.textAlign = "center";
+                                ctx.textBaseline = "middle";
 
+                                // Calculate the center position of the triangle
+                                var centerX = width / 2;
+                                var centerY = height / 2;
+
+                                ctx.fillText(arrowText, centerX, centerY);
+                            }
                             MouseArea {
                                 anchors.fill: parent
                                 hoverEnabled: true
@@ -1267,200 +1623,218 @@ Window {
                                 }
                             }
                         }
+
                     }
-                Row{
-                    x:controllRectangle.width/2-dial.width/1.5
-                    y:0.65*controllRectangle.height
-                    Dial {
-                        id: dial
-                        from: 0
-                        to: 100
-                        value: 50
-                        stepSize: 1
-                        width: 150
-                        height: 150
-                        onValueChanged: {
-                            console.log("Dial value:", dial.value)
+                Canvas {
+                        id: upArrowLastStep
+                        x:0.1*controllRectangle.width-65+0.6*controllRectangle.width+0.08*controllRectangle.width
+                        y:joy1_2.height+joy1_2.implicitHeight
+                        width: 0.08*controllRectangle.width
+                        height: 0.08*controllRectangle.width
+                        property color arrowColor: "white"
+                        property string arrowText: "Y+"
+                        property color textColor: "black" // Color of the text
+                        onPaint: {
+                            var ctx = getContext("2d");
+                            ctx.clearRect(0, 0, width, height);
+
+                            ctx.beginPath();
+                            ctx.moveTo(width / 2, 0);
+                            ctx.lineTo(0, height);
+                            ctx.lineTo(width, height);
+                            ctx.closePath();
+
+                            ctx.fillStyle = arrowColor;
+                            ctx.fill();
+                            // Add the text
+                            ctx.fillStyle = textColor;
+                            ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                            ctx.textAlign = "center";
+                            ctx.textBaseline = "middle";
+
+                            // Calculate the center position of the triangle
+                            var centerX = width / 2;
+                            var centerY = height / 2;
+
+                            ctx.fillText(arrowText, centerX, centerY);
                         }
-                    }
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
 
-                    Text {
-                        y:100
-                        text: "Speed: " + dial.value
-                        font.pointSize: 20
-                        color:"white"
-                        horizontalAlignment: Text.AlignHCenter
-                    }
-                }
-            }
-
-            Rectangle{
-                id:simulationRectangle
-                color:"#252525"
-                x:settingRectangle.x+settingRectangle.width+4/1423*Screen.width
-                y:4/800*Screen.height
-                width: Screen.width-(settingRectangle.x+settingRectangle.width+4/1423*Screen.width+4/1423*Screen.width)
-                height: 500/800*Screen.height
-                border.color: "white"
-                border.width: 1.5/1423*Screen.width
-                radius: 10
-            }
-
-            Rectangle{
-                id:positionRectangle
-                color:"#252525"
-                x:settingRectangle.x+settingRectangle.width+4/1423*Screen.width
-                y:simulationRectangle.y+simulationRectangle.height+4/800*Screen.height
-                width: Screen.width-(settingRectangle.x+settingRectangle.width+4/1423*Screen.width+4/1423*Screen.width)
-                height: Screen.height-(simulationRectangle.y+simulationRectangle.height+2*4/800*Screen.height)
-                border.color: "white"
-                border.width: 1.5/1423*Screen.width
-                radius: 10
-
-                Column {
-                    x:30
-                    y:60
-                    spacing: 50/800*Screen.height
-
-                    Row {
-                        spacing: 20/1423*Screen.width
-
-                        Text {
-                            text: "Position"
-                            color: "white"
-                            font.family: "Helvetica"
-                            font.pointSize: 18
-                            font.bold: true
-                            verticalAlignment: Text.AlignVCenter
-                        }
-
-                        Row {
-                            spacing: 50/1423*Screen.width
-
-                            Rectangle {
-                                width: 150/1423*Screen.width
-                                height: 40/800*Screen.height
-                                border.color: "white"
-                                border.width: 2/1423*Screen.width
-                                radius: 5
-                                Text {
-                                    id:x
-                                    anchors.centerIn: parent
-                                    text: "x: "+curPosition[0]
-                                    color: "black"
-                                    font.pointSize: 20
-                                }
+                            onEntered: {
+                                upArrowLastStep.arrowColor = "#FFCC99";
+                                upArrowLastStep.requestPaint();
                             }
 
-                            Rectangle {
-                                width: 150/1423*Screen.width
-                                height: 40/800*Screen.height
-                                border.color: "white"
-                                border.width: 2/1423*Screen.width
-                                radius: 5
-                                Text {
-                                    id:y
-                                    anchors.centerIn: parent
-                                    text: "y: "+curPosition[1]
-                                    color: "black"
-                                    font.pointSize: 20
-                                }
+                            onExited: {
+                                upArrowLastStep.arrowColor = "white";
+                                upArrowLastStep.requestPaint();
                             }
 
-                            Rectangle {
-                                width: 150/1423*Screen.width
-                                height: 40/800*Screen.height
-                                border.color: "white"
-                                border.width: 2/1423*Screen.width
-                                radius: 5
-                                Text {
-                                    id:z
-                                    anchors.centerIn: parent
-                                    text: "z: "+curPosition[2]
-                                    color: "black"
-                                    font.pointSize: 20
-                                }
+                            onClicked: {
+                                console.log("Down arrow clicked");
                             }
                         }
                     }
+                Canvas {
+                        id: downArrowLastStep
+                        x:0.1*controllRectangle.width-65+0.6*controllRectangle.width+0.08*controllRectangle.width
+                        y:joy1_2.height+joy1_2.implicitHeight+0.084*controllRectangle.width*2
+                        width: 0.08*controllRectangle.width
+                        height: 0.08*controllRectangle.width
+                        property color arrowColor: "white"
+                        property string arrowText: "Y-"
+                        property color textColor: "black" // Color of the text
 
-                    Row {
-                        spacing: 44.5/1423*Screen.width
+                        onPaint: {
+                            var ctx = getContext("2d");
+                            ctx.clearRect(0, 0, width, height);
 
-                        Text {
-                            text: "Angle"
-                            color: "white"
-                            font.family: "Helvetica"
-                            font.pointSize: 18
-                            font.bold: true
-                            verticalAlignment: Text.AlignVCenter
+                            ctx.beginPath();
+                            ctx.moveTo(0, 0);
+                            ctx.lineTo(width, 0);
+                            ctx.lineTo(width / 2, height);
+                            ctx.closePath();
+
+                            ctx.fillStyle = arrowColor;
+                            ctx.fill();
+                            // Add the text
+                            ctx.fillStyle = textColor;
+                            ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                            ctx.textAlign = "center";
+                            ctx.textBaseline = "middle";
+
+                            // Calculate the center position of the triangle
+                            var centerX = width / 2;
+                            var centerY = height / 2;
+
+                            ctx.fillText(arrowText, centerX, centerY);
                         }
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
 
-                        Row {
-                            spacing: 50/1423*Screen.width
-
-                            Rectangle {
-                                width: 150/1423*Screen.width
-                                height: 40/800*Screen.height
-                                border.color: "white"
-                                border.width: 2/1423*Screen.width
-                                radius: 5
-                                Text {
-                                    id:q1
-                                    anchors.centerIn: parent
-                                    text: "q1: "+curAngle[0]
-                                    color: "black"
-                                    font.pointSize: 20
-                                }
+                            onEntered: {
+                                downArrowLastStep.arrowColor = "#FFCC99";
+                                downArrowLastStep.requestPaint();
                             }
 
-                            Rectangle {
-                                width: 150/1423*Screen.width
-                                height: 40/800*Screen.height
-                                border.color: "white"
-                                border.width: 2/1423*Screen.width
-                                radius: 5
-                                Text {
-                                    id:q2
-                                    anchors.centerIn: parent
-                                    text: "q2: "+curAngle[1]
-                                    color: "black"
-                                    font.pointSize: 20
-                                }
+                            onExited: {
+                                downArrowLastStep.arrowColor = "white";
+                                downArrowLastStep.requestPaint();
                             }
 
-                            Rectangle {
-                                width: 150/1423*Screen.width
-                                height: 40/800*Screen.height
-                                border.color: "white"
-                                border.width: 2/1423*Screen.width
-                                radius: 5
-                                Text {
-                                    id:q3
-                                    anchors.centerIn: parent
-                                    text: "q3: "+curAngle[2]
-                                    color: "black"
-                                    font.pointSize: 20
-                                }
-                            }
-
-                            Rectangle {
-                                width: 150/1423*Screen.width
-                                height: 40/800*Screen.height
-                                border.color: "white"
-                                border.width: 2/1423*Screen.width
-                                radius: 5
-                                Text {
-                                    id:q4
-                                    anchors.centerIn: parent
-                                    text: "q4: "+curAngle[3]
-                                    color: "black"
-                                    font.pointSize: 20
-                                }
+                            onClicked: {
+                                console.log("Down arrow clicked");
                             }
                         }
                     }
-                }
+                Canvas {
+                        id: upArrowLastStepZ
+                        x:0.1*controllRectangle.width-65+0.6*controllRectangle.width+0.08*controllRectangle.width*3+10
+                        y:joy1_2.height+joy1_2.implicitHeight+0.084*controllRectangle.width/2-5
+                        width: 0.08*controllRectangle.width
+                        height: 0.08*controllRectangle.width
+                        property color arrowColor: "white"
+                        property string arrowText: "Z+"
+                        property color textColor: "black" // Color of the text
+                        onPaint: {
+                            var ctx = getContext("2d");
+                            ctx.clearRect(0, 0, width, height);
+
+                            ctx.beginPath();
+                            ctx.moveTo(width / 2, 0);
+                            ctx.lineTo(0, height);
+                            ctx.lineTo(width, height);
+                            ctx.closePath();
+
+                            ctx.fillStyle = arrowColor;
+                            ctx.fill();
+                            // Add the text
+                            ctx.fillStyle = textColor;
+                            ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                            ctx.textAlign = "center";
+                            ctx.textBaseline = "middle";
+
+                            // Calculate the center position of the triangle
+                            var centerX = width / 2;
+                            var centerY = height / 2;
+
+                            ctx.fillText(arrowText, centerX, centerY);
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+
+                            onEntered: {
+                                upArrowLastStepZ.arrowColor = "#FFCC99";
+                                upArrowLastStepZ.requestPaint();
+                            }
+
+                            onExited: {
+                                upArrowLastStepZ.arrowColor = "white";
+                                upArrowLastStepZ.requestPaint();
+                            }
+
+                            onClicked: {
+                                console.log("Down arrow clicked");
+                            }
+                        }
+                    }
+                Canvas {
+                        id: downArrowLastStepZ
+                        x:0.1*controllRectangle.width-65+0.6*controllRectangle.width+0.08*controllRectangle.width*3+10
+                        y:joy1_2.height+joy1_2.implicitHeight+0.084*controllRectangle.width*3/2+5
+                        width: 0.08*controllRectangle.width
+                        height: 0.08*controllRectangle.width
+                        property color arrowColor: "white"
+                        property string arrowText: "Z-"
+                        property color textColor: "black" // Color of the text
+
+                        onPaint: {
+                            var ctx = getContext("2d");
+                            ctx.clearRect(0, 0, width, height);
+
+                            ctx.beginPath();
+                            ctx.moveTo(0, 0);
+                            ctx.lineTo(width, 0);
+                            ctx.lineTo(width / 2, height);
+                            ctx.closePath();
+
+                            ctx.fillStyle = arrowColor;
+                            ctx.fill();
+                            // Add the text
+                            ctx.fillStyle = textColor;
+                            ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                            ctx.textAlign = "center";
+                            ctx.textBaseline = "middle";
+
+                            // Calculate the center position of the triangle
+                            var centerX = width / 2;
+                            var centerY = height / 2;
+
+                            ctx.fillText(arrowText, centerX, centerY);
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+
+                            onEntered: {
+                                downArrowLastStepZ.arrowColor = "#FFCC99";
+                                downArrowLastStepZ.requestPaint();
+                            }
+
+                            onExited: {
+                                downArrowLastStepZ.arrowColor = "white";
+                                downArrowLastStepZ.requestPaint();
+                            }
+
+                            onClicked: {
+                                console.log("Down arrow clicked");
+                            }
+                        }
+                    }
             }
         }
     }
