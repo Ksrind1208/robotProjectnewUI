@@ -1113,12 +1113,12 @@ Window {
 
                                 // Add the text
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
                                 // Calculate the center position of the triangle
-                                var centerX = width / 2;
+                                var centerX = width / 2+5;
                                 var centerY = height / 2;
 
                                 ctx.fillText(arrowText, centerX, centerY);
@@ -1164,12 +1164,12 @@ Window {
 
                                 // Add the text
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
                                 // Calculate the center position of the triangle
-                                var centerX = width / 2;
+                                var centerX = width / 2-5;
                                 var centerY = height / 2;
 
                                 ctx.fillText(arrowText, centerX, centerY);
@@ -1219,12 +1219,12 @@ Window {
 
                                     // Add the text
                                     ctx.fillStyle = textColor;
-                                    ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                    ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                                     ctx.textAlign = "center";
                                     ctx.textBaseline = "middle";
 
                                     // Calculate the center position of the triangle
-                                    var centerX = width / 2;
+                                    var centerX = width / 2+5;
                                     var centerY = height / 2;
 
                                     ctx.fillText(arrowText, centerX, centerY);
@@ -1269,12 +1269,12 @@ Window {
                                 ctx.fill();
                                 // Add the text
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
                                 // Calculate the center position of the triangle
-                                var centerX = width / 2;
+                                var centerX = width / 2-5;
                                 var centerY = height / 2;
 
                                 ctx.fillText(arrowText, centerX, centerY);
@@ -1326,12 +1326,12 @@ Window {
                                 ctx.fill();
                                 // Add the text
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
                                 // Calculate the center position of the triangle
-                                var centerX = width / 2;
+                                var centerX = width / 2+5;
                                 var centerY = height / 2;
 
                                 ctx.fillText(arrowText, centerX, centerY);
@@ -1378,12 +1378,12 @@ Window {
 
                             // Add the text
                             ctx.fillStyle = textColor;
-                            ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                            ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                             ctx.textAlign = "center";
                             ctx.textBaseline = "middle";
 
                             // Calculate the center position of the triangle
-                            var centerX = width / 2;
+                            var centerX = width / 2-5;
                             var centerY = height / 2;
 
                             ctx.fillText(arrowText, centerX, centerY);
@@ -1436,13 +1436,13 @@ Window {
                                 ctx.fill();
                                 // Add the text
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
                                 // Calculate the center position of the triangle
                                 var centerX = width / 2;
-                                var centerY = height / 2;
+                                var centerY = height / 2+20;
 
                                 ctx.fillText(arrowText, centerX, centerY);
                             }
@@ -1487,13 +1487,13 @@ Window {
                                 ctx.fill();
                                 // Add the text
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
                                 // Calculate the center position of the triangle
                                 var centerX = width / 2;
-                                var centerY = height / 2;
+                                var centerY = height / 2+20;
 
                                 ctx.fillText(arrowText, centerX, centerY);
                             }
@@ -1543,13 +1543,13 @@ Window {
                                 ctx.fill();
                                 // Add the text
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
                                 // Calculate the center position of the triangle
                                 var centerX = width / 2;
-                                var centerY = height / 2;
+                                var centerY = height / 2-20;
 
                                 ctx.fillText(arrowText, centerX, centerY);
                             }
@@ -1594,13 +1594,13 @@ Window {
                                 ctx.fill();
                                 // Add the text
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
                                 // Calculate the center position of the triangle
                                 var centerX = width / 2;
-                                var centerY = height / 2;
+                                var centerY = height / 2-20;
 
                                 ctx.fillText(arrowText, centerX, centerY);
                             }
@@ -1648,13 +1648,13 @@ Window {
                             ctx.fill();
                             // Add the text
                             ctx.fillStyle = textColor;
-                            ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                            ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                             ctx.textAlign = "center";
                             ctx.textBaseline = "middle";
 
                             // Calculate the center position of the triangle
                             var centerX = width / 2;
-                            var centerY = height / 2;
+                            var centerY = height / 2+20;
 
                             ctx.fillText(arrowText, centerX, centerY);
                         }
@@ -1701,13 +1701,13 @@ Window {
                             ctx.fill();
                             // Add the text
                             ctx.fillStyle = textColor;
-                            ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                            ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                             ctx.textAlign = "center";
                             ctx.textBaseline = "middle";
 
                             // Calculate the center position of the triangle
                             var centerX = width / 2;
-                            var centerY = height / 2;
+                            var centerY = height / 2-20;
 
                             ctx.fillText(arrowText, centerX, centerY);
                         }
@@ -1753,13 +1753,13 @@ Window {
                             ctx.fill();
                             // Add the text
                             ctx.fillStyle = textColor;
-                            ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                            ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                             ctx.textAlign = "center";
                             ctx.textBaseline = "middle";
 
                             // Calculate the center position of the triangle
                             var centerX = width / 2;
-                            var centerY = height / 2;
+                            var centerY = height / 2+20;
 
                             ctx.fillText(arrowText, centerX, centerY);
                         }
@@ -1806,13 +1806,13 @@ Window {
                             ctx.fill();
                             // Add the text
                             ctx.fillStyle = textColor;
-                            ctx.font = "bold 24px Arial"; // Adjust the font size and style as needed
+                            ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
                             ctx.textAlign = "center";
                             ctx.textBaseline = "middle";
 
                             // Calculate the center position of the triangle
                             var centerX = width / 2;
-                            var centerY = height / 2;
+                            var centerY = height / 2-20;
 
                             ctx.fillText(arrowText, centerX, centerY);
                         }
