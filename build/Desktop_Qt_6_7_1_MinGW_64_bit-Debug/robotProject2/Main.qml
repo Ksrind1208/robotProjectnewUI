@@ -1,10 +1,11 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
-
+import Data 1.0
+import Data1 1.0
 Window {
-    property var curPosition: [1,0,0]
-    property var curAngle: [0,0,0,0]
+    property int curPosition: [1,0,0]
+    property int curAngle: [0,0,0,0]
     id: root
     // w:1423
     // h:800
@@ -12,7 +13,9 @@ Window {
     height: Screen.height
     visible: true
     title: qsTr("Robot Project")
-
+    Position{
+        id:positionRobot
+    }
 
     Item {
         id: secondScreen
@@ -107,9 +110,9 @@ Window {
                                 property int mouseX: 0
                                 property int mouseY: 0
 
-                                onPositionChanged: {
-                                    mouseX = mouse.x;
-                                    mouseY = mouse.y;
+                                onPositionChanged: (mouse)=>{
+                                    mouseX=mouse.x;
+                                    mouseY=mouse.y;
                                 }
 
                                 onHoveredChanged: {
@@ -133,6 +136,14 @@ Window {
                                     y: mouseHome.mouseY + 10 // Offset by 10 pixels to avoid overlapping with the cursor
                                     width:textHome.implicitWidth+10
                                     height:textHome.implicitHeight+10
+                                }
+
+                                onClicked: {
+                                    myRobot.turnOnLed();
+                                    myRobot.khongGianThaoTac(8,0,0,positionRobot);
+                                    console.log(positionRobot.q1+"/"+positionRobot.q2+"/"+positionRobot.q3+"/"+positionRobot.q4);
+                                    console.log(myRobot.l1+"/"+myRobot.l2+"/"+myRobot.l3);
+                                    console.log(curAngle[0]+"/"+curAngle[1]+"/"+curAngle[2]+"/"+curAngle[3]);
                                 }
                             }
 
@@ -205,9 +216,9 @@ Window {
                                 property int mouseX: 0
                                 property int mouseY: 0
 
-                                onPositionChanged: {
-                                    mouseX = mouse.x;
-                                    mouseY = mouse.y;
+                                onPositionChanged: (mouse)=>{
+                                    mouseX=mouse.x;
+                                    mouseY=mouse.y;
                                 }
                                 onHoveredChanged: {
                                     if(containsMouse==true){
@@ -222,7 +233,8 @@ Window {
                                 }
 
                                 onClicked: {
-                                    myBackend.turnOnLed();
+                                    myRobot.turnOffLed();
+                                    console.log(myRobot.l1+"/"+myRobot.l2+"/"+myRobot.l3);
                                     windowmoveJoint.visible=true
                                     secondScreen.visible=false
                                 }
@@ -328,12 +340,12 @@ Window {
                                 id: mousemoveTCP
                                 anchors.fill: parent
                                 hoverEnabled: true
+
                                 property int mouseX: 0
                                 property int mouseY: 0
-
-                                onPositionChanged: {
-                                    mouseX = mouse.x;
-                                    mouseY = mouse.y;
+                                onPositionChanged: (mouse)=>{
+                                    mouseX=mouse.x;
+                                    mouseY=mouse.y;
                                 }
                                 onEntered: {
                                     moveTCP.color = "black"
@@ -423,12 +435,13 @@ Window {
                                 id:mousemoveSLI
                                 anchors.fill: parent
                                 hoverEnabled:true
+
                                 property int mouseX: 0
                                 property int mouseY: 0
 
-                                onPositionChanged: {
-                                    mouseX = mouse.x;
-                                    mouseY = mouse.y;
+                                onPositionChanged: (mouse)=>{
+                                    mouseX=mouse.x;
+                                    mouseY=mouse.y;
                                 }
                                 onHoveredChanged: {
                                     if(containsMouse==true){
@@ -512,12 +525,12 @@ Window {
                                 id:mousemoveCI
                                 anchors.fill: parent
                                 hoverEnabled:true
+
                                 property int mouseX: 0
                                 property int mouseY: 0
-
-                                onPositionChanged: {
-                                    mouseX = mouse.x;
-                                    mouseY = mouse.y;
+                                onPositionChanged: (mouse)=>{
+                                    mouseX=mouse.x;
+                                    mouseY=mouse.y;
                                 }
                                 onHoveredChanged: {
                                     if(containsMouse==true){
@@ -624,12 +637,12 @@ Window {
                                 id:mouseDragandDrop
                                 anchors.fill: parent
                                 hoverEnabled:true
+
                                 property int mouseX: 0
                                 property int mouseY: 0
-
-                                onPositionChanged: {
-                                    mouseX = mouse.x;
-                                    mouseY = mouse.y;
+                                onPositionChanged: (mouse)=>{
+                                    mouseX=mouse.x;
+                                    mouseY=mouse.y;
                                 }
                                 onHoveredChanged: {
                                     if(containsMouse==true){
@@ -726,12 +739,12 @@ Window {
                                 id:mouseSimulation
                                 anchors.fill: parent
                                 hoverEnabled:true
+
                                 property int mouseX: 0
                                 property int mouseY: 0
-
-                                onPositionChanged: {
-                                    mouseX = mouse.x;
-                                    mouseY = mouse.y;
+                                onPositionChanged: (mouse)=>{
+                                    mouseX=mouse.x;
+                                    mouseY=mouse.y;
                                 }
                                 onHoveredChanged: {
                                     if(containsMouse==true){
@@ -823,12 +836,12 @@ Window {
                                 id:mouseQuit
                                 anchors.fill: parent
                                 hoverEnabled:true
+
                                 property int mouseX: 0
                                 property int mouseY: 0
-
-                                onPositionChanged: {
-                                    mouseX = mouse.x;
-                                    mouseY = mouse.y;
+                                onPositionChanged: (mouse)=>{
+                                    mouseX=mouse.x;
+                                    mouseY=mouse.y;
                                 }
                                 onHoveredChanged: {
                                     if(containsMouse==true){

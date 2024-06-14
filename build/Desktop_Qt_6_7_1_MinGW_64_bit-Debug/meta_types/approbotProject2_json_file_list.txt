@@ -1,0 +1,2 @@
+D:/File_code/Qt/robotProject2/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/approbotProject2_autogen/include/../EWIEGA46WW/moc_position.cpp.json
+D:/File_code/Qt/robotProject2/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/approbotProject2_autogen/include/../EWIEGA46WW/moc_robot.cpp.json

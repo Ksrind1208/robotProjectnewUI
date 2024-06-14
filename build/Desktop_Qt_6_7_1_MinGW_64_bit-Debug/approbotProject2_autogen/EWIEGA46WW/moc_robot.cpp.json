@@ -1,0 +1,165 @@
+{
+    "classes": [
+        {
+            "classInfos": [
+                {
+                    "name": "QML.Element",
+                    "value": "auto"
+                }
+            ],
+            "className": "Robot",
+            "methods": [
+                {
+                    "access": "public",
+                    "name": "turnOnLed",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "turnOffLed",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "q1",
+                            "type": "float"
+                        },
+                        {
+                            "name": "q2",
+                            "type": "float"
+                        },
+                        {
+                            "name": "q3",
+                            "type": "float"
+                        },
+                        {
+                            "name": "q4",
+                            "type": "float"
+                        },
+                        {
+                            "name": "robotPosition",
+                            "type": "Position&"
+                        }
+                    ],
+                    "name": "khongGianKhop",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "a",
+                            "type": "float"
+                        },
+                        {
+                            "name": "b",
+                            "type": "float"
+                        },
+                        {
+                            "name": "c",
+                            "type": "float"
+                        },
+                        {
+                            "name": "robotPosition",
+                            "type": "Position&"
+                        }
+                    ],
+                    "name": "khongGianThaoTac",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "data",
+                            "type": "QByteArray"
+                        }
+                    ],
+                    "name": "writeToSerialPort",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "closeSerialPort",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "properties": [
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 0,
+                    "name": "l1",
+                    "notify": "l1Changed",
+                    "read": "l1",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "double",
+                    "user": false,
+                    "write": "setL1"
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 1,
+                    "name": "l2",
+                    "notify": "l2Changed",
+                    "read": "l2",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "double",
+                    "user": false,
+                    "write": "setL2"
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 2,
+                    "name": "l3",
+                    "notify": "l3Changed",
+                    "read": "l3",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "double",
+                    "user": false,
+                    "write": "setL3"
+                }
+            ],
+            "qualifiedClassName": "Robot",
+            "signals": [
+                {
+                    "access": "public",
+                    "name": "l1Changed",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "l2Changed",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "l3Changed",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "robot.h",
+    "outputRevision": 68
+}
