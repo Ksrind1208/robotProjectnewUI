@@ -19,16 +19,15 @@ Module {
         Signal { name: "l1Changed" }
         Signal { name: "l2Changed" }
         Signal { name: "l3Changed" }
-        Method { name: "turnOnLed" }
-        Method { name: "turnOffLed" }
+        Method { name: "home" }
         Method {
             name: "khongGianKhop"
             Parameter { name: "q1"; type: "float" }
             Parameter { name: "q2"; type: "float" }
             Parameter { name: "q3"; type: "float" }
             Parameter { name: "q4"; type: "float" }
-            Parameter { name: "curAngle"; type: "double"; isPointer: true }
-            Parameter { name: "curPosition"; type: "double"; isPointer: true }
+            Parameter { name: "curAngle"; type: "QObject"; isPointer: true }
+            Parameter { name: "curPosition"; type: "QObject"; isPointer: true }
         }
         Method {
             name: "khongGianThaoTac"
@@ -38,6 +37,8 @@ Module {
             Parameter { name: "curAngle"; type: "QObject"; isPointer: true }
             Parameter { name: "curPosition"; type: "QObject"; isPointer: true }
         }
+        Method { name: "turnOnLed" }
+        Method { name: "turnOffLed" }
         Method {
             name: "writeToSerialPort"
             Parameter { name: "data"; type: "QByteArray" }

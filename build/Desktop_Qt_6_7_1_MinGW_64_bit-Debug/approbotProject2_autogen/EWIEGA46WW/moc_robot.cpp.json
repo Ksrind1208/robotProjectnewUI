@@ -11,12 +11,7 @@
             "methods": [
                 {
                     "access": "public",
-                    "name": "turnOnLed",
-                    "returnType": "void"
-                },
-                {
-                    "access": "public",
-                    "name": "turnOffLed",
+                    "name": "home",
                     "returnType": "void"
                 },
                 {
@@ -40,11 +35,11 @@
                         },
                         {
                             "name": "curAngle",
-                            "type": "double*"
+                            "type": "QObject*"
                         },
                         {
                             "name": "curPosition",
-                            "type": "double*"
+                            "type": "QObject*"
                         }
                     ],
                     "name": "khongGianKhop",
@@ -75,6 +70,16 @@
                         }
                     ],
                     "name": "khongGianThaoTac",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "turnOnLed",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "turnOffLed",
                     "returnType": "void"
                 },
                 {

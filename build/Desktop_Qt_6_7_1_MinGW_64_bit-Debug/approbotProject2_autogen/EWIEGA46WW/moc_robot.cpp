@@ -44,20 +44,20 @@ constexpr auto qt_meta_stringdata_CLASSRobotENDCLASS = QtMocHelpers::stringData(
     "",
     "l2Changed",
     "l3Changed",
-    "turnOnLed",
-    "turnOffLed",
+    "home",
     "khongGianKhop",
     "q1",
     "q2",
     "q3",
     "q4",
-    "double*",
     "curAngle",
     "curPosition",
     "khongGianThaoTac",
     "a",
     "b",
     "c",
+    "turnOnLed",
+    "turnOffLed",
     "writeToSerialPort",
     "data",
     "closeSerialPort",
@@ -76,8 +76,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
       12,       // revision
        0,       // classname
        1,   14, // classinfo
-       9,   16, // methods
-       3,  103, // properties
+      10,   16, // methods
+       3,  110, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
@@ -87,17 +87,18 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
        1,    2,
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    0,   70,    4, 0x06,    4 /* Public */,
-       5,    0,   71,    4, 0x06,    5 /* Public */,
-       6,    0,   72,    4, 0x06,    6 /* Public */,
+       3,    0,   76,    4, 0x06,    4 /* Public */,
+       5,    0,   77,    4, 0x06,    5 /* Public */,
+       6,    0,   78,    4, 0x06,    6 /* Public */,
 
  // methods: name, argc, parameters, tag, flags, initial metatype offsets
-       7,    0,   73,    4, 0x02,    7 /* Public */,
-       8,    0,   74,    4, 0x02,    8 /* Public */,
-       9,    6,   75,    4, 0x02,    9 /* Public */,
-      17,    5,   88,    4, 0x02,   16 /* Public */,
-      21,    1,   99,    4, 0x02,   22 /* Public */,
-      23,    0,  102,    4, 0x02,   24 /* Public */,
+       7,    0,   79,    4, 0x02,    7 /* Public */,
+       8,    6,   80,    4, 0x02,    8 /* Public */,
+      15,    5,   93,    4, 0x02,   15 /* Public */,
+      19,    0,  104,    4, 0x02,   21 /* Public */,
+      20,    0,  105,    4, 0x02,   22 /* Public */,
+      21,    1,  106,    4, 0x02,   23 /* Public */,
+      23,    0,  109,    4, 0x02,   25 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -106,9 +107,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
 
  // methods: parameters
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::QObjectStar, QMetaType::QObjectStar,    9,   10,   11,   12,   13,   14,
+    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::QObjectStar, QMetaType::QObjectStar,   16,   17,   18,   13,   14,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float, 0x80000000 | 14, 0x80000000 | 14,   10,   11,   12,   13,   15,   16,
-    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::QObjectStar, QMetaType::QObjectStar,   18,   19,   20,   15,   16,
+    QMetaType::Void,
     QMetaType::Void, QMetaType::QByteArray,   22,
     QMetaType::Void,
 
@@ -141,9 +143,7 @@ Q_CONSTINIT const QMetaObject Robot::staticMetaObject = { {
         void,
         // method 'l3Changed'
         void,
-        // method 'turnOnLed'
-        void,
-        // method 'turnOffLed'
+        // method 'home'
         void,
         // method 'khongGianKhop'
         void,
@@ -151,8 +151,8 @@ Q_CONSTINIT const QMetaObject Robot::staticMetaObject = { {
         float,
         float,
         float,
-        double *,
-        double *,
+        QObject *,
+        QObject *,
         // method 'khongGianThaoTac'
         void,
         float,
@@ -160,6 +160,10 @@ Q_CONSTINIT const QMetaObject Robot::staticMetaObject = { {
         float,
         QObject *,
         QObject *,
+        // method 'turnOnLed'
+        void,
+        // method 'turnOffLed'
+        void,
         // method 'writeToSerialPort'
         void,
         const QByteArray &,
@@ -178,12 +182,13 @@ void Robot::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         case 0: _t->l1Changed(); break;
         case 1: _t->l2Changed(); break;
         case 2: _t->l3Changed(); break;
-        case 3: _t->turnOnLed(); break;
-        case 4: _t->turnOffLed(); break;
-        case 5: _t->khongGianKhop((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<double*>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<double*>>(_a[6]))); break;
-        case 6: _t->khongGianThaoTac((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[5]))); break;
-        case 7: _t->writeToSerialPort((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
-        case 8: _t->closeSerialPort(); break;
+        case 3: _t->home(); break;
+        case 4: _t->khongGianKhop((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[6]))); break;
+        case 5: _t->khongGianThaoTac((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[5]))); break;
+        case 6: _t->turnOnLed(); break;
+        case 7: _t->turnOffLed(); break;
+        case 8: _t->writeToSerialPort((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
+        case 9: _t->closeSerialPort(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -253,13 +258,13 @@ int Robot::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 10)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 10;
     }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {

@@ -230,10 +230,7 @@ Window {
                                 }
 
                                 onClicked: {
-                                    myRobot.turnOffLed();
-                                    console.log(myRobot.l1+"/"+myRobot.l2+"/"+myRobot.l3);
                                     windowmoveJoint.visible=true
-                                    secondScreen.visible=false
                                 }
                                 ToolTip {
                                     Text{
@@ -358,9 +355,7 @@ Window {
 
                                 onClicked: {
                                     // Toggle visibility of windowmoveTCP
-                                    myBackend.turnOffLed();
                                     windowmoveTCP.visible = true;
-                                    secondScreen.visible = false; // Assuming secondScreen is your main screen
                                 }
                                 ToolTip {
                                     Text{
@@ -1848,4 +1843,420 @@ Window {
             }
         }
     }
+
+    Window {
+        id: windowmoveJoint
+        visible: false
+        width: 800/1423*Screen.width
+        height:750/800*Screen.height
+        Rectangle {
+            width: 800/1423*Screen.width
+            height: 750/800*Screen.height
+            radius: 10
+            color: "white"
+            border.color: "gray"
+            border.width: 2/1423*Screen.width
+            anchors.centerIn: parent
+
+            // Shadow effect using a semi-transparent Rectangle
+            Rectangle {
+                width: 800/1423*Screen.width
+                height: 750/800*Screen.height
+                radius: 10
+                color: "black"
+                opacity: 0.2
+                anchors.centerIn: parent
+                anchors.horizontalCenterOffset: 5
+                anchors.verticalCenterOffset: 5
+            }
+
+            Column {
+                spacing: 40/800*Screen.height
+                anchors.centerIn: parent
+                Row {
+                    spacing: 40/1423*Screen.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Text {
+                        text: "Q1:"
+                        font.pixelSize: 40 // Increase font size
+                        font.bold: true // Optionally make it bold
+                        color: "#0076AE"
+                    }
+                    TextField {
+                        property string valueQ1: ""
+                        id: q1Field
+                        placeholderText: "Enter Q1"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                        onTextChanged: {
+                            valueQ1=q1Field.text;
+                            if(Number(valueQ1)>=0 && Number(valueQ1)<=180 ){
+                                textQ1.color="green"
+                            }else{
+                                textQ1.color="red"
+                            }
+                        }
+                    }
+                    Text{
+                        id:textQ1
+                        text:"0<=Q1<=180"
+                        color:"green";
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pointSize: 25
+                    }
+
+                }
+
+                Row {
+                    spacing: 40/1423*Screen.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Text {
+                        text: "Q2:"
+                        font.pixelSize: 40 // Increase font size
+                        font.bold: true // Optionally make it bold
+                        color: "#0076AE"
+                    }
+                    TextField {
+                        id: q2Field
+                        property string valueQ2: ""
+                        placeholderText: "Enter Q2"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                        onTextChanged: {
+                            valueQ2=q2Field.text;
+                            if(Number(valueQ2)>=0 && Number(valueQ2)<=90){
+                                textQ2.color="green"
+                            }else{
+                                textQ2.color="red";
+                            }
+                        }
+                    }
+                    Text{
+                        id:textQ2
+                        text:"0<=Q2<=90"
+                        color:"green";
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pointSize: 25
+                    }
+                }
+
+                Row {
+                    spacing: 40/1423*Screen.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Text {
+                        text: "Q3:"
+                        font.pixelSize: 40 // Increase font size
+                        font.bold: true // Optionally make it bold
+                        color: "#0076AE"
+                    }
+                    TextField {
+                        id: q3Field
+                        property string valueQ3: ""
+                        placeholderText: "Enter Q3"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                        onTextChanged: {
+                            valueQ3=q3Field.text;
+                            if(Number(valueQ3)>=10 && Number(valueQ3)<=140){
+                                textQ3.color="green"
+                            }else{
+                                textQ3.color="red";
+                            }
+                        }
+                    }
+                    Text{
+                        id:textQ3
+                        text:"10<=Q3<=140"
+                        color:"red";
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pointSize: 25
+                    }
+
+                }
+
+                Row {
+                    spacing: 40/1423*Screen.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Text {
+                        text: "Q4:"
+                        font.pixelSize: 40 // Increase font size
+                        font.bold: true // Optionally make it bold
+                        color: "#0076AE"
+                    }
+                    TextField {
+                        id: q4Field
+                        property string valueQ4: ""
+                        placeholderText: "Enter Q4"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                        onTextChanged: {
+                            valueQ4=q4Field.text;
+                            if(Number(valueQ4)>=120 && Number(valueQ4)<=140){
+                                textQ4.color="green"
+                            }else{
+                                textQ4.color="red";
+                            }
+                        }
+                    }
+                    Text{
+                        id:textQ4
+                        text:"120<=Q4<=140"
+                        color:"red";
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pointSize: 25
+                    }
+
+                }
+
+                Button {
+                    text: "Move"
+                    font.pixelSize: 40 // Increase font size
+                    width: 240/1423*Screen.width // Adjust width
+                    height: 100/800*Screen.height
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    background: Rectangle {
+                        color: "#0076AE"
+                        radius: 10
+                    }
+                    contentItem: Text {
+                        text: "Move"
+                        color: "white"
+                        font.pixelSize: 40
+                        font.bold: true
+                        anchors.centerIn: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    onClicked: {
+                        if(Number(q1Field.valueQ1)>=0&&Number(q1Field.valueQ1)<=180){
+                            if(Number(q2Field.valueQ2)>=0&&Number(q2Field.valueQ2)<=90){
+                                if(Number(q3Field.valueQ3)>=10&&Number(q3Field.valueQ3)<=140){
+                                    if(Number(q4Field.valueQ4)>=120&&Number(q4Field.valueQ4)<=140){
+                                        myRobot.khongGianKhop(Number(q1Field.text),Number(q2Field.text),Number(q3Field.text),Number(q4Field.text),curAngle,curPosition)
+                                        myRobot.writeToSerialPort("q:"+q1Field.text+";"+q2Field.text+";"+q3Field.text+";"+q4Field.text);
+                                        console.log("q:"+q1Field.text+";"+q2Field.text+";"+q3Field.text+";"+q4Field.text);
+                                        windowmoveJoint.visible = false;
+                                        secondScreen.visible = true; // Assuming secondScreen is your main screen
+                                    }else{
+                                        errorAngle.visible=true;
+                                    }
+                                }else{
+                                    errorAngle.visible=true;
+                                }
+                            }else{
+                                errorAngle.visible=true;
+                            }
+                        }else{
+                            errorAngle.visible=true;
+                        }
+                    }
+                }
+            }
+        }
+        Rectangle {
+            id: errorAngle
+            width: 400 / 1423 * Screen.width
+            height: 200 / 800 * Screen.height
+            radius: 10
+            color: "white"
+            border.color: "darkred"
+            border.width: 2
+            anchors.centerIn: parent
+            visible: false // Initially hidden
+
+            Column {
+                spacing: 20 / 800 * Screen.height
+                anchors.centerIn: parent
+
+                Text {
+                    text: "Sai góc nhập, vui lòng nhập lại."
+                    font.pixelSize: 30
+                    font.bold: true
+                    color: "black"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                Button {
+                    text: "Nhập lại"
+                    font.pixelSize: 24
+                    width: 150 / 1423 * Screen.width
+                    height: 50 / 800 * Screen.height
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    background: Rectangle {
+                        color: "blue"
+                        radius: 10
+                    }
+                    contentItem: Text {
+                        text: "Nhập lại"
+                        color: "white"
+                        font.pixelSize: 24
+                        font.bold: true
+                        anchors.centerIn: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    onClicked: {
+                        errorAngle.visible = false
+                    }
+                }
+            }
+        }
+
+
+    }
+    Window {
+        id: windowmoveTCP
+        visible: false
+        width:800/1423*Screen.width
+        height:600/800*Screen.height
+        Rectangle {
+            width: 800/1423*Screen.width
+            height: 600/800*Screen.height
+            radius: 10
+            color: "white"
+            border.color: "gray"
+            border.width: 2/1423*Screen.width
+            anchors.centerIn: parent
+
+            // Shadow effect using a semi-transparent Rectangle
+            Rectangle {
+                width: 800/1423*Screen.width
+                height: 600/800*Screen.height
+                radius: 10
+                color: "black"
+                opacity: 0.2
+                anchors.centerIn: parent
+                anchors.horizontalCenterOffset: 5
+                anchors.verticalCenterOffset: 5
+            }
+
+            Column {
+                spacing: 40/800*Screen.height
+                anchors.centerIn: parent
+
+                Row {
+                    spacing: 40/1423*Screen.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Text {
+                        text: "X:"
+                        font.pixelSize: 40 // Increase font size
+                        font.bold: true // Optionally make it bold
+                        color: "#0076AE"
+                    }
+                    TextField {
+                        id: xField
+                        placeholderText: "Enter X"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+                }
+
+                Row {
+                    spacing: 40/1423*Screen.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Text {
+                        text: "Y:"
+                        font.pixelSize: 40 // Increase font size
+                        font.bold: true // Optionally make it bold
+                        color: "#0076AE"
+                    }
+                    TextField {
+                        id: yField
+                        placeholderText: "Enter Y"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+                }
+
+                Row {
+                    spacing: 40/1423*Screen.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Text {
+                        text: "Z:"
+                        font.pixelSize: 40 // Increase font size
+                        font.bold: true // Optionally make it bold
+                        color: "#0076AE"
+                    }
+                    TextField {
+                        id: zField
+                        placeholderText: "Enter Z"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+                }
+
+                Button {
+                    text: "Move"
+                    font.pixelSize: 40 // Increase font size
+                    width: 240/1423*Screen.width // Adjust width
+                    height: 100/800*Screen.height
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    background: Rectangle {
+                        color: "#0076AE"
+                        radius: 10
+                    }
+                    contentItem: Text {
+                        text: "Print"
+                        color: "white"
+                        font.pixelSize: 40
+                        font.bold: true
+                        anchors.centerIn: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    onClicked: {
+                        myRobot.khongGianThaoTac(Number(xField.text),Number(yField.text),Number(zField.text),curAngle,curPosition);
+                        myRobot.writeToSerialPort("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
+                        console.log("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
+                        windowmoveTCP.visible = false;
+                        secondScreen.visible = true; // Assuming secondScreen is your main screen
+                    }
+                }
+            }
+        }
+    }
+
 }
+
