@@ -7,7 +7,6 @@
 #include <QtQml/qqml.h>
 #include <QtQml/qqmlmoduleregistration.h>
 
-#include <position.h>
 #include <robot.h>
 
 
@@ -18,7 +17,6 @@
 #endif
 Q_QMLTYPE_EXPORT void qml_register_types_robotProject2()
 {
-    qmlRegisterTypesAndRevisions<Position>("robotProject2", 1);
     qmlRegisterTypesAndRevisions<Robot>("robotProject2", 1);
     qmlRegisterModule("robotProject2", 1, 0);
 }

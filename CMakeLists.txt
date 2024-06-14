@@ -21,7 +21,7 @@ qt_add_qml_module(approbotProject2
         SOURCES
         SOURCES
         SOURCES robot.h robot.cpp
-        SOURCES position.h position.cpp
+        SOURCES
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

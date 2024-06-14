@@ -51,8 +51,9 @@ constexpr auto qt_meta_stringdata_CLASSRobotENDCLASS = QtMocHelpers::stringData(
     "q2",
     "q3",
     "q4",
-    "Position",
-    "robotPosition",
+    "double*",
+    "curAngle",
+    "curPosition",
     "khongGianThaoTac",
     "a",
     "b",
@@ -76,7 +77,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
        0,       // classname
        1,   14, // classinfo
        9,   16, // methods
-       3,   99, // properties
+       3,  103, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
@@ -93,10 +94,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
  // methods: name, argc, parameters, tag, flags, initial metatype offsets
        7,    0,   73,    4, 0x02,    7 /* Public */,
        8,    0,   74,    4, 0x02,    8 /* Public */,
-       9,    5,   75,    4, 0x02,    9 /* Public */,
-      16,    4,   86,    4, 0x02,   15 /* Public */,
-      20,    1,   95,    4, 0x02,   20 /* Public */,
-      22,    0,   98,    4, 0x02,   22 /* Public */,
+       9,    6,   75,    4, 0x02,    9 /* Public */,
+      17,    5,   88,    4, 0x02,   16 /* Public */,
+      21,    1,   99,    4, 0x02,   22 /* Public */,
+      23,    0,  102,    4, 0x02,   24 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -106,15 +107,15 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
  // methods: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float, 0x80000000 | 14,   10,   11,   12,   13,   15,
-    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, 0x80000000 | 14,   17,   18,   19,   15,
-    QMetaType::Void, QMetaType::QByteArray,   21,
+    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float, 0x80000000 | 14, 0x80000000 | 14,   10,   11,   12,   13,   15,   16,
+    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::QObjectStar, QMetaType::QObjectStar,   18,   19,   20,   15,   16,
+    QMetaType::Void, QMetaType::QByteArray,   22,
     QMetaType::Void,
 
  // properties: name, type, flags
-      23, QMetaType::Double, 0x00015103, uint(0), 0,
-      24, QMetaType::Double, 0x00015103, uint(1), 0,
-      25, QMetaType::Double, 0x00015103, uint(2), 0,
+      24, QMetaType::Double, 0x00015103, uint(0), 0,
+      25, QMetaType::Double, 0x00015103, uint(1), 0,
+      26, QMetaType::Double, 0x00015103, uint(2), 0,
 
        0        // eod
 };
@@ -150,13 +151,15 @@ Q_CONSTINIT const QMetaObject Robot::staticMetaObject = { {
         float,
         float,
         float,
-        Position,
+        double *,
+        double *,
         // method 'khongGianThaoTac'
         void,
         float,
         float,
         float,
-        Position,
+        QObject *,
+        QObject *,
         // method 'writeToSerialPort'
         void,
         const QByteArray &,
@@ -177,8 +180,8 @@ void Robot::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         case 2: _t->l3Changed(); break;
         case 3: _t->turnOnLed(); break;
         case 4: _t->turnOffLed(); break;
-        case 5: _t->khongGianKhop((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<Position>>(_a[5]))); break;
-        case 6: _t->khongGianThaoTac((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<Position>>(_a[4]))); break;
+        case 5: _t->khongGianKhop((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<double*>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<double*>>(_a[6]))); break;
+        case 6: _t->khongGianThaoTac((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[5]))); break;
         case 7: _t->writeToSerialPort((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
         case 8: _t->closeSerialPort(); break;
         default: ;

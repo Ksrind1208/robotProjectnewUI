@@ -3,7 +3,6 @@ D:/File_code/Qt/robotProject2/main.cpp
 D:/File_code/Qt/robotProject2/robot.h
  mmc:Q_OBJECT
  mdp:D:/File_code/Qt/robotProject2/build/Desktop_Qt_6_7_1_MinGW_64_bit-Debug/approbotProject2_autogen/moc_predefs.h
- mdp:D:/File_code/Qt/robotProject2/position.h
  mdp:D:/File_code/Qt/robotProject2/robot.h
  mdp:D:/SystemFile/Qt/6.7.1/mingw_64/include/QtCore/QByteArray
  mdp:D:/SystemFile/Qt/6.7.1/mingw_64/include/QtCore/QCryptographicHash

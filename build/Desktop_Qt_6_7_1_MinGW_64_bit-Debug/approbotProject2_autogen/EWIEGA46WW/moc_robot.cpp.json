@@ -39,8 +39,12 @@
                             "type": "float"
                         },
                         {
-                            "name": "robotPosition",
-                            "type": "Position&"
+                            "name": "curAngle",
+                            "type": "double*"
+                        },
+                        {
+                            "name": "curPosition",
+                            "type": "double*"
                         }
                     ],
                     "name": "khongGianKhop",
@@ -62,8 +66,12 @@
                             "type": "float"
                         },
                         {
-                            "name": "robotPosition",
-                            "type": "Position&"
+                            "name": "curAngle",
+                            "type": "QObject*"
+                        },
+                        {
+                            "name": "curPosition",
+                            "type": "QObject*"
                         }
                     ],
                     "name": "khongGianThaoTac",

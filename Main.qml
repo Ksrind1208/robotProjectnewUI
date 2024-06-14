@@ -2,20 +2,17 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Data 1.0
-import Data1 1.0
+
 Window {
-    property int curPosition: [1,0,0]
-    property int curAngle: [0,0,0,0]
     id: root
     // w:1423
     // h:800
     width: Screen.width
     height: Screen.height
     visible: true
+    property QtObject curPosition: QtObject { property double x: 0; property double y: 0; property double z: 0 }
+    property QtObject curAngle: QtObject { property double q1: 0; property double q2: 0; property double q3: 0; property double q4: 0 }
     title: qsTr("Robot Project")
-    Position{
-        id:positionRobot
-    }
 
     Item {
         id: secondScreen
@@ -139,11 +136,11 @@ Window {
                                 }
 
                                 onClicked: {
-                                    myRobot.turnOnLed();
-                                    myRobot.khongGianThaoTac(8,0,0,positionRobot);
-                                    console.log(positionRobot.q1+"/"+positionRobot.q2+"/"+positionRobot.q3+"/"+positionRobot.q4);
-                                    console.log(myRobot.l1+"/"+myRobot.l2+"/"+myRobot.l3);
-                                    console.log(curAngle[0]+"/"+curAngle[1]+"/"+curAngle[2]+"/"+curAngle[3]);
+                                    myRobot.home();
+                                    // myRobot.khongGianThaoTac(8, 0, 0, curAngle, curPosition);
+
+                                    // console.log(myRobot.l1+"/"+myRobot.l2+"/"+myRobot.l3);
+                                    // console.log(root.curAngle.q1+"/"+root.curAngle.q2.toFixed(2)+"/"+root.curAngle.q3+"/"+root.curAngle.q4);
                                 }
                             }
 
@@ -937,7 +934,7 @@ Window {
                             Text {
                                 id:q1
                                 anchors.centerIn: parent
-                                text: "Q1: "+curAngle[0]
+                                text: "Q1: "+root.curAngle.q1
                                 color: "black"
                                 font.pointSize: 20
                             }
@@ -951,7 +948,7 @@ Window {
                             Text {
                                 id:q2
                                 anchors.centerIn: parent
-                                text: "Q2: "+curAngle[1]
+                                text: "Q2: "+root.curAngle.q2
                                 color: "black"
                                 font.pointSize: 20
                             }
@@ -966,7 +963,7 @@ Window {
                             Text {
                                 id:q3
                                 anchors.centerIn: parent
-                                text: "Q3: "+curAngle[2]
+                                text: "Q3: "+root.curAngle.q3
                                 color: "black"
                                 font.pointSize: 20
                             }
@@ -981,7 +978,7 @@ Window {
                             Text {
                                 id:q4
                                 anchors.centerIn: parent
-                                text: "Q4: "+curAngle[3]
+                                text: "Q4: "+root.curAngle.q4
                                 color: "black"
                                 font.pointSize: 20
                             }
@@ -999,7 +996,7 @@ Window {
                             Text {
                                 id:x
                                 anchors.centerIn: parent
-                                text: "x: "+curPosition[0]
+                                text: "x: "+root.curPosition.x
                                 color: "black"
                                 font.pointSize: 20
                             }
@@ -1014,7 +1011,7 @@ Window {
                             Text {
                                 id:y
                                 anchors.centerIn: parent
-                                text: "y: "+curPosition[1]
+                                text: "y: "+root.curPosition.y
                                 color: "black"
                                 font.pointSize: 20
                             }
@@ -1029,7 +1026,7 @@ Window {
                             Text {
                                 id:z
                                 anchors.centerIn: parent
-                                text: "z: "+curPosition[2]
+                                text: "z: "+root.curPosition.z
                                 color: "black"
                                 font.pointSize: 20
                             }

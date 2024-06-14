@@ -7,8 +7,6 @@ approbotProject2_autogen/timestamp: \
   CMakeFiles/3.27.7/CMakeSystem.cmake \
   approbotProject2_autogen/moc_predefs.h \
   D:/File_code/Qt/robotProject2/main.cpp \
-  D:/File_code/Qt/robotProject2/position.cpp \
-  D:/File_code/Qt/robotProject2/position.h \
   D:/File_code/Qt/robotProject2/robot.cpp \
   D:/File_code/Qt/robotProject2/robot.h \
   D:/SystemFile/Qt/6.7.1/mingw_64/include/QtCore/QByteArray \

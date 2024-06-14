@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include<QQmlContext>
 #include<robot.h>
-#include<position.h>
+
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     const QUrl url(QStringLiteral("qrc:/robotProject2/Main.qml"));
 
     qmlRegisterType<Robot>("Data",1,0,"Robot");
-    qmlRegisterType<Position>("Data1",1,0,"Position");
+
     double l1 = 6.5;
     double l2 = 8.0;
     double l3 = 8.0;

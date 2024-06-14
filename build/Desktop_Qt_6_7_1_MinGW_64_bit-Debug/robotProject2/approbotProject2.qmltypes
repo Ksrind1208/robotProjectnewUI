@@ -7,28 +7,6 @@ import QtQuick.tooling 1.2
 
 Module {
     Component {
-        file: "position.h"
-        name: "Position"
-        accessSemantics: "reference"
-        prototype: "QObject"
-        exports: ["robotProject2/Position 1.0"]
-        exportMetaObjectRevisions: [256]
-        Property { name: "x"; type: "double"; read: "x"; write: "setX"; notify: "xChanged"; index: 0 }
-        Property { name: "y"; type: "double"; read: "y"; write: "setY"; notify: "yChanged"; index: 1 }
-        Property { name: "z"; type: "double"; read: "z"; write: "setZ"; notify: "zChanged"; index: 2 }
-        Property { name: "q1"; type: "double"; read: "q1"; write: "setQ1"; notify: "q1Changed"; index: 3 }
-        Property { name: "q2"; type: "double"; read: "q2"; write: "setQ2"; notify: "q2Changed"; index: 4 }
-        Property { name: "q3"; type: "double"; read: "q3"; write: "setQ3"; notify: "q3Changed"; index: 5 }
-        Property { name: "q4"; type: "double"; read: "q4"; write: "setQ4"; notify: "q4Changed"; index: 6 }
-        Signal { name: "xChanged" }
-        Signal { name: "yChanged" }
-        Signal { name: "zChanged" }
-        Signal { name: "q1Changed" }
-        Signal { name: "q2Changed" }
-        Signal { name: "q3Changed" }
-        Signal { name: "q4Changed" }
-    }
-    Component {
         file: "robot.h"
         name: "Robot"
         accessSemantics: "reference"
@@ -49,14 +27,16 @@ Module {
             Parameter { name: "q2"; type: "float" }
             Parameter { name: "q3"; type: "float" }
             Parameter { name: "q4"; type: "float" }
-            Parameter { name: "robotPosition"; type: "Position&" }
+            Parameter { name: "curAngle"; type: "double"; isPointer: true }
+            Parameter { name: "curPosition"; type: "double"; isPointer: true }
         }
         Method {
             name: "khongGianThaoTac"
             Parameter { name: "a"; type: "float" }
             Parameter { name: "b"; type: "float" }
             Parameter { name: "c"; type: "float" }
-            Parameter { name: "robotPosition"; type: "Position&" }
+            Parameter { name: "curAngle"; type: "QObject"; isPointer: true }
+            Parameter { name: "curPosition"; type: "QObject"; isPointer: true }
         }
         Method {
             name: "writeToSerialPort"

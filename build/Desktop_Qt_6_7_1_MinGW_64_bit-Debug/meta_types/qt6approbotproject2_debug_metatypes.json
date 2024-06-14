@@ -8,173 +8,6 @@
                         "value": "auto"
                     }
                 ],
-                "className": "Position",
-                "object": true,
-                "properties": [
-                    {
-                        "constant": false,
-                        "designable": true,
-                        "final": false,
-                        "index": 0,
-                        "name": "x",
-                        "notify": "xChanged",
-                        "read": "x",
-                        "required": false,
-                        "scriptable": true,
-                        "stored": true,
-                        "type": "double",
-                        "user": false,
-                        "write": "setX"
-                    },
-                    {
-                        "constant": false,
-                        "designable": true,
-                        "final": false,
-                        "index": 1,
-                        "name": "y",
-                        "notify": "yChanged",
-                        "read": "y",
-                        "required": false,
-                        "scriptable": true,
-                        "stored": true,
-                        "type": "double",
-                        "user": false,
-                        "write": "setY"
-                    },
-                    {
-                        "constant": false,
-                        "designable": true,
-                        "final": false,
-                        "index": 2,
-                        "name": "z",
-                        "notify": "zChanged",
-                        "read": "z",
-                        "required": false,
-                        "scriptable": true,
-                        "stored": true,
-                        "type": "double",
-                        "user": false,
-                        "write": "setZ"
-                    },
-                    {
-                        "constant": false,
-                        "designable": true,
-                        "final": false,
-                        "index": 3,
-                        "name": "q1",
-                        "notify": "q1Changed",
-                        "read": "q1",
-                        "required": false,
-                        "scriptable": true,
-                        "stored": true,
-                        "type": "double",
-                        "user": false,
-                        "write": "setQ1"
-                    },
-                    {
-                        "constant": false,
-                        "designable": true,
-                        "final": false,
-                        "index": 4,
-                        "name": "q2",
-                        "notify": "q2Changed",
-                        "read": "q2",
-                        "required": false,
-                        "scriptable": true,
-                        "stored": true,
-                        "type": "double",
-                        "user": false,
-                        "write": "setQ2"
-                    },
-                    {
-                        "constant": false,
-                        "designable": true,
-                        "final": false,
-                        "index": 5,
-                        "name": "q3",
-                        "notify": "q3Changed",
-                        "read": "q3",
-                        "required": false,
-                        "scriptable": true,
-                        "stored": true,
-                        "type": "double",
-                        "user": false,
-                        "write": "setQ3"
-                    },
-                    {
-                        "constant": false,
-                        "designable": true,
-                        "final": false,
-                        "index": 6,
-                        "name": "q4",
-                        "notify": "q4Changed",
-                        "read": "q4",
-                        "required": false,
-                        "scriptable": true,
-                        "stored": true,
-                        "type": "double",
-                        "user": false,
-                        "write": "setQ4"
-                    }
-                ],
-                "qualifiedClassName": "Position",
-                "signals": [
-                    {
-                        "access": "public",
-                        "name": "xChanged",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "yChanged",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "zChanged",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "q1Changed",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "q2Changed",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "q3Changed",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "q4Changed",
-                        "returnType": "void"
-                    }
-                ],
-                "superClasses": [
-                    {
-                        "access": "public",
-                        "name": "QObject"
-                    }
-                ]
-            }
-        ],
-        "inputFile": "position.h",
-        "outputRevision": 68
-    },
-    {
-        "classes": [
-            {
-                "classInfos": [
-                    {
-                        "name": "QML.Element",
-                        "value": "auto"
-                    }
-                ],
                 "className": "Robot",
                 "methods": [
                     {
@@ -207,8 +40,12 @@
                                 "type": "float"
                             },
                             {
-                                "name": "robotPosition",
-                                "type": "Position&"
+                                "name": "curAngle",
+                                "type": "double*"
+                            },
+                            {
+                                "name": "curPosition",
+                                "type": "double*"
                             }
                         ],
                         "name": "khongGianKhop",
@@ -230,8 +67,12 @@
                                 "type": "float"
                             },
                             {
-                                "name": "robotPosition",
-                                "type": "Position&"
+                                "name": "curAngle",
+                                "type": "QObject*"
+                            },
+                            {
+                                "name": "curPosition",
+                                "type": "QObject*"
                             }
                         ],
                         "name": "khongGianThaoTac",

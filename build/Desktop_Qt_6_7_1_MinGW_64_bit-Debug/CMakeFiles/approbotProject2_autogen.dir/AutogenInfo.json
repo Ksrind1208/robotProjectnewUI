@@ -774,12 +774,6 @@
 	"HEADERS" : 
 	[
 		[
-			"D:/File_code/Qt/robotProject2/position.h",
-			"MU",
-			"EWIEGA46WW/moc_position.cpp",
-			null
-		],
-		[
 			"D:/File_code/Qt/robotProject2/robot.h",
 			"MU",
 			"EWIEGA46WW/moc_robot.cpp",
@@ -885,7 +879,6 @@
 	"SOURCES" : 
 	[
 		[ "D:/File_code/Qt/robotProject2/main.cpp", "MU", null ],
-		[ "D:/File_code/Qt/robotProject2/position.cpp", "MU", null ],
 		[ "D:/File_code/Qt/robotProject2/robot.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
