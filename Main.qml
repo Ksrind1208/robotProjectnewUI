@@ -137,6 +137,8 @@ Window {
 
                                 onClicked: {
                                     myRobot.home();
+                                    myRobot.khongGianKhop(90,5,35,122,curAngle,curPosition);
+                                    myRobot.writeToSerialPort("q:"+95+";"+"5"+";"+35+";"+122);
                                     // myRobot.khongGianThaoTac(8, 0, 0, curAngle, curPosition);
 
                                     // console.log(myRobot.l1+"/"+myRobot.l2+"/"+myRobot.l3);
@@ -1143,6 +1145,8 @@ Window {
                                 }
 
                                 onClicked: {
+                                    myRobot.khongGianKhop(Number(root.curAngle.q1)-10,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
+                                    myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1)-10)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
                                     console.log("Left arrow clicked");
                                 }
                             }
@@ -1194,6 +1198,8 @@ Window {
                                 }
 
                                 onClicked: {
+                                    myRobot.khongGianKhop(Number(root.curAngle.q1)+10,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
+                                    myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1)+10)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
                                     console.log("Right arrow clicked");
                                 }
                             }
@@ -1249,6 +1255,8 @@ Window {
                                     }
 
                                     onClicked: {
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4)-5,curAngle,curPosition);
+                                        myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+(Number(root.curAngle.q4)-5));
                                         console.log("Left arrow clicked");
                                     }
                                 }
@@ -1300,6 +1308,8 @@ Window {
                                 }
 
                                 onClicked: {
+                                    myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4)+5,curAngle,curPosition);
+                                    myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+(Number(root.curAngle.q4)+5));
                                     console.log("Right arrow clicked");
                                 }
                             }
@@ -1467,6 +1477,8 @@ Window {
                                 }
 
                                 onClicked: {
+                                    myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2)-10,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
+                                    myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2)-10)+";"+Number(root.curAngle.q3)+";"+(Number(root.curAngle.q4)));
                                     console.log("Up arrow clicked");
                                 }
                             }
@@ -1517,6 +1529,8 @@ Window {
                                 }
 
                                 onClicked: {
+                                    myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3)+10,Number(root.curAngle.q4),curAngle,curPosition);
+                                    myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2))+";"+(Number(root.curAngle.q3)+10)+";"+(Number(root.curAngle.q4)));
                                     console.log("Up arrow clicked");
                                 }
                             }
@@ -1573,6 +1587,8 @@ Window {
                                 }
 
                                 onClicked: {
+                                    myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2)+10,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
+                                    myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2)+10)+";"+(Number(root.curAngle.q3))+";"+(Number(root.curAngle.q4)));
                                     console.log("Down arrow clicked");
                                 }
                             }
@@ -1582,7 +1598,7 @@ Window {
                             width: 0.08*controllRectangle.width
                             height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
-                            property string arrowText: "J4-"
+                            property string arrowText: "J3-"
                             property color textColor: "black" // Color of the text
 
                             onPaint: {
@@ -1624,6 +1640,8 @@ Window {
                                 }
 
                                 onClicked: {
+                                    myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3)-10,Number(root.curAngle.q4),curAngle,curPosition);
+                                    myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2))+";"+(Number(root.curAngle.q3)-10)+";"+(Number(root.curAngle.q4)));
                                     console.log("Down arrow clicked");
                                 }
                             }
