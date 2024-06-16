@@ -105,7 +105,7 @@ void Robot::khongGianThaoTac(float a, float b, float c, QObject* curAngle, QObje
     curAngle->setProperty("q1", (round((q1 * 180 /  3.14) * 100.0) / 100.0));
     curAngle->setProperty("q2", (round((90 - q2 * 180 /  3.14) * 100.0) / 100.0));
     curAngle->setProperty("q3", (round((105 + q2 * 180 /  3.14 + q3 * 180 /  3.14) * 100.0) / 100.0));
-    curAngle->setProperty("q4", (130));
+    curAngle->setProperty("q4", (122));
 }
 
 void Robot::writeToSerialPort(const QByteArray &data)

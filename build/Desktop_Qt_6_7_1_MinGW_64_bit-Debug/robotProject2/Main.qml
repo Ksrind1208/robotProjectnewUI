@@ -10,8 +10,8 @@ Window {
     width: Screen.width
     height: Screen.height
     visible: true
-    property QtObject curPosition: QtObject { property double x: 0; property double y: 0; property double z: 0 }
-    property QtObject curAngle: QtObject { property double q1: 0; property double q2: 0; property double q3: 0; property double q4: 0 }
+    property QtObject curPosition: QtObject { property double x: 0; property double y: 3.44; property double z: 6.95 }
+    property QtObject curAngle: QtObject { property double q1: 90; property double q2: 5; property double q3: 35; property double q4: 122 }
     title: qsTr("Robot Project")
 
     Item {
@@ -1028,6 +1028,75 @@ Window {
                                 font.pointSize: 20
                             }
                         }
+
+                        Rectangle{
+                            id:save
+                            width: 88/1423*Screen.width
+                            height: 88/800*Screen.height
+                            color:"#6C757D"
+                            radius: 10
+                            Text{
+                                text:"SAVE"
+                                color:"white"
+                                font.pointSize: 24
+                                anchors.centerIn: parent
+                            }
+
+                            MouseArea{
+                                id:mouseSave
+                                anchors.fill: parent
+                                hoverEnabled:true
+
+                                property int mouseX: 0
+                                property int mouseY: 0
+
+                                onPositionChanged: (mouse)=>{
+                                    mouseX=mouse.x;
+                                    mouseY=mouse.y;
+                                }
+
+                                onHoveredChanged: {
+                                    if(containsMouse==true){
+                                        save.color="black"
+                                        shadowSave.color="#6C757D"
+                                    }else{
+                                        save.color="#6C757D"
+                                        shadowSave.color="black"
+                                    }
+                                }
+                                ToolTip {
+                                    Text{
+                                        id:textSave
+                                        text:"Lưu vị trí hiện tại"
+                                        color:"black"
+                                        font.pointSize: 24
+                                    }
+                                    visible: mouseSave.containsMouse
+                                    x: mouseSave.mouseX + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    y: mouseSave.mouseY + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    width:textSave.implicitWidth+10
+                                    height:textSave.implicitHeight+10
+                                }
+
+                                onClicked: {
+
+                                }
+                            }
+
+
+                            // Hiệu ứng đổ bóng bằng một Rectangle mờ
+                            Rectangle {
+                                id:shadowSave
+                                width: save.width
+                                height: save.height
+                                radius: 10
+                                color: "black"
+                                opacity: 0.3
+                                anchors.centerIn: save
+                                anchors.horizontalCenterOffset: 5
+                                anchors.verticalCenterOffset: 5
+                            }
+                        }
                     }
                 }
             }
@@ -1352,7 +1421,7 @@ Window {
                             width: 0.08*controllRectangle.width
                             height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
-                            property string arrowText: "X-"
+                            property string arrowText: "Y-"
                             property color textColor: "black" // Color of the text
                             onPaint: {
                                 var ctx = getContext("2d");
@@ -1394,7 +1463,9 @@ Window {
                                 }
 
                                 onClicked: {
-                                    console.log("Up arrow clicked");
+                                    myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y)-1,Number(root.curPosition.z),curAngle,curPosition);
+                                    myRobot.writeToSerialPort("kg:"+(Number(root.curPosition.x))+";"+(Number(root.curPosition.y)-1)+";"+Number(root.curPosition.z));
+                                    console.log("left arrow clicked");
                                 }
                             }
                         }
@@ -1403,7 +1474,7 @@ Window {
                         width: 0.08*controllRectangle.width
                         height: 0.08*controllRectangle.width
                         property color arrowColor: "white"
-                        property string arrowText: "X+"
+                        property string arrowText: "Y+"
                         property color textColor: "black" // Color of the text
                         onPaint: {
                             var ctx = getContext("2d");
@@ -1447,6 +1518,8 @@ Window {
                             }
 
                             onClicked: {
+                                myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y)+1,Number(root.curPosition.z),curAngle,curPosition);
+                                myRobot.writeToSerialPort("kg:"+(Number(root.curPosition.x))+";"+(Number(root.curPosition.y)+1)+";"+Number(root.curPosition.z));
                                 console.log("Up arrow clicked");
                             }
                         }
@@ -1705,7 +1778,7 @@ Window {
                         width: 0.08*controllRectangle.width
                         height: 0.08*controllRectangle.width
                         property color arrowColor: "white"
-                        property string arrowText: "Y+"
+                        property string arrowText: "X-"
                         property color textColor: "black" // Color of the text
                         onPaint: {
                             var ctx = getContext("2d");
@@ -1746,6 +1819,8 @@ Window {
                             }
 
                             onClicked: {
+                                myRobot.khongGianThaoTac(Number(root.curPosition.x)-1,Number(root.curPosition.y),Number(root.curPosition.z),curAngle,curPosition);
+                                myRobot.writeToSerialPort("kg:"+(Number(root.curPosition.x)-1)+";"+(Number(root.curPosition.y))+";"+Number(root.curPosition.z));
                                 console.log("Down arrow clicked");
                             }
                         }
@@ -1757,7 +1832,7 @@ Window {
                         width: 0.08*controllRectangle.width
                         height: 0.08*controllRectangle.width
                         property color arrowColor: "white"
-                        property string arrowText: "Y-"
+                        property string arrowText: "X+"
                         property color textColor: "black" // Color of the text
 
                         onPaint: {
@@ -1799,6 +1874,8 @@ Window {
                             }
 
                             onClicked: {
+                                myRobot.khongGianThaoTac(Number(root.curPosition.x)+1,Number(root.curPosition.y),Number(root.curPosition.z),curAngle,curPosition);
+                               myRobot.writeToSerialPort("kg:"+(Number(root.curPosition.x)+1)+";"+(Number(root.curPosition.y))+";"+Number(root.curPosition.z));
                                 console.log("Down arrow clicked");
                             }
                         }
@@ -1851,6 +1928,8 @@ Window {
                             }
 
                             onClicked: {
+                                myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y),Number(root.curPosition.z)+1,curAngle,curPosition);
+                                myRobot.writeToSerialPort("kg:"+Number(root.curPosition.x)+";"+Number(root.curPosition.y)+";"+(Number(root.curPosition.z)+1));
                                 console.log("Down arrow clicked");
                             }
                         }
@@ -1904,6 +1983,8 @@ Window {
                             }
 
                             onClicked: {
+                                myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y),Number(root.curPosition.z)-1,curAngle,curPosition);
+                                myRobot.writeToSerialPort("kg:"+Number(root.curPosition.x)+";"+Number(root.curPosition.y)+";"+(Number(root.curPosition.z)-1));
                                 console.log("Down arrow clicked");
                             }
                         }
