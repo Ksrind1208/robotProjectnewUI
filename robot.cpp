@@ -8,7 +8,7 @@ Robot::Robot(QObject *parent,double l1,double l2,double l3)
     m_l1=l1;
     m_l2=l2;
     m_l3=l3;
-    serialPort.setPortName("COM7");
+    serialPort.setPortName("COM3");
     bool success = serialPort.open(QSerialPort::ReadWrite);
     serialPort.setBaudRate(QSerialPort::Baud9600);
     serialPort.setDataBits(QSerialPort::Data8);
@@ -105,7 +105,7 @@ void Robot::khongGianThaoTac(float a, float b, float c, QObject* curAngle, QObje
     curAngle->setProperty("q1", (round((q1 * 180 /  3.14) * 100.0) / 100.0));
     curAngle->setProperty("q2", (round((90 - q2 * 180 /  3.14) * 100.0) / 100.0));
     curAngle->setProperty("q3", (round((105 + q2 * 180 /  3.14 + q3 * 180 /  3.14) * 100.0) / 100.0));
-    curAngle->setProperty("q4", (122));
+    curAngle->setProperty("q4", (65));
 }
 
 void Robot::writeToSerialPort(const QByteArray &data)

@@ -2,7 +2,6 @@
 #include <QQmlApplicationEngine>
 #include<QQmlContext>
 #include<robot.h>
-
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
@@ -25,6 +24,7 @@ int main(int argc, char *argv[])
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
     engine.load(url);
+
 
     QQmlContext *rootContext=engine.rootContext();
     rootContext->setContextProperty("myRobot",&myRobot);

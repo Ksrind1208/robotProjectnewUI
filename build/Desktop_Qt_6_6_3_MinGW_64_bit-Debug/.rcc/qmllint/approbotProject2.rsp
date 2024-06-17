@@ -1,0 +1,10 @@
+--bare
+-I
+D:/File_code/QT/robotProject2/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug
+-I
+D:/SystemFile/QT/6.6.3/mingw_64/./qml
+--resource
+D:/File_code/QT/robotProject2/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/qmake_robotProject2.qrc
+--resource
+D:/File_code/QT/robotProject2/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/approbotProject2_raw_qml_0.qrc
+D:/File_code/QT/robotProject2/Main.qml
