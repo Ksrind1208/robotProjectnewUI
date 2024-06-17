@@ -659,8 +659,7 @@ Window {
                                 }
 
                                 onClicked: {
-                                    myBackend.closeSerialPort();
-                                    Qt.quit()
+                                    windowDragandDrop.visible=true;
                                 }
                                 ToolTip {
                                     Text{
@@ -936,13 +935,22 @@ Window {
                             border.color: "white"
                             border.width: 2/1423*Screen.width
                             radius: 5
-                            Text {
-                                id:q1
+                            Row{
+                                spacing:5
                                 anchors.centerIn: parent
-                                text: "Q1: "+root.curAngle.q1
-                                color: "black"
-                                font.pointSize: 20
+                                Text {
+                                    text: "Q1:"
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                                Text {
+                                    id:q1
+                                    text: root.curAngle.q1
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
                             }
+
                         }
                         Rectangle {
                             width: 0.3*positionRectangle.width
@@ -950,12 +958,20 @@ Window {
                             border.color: "white"
                             border.width: 2/1423*Screen.width
                             radius: 5
-                            Text {
-                                id:q2
+                            Row{
+                                spacing: 5
                                 anchors.centerIn: parent
-                                text: "Q2: "+root.curAngle.q2
-                                color: "black"
-                                font.pointSize: 20
+                                Text {
+                                    text: "Q2: "
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                                Text {
+                                    id:q2
+                                    text: root.curAngle.q2
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
                             }
                         }
 
@@ -965,12 +981,20 @@ Window {
                             border.color: "white"
                             border.width: 2/1423*Screen.width
                             radius: 5
-                            Text {
-                                id:q3
+                            Row{
+                                spacing: 5
                                 anchors.centerIn: parent
-                                text: "Q3: "+root.curAngle.q3
-                                color: "black"
-                                font.pointSize: 20
+                                Text {
+                                    text: "Q3: "
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                                Text {
+                                    id:q3
+                                    text:curAngle.q3
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
                             }
                         }
 
@@ -980,12 +1004,20 @@ Window {
                             border.color: "white"
                             border.width: 2/1423*Screen.width
                             radius: 5
-                            Text {
-                                id:q4
+                            Row{
+                                spacing: 5
                                 anchors.centerIn: parent
-                                text: "Q4: "+root.curAngle.q4
-                                color: "black"
-                                font.pointSize: 20
+                                Text {
+                                    text: "Q4: "
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                                Text {
+                                    id:q4
+                                    text: root.curAngle.q4
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
                             }
                         }
                     }
@@ -998,12 +1030,20 @@ Window {
                             border.color: "white"
                             border.width: 2/1423*Screen.width
                             radius: 5
-                            Text {
-                                id:x
+                            Row{
+                                spacing: 5
                                 anchors.centerIn: parent
-                                text: "x: "+root.curPosition.x
-                                color: "black"
-                                font.pointSize: 20
+                                Text {
+                                    text: "x: "
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                                Text {
+                                    id:x
+                                    text: root.curPosition.x
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
                             }
                         }
 
@@ -1013,12 +1053,20 @@ Window {
                             border.color: "white"
                             border.width: 2/1423*Screen.width
                             radius: 5
-                            Text {
-                                id:y
+                            Row{
+                                spacing: 5
                                 anchors.centerIn: parent
-                                text: "y: "+root.curPosition.y
-                                color: "black"
-                                font.pointSize: 20
+                                Text {
+                                    text: "y: "
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                                Text {
+                                    id:y
+                                    text: root.curPosition.y
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
                             }
                         }
 
@@ -1028,12 +1076,20 @@ Window {
                             border.color: "white"
                             border.width: 2/1423*Screen.width
                             radius: 5
-                            Text {
-                                id:z
+                            Row{
+                                spacing: 5
                                 anchors.centerIn: parent
-                                text: "z: "+root.curPosition.z
-                                color: "black"
-                                font.pointSize: 20
+                                Text {
+                                    text: "z: "
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
+                                Text {
+                                    id:z
+                                    text: root.curPosition.z
+                                    color: "black"
+                                    font.pointSize: 20
+                                }
                             }
                         }
 
@@ -2742,6 +2798,234 @@ Window {
                         // console.log("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
                         windowmoveCI.visible = false;
                         // secondScreen.visible = true; // Assuming secondScreen is your main screen
+                    }
+                }
+            }
+        }
+    }
+
+    Window {
+        id: windowDragandDrop
+        visible: false
+        width:800/1423*Screen.width*1.3
+        height:600/800*Screen.height*1.3
+        Rectangle {
+            width: 800/1423*Screen.width*1.3
+            height: 600/800*Screen.height*1.3
+            radius: 10
+            color: "white"
+            border.color: "gray"
+            border.width: 2/1423*Screen.width
+            anchors.centerIn: parent
+
+            // Shadow effect using a semi-transparent Rectangle
+            Rectangle {
+                width: 800/1423*Screen.width*1.3
+                height: 600/800*Screen.height*1.3
+                radius: 10
+                color: "black"
+                opacity: 0.2
+                anchors.centerIn: parent
+                anchors.horizontalCenterOffset: 5
+                anchors.verticalCenterOffset: 5
+            }
+
+            Column {
+                spacing: 40/800*Screen.height
+                anchors.centerIn: parent
+
+                Row {
+                    spacing: 40/1423*Screen.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Text {
+                        text: "X:"
+                        font.pixelSize: 40 // Increase font size
+                        font.bold: true // Optionally make it bold
+                        color: "#0076AE"
+                    }
+                    TextField {
+                        id: x5Field
+                        text:""
+                        placeholderText: "Enter X1"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+
+                    TextField {
+                        id: x6Field
+                        text:""
+                        placeholderText: "Enter X2"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+                }
+
+                Row {
+                    spacing: 40/1423*Screen.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Text {
+                        text: "Y:"
+                        font.pixelSize: 40 // Increase font size
+                        font.bold: true // Optionally make it bold
+                        color: "#0076AE"
+                    }
+                    TextField {
+                        id: y5Field
+                        text:""
+                        placeholderText: "Enter Y1"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+                    TextField {
+                        id: y6Field
+                        text:""
+                        placeholderText: "Enter Y2"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+                }
+
+                Row {
+                    spacing: 40/1423*Screen.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Text {
+                        text: "Z:"
+                        font.pixelSize: 40 // Increase font size
+                        font.bold: true // Optionally make it bold
+                        color: "#0076AE"
+                    }
+                    TextField {
+                        id: z5Field
+                        text:""
+                        placeholderText: "Enter Z1"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+                    TextField {
+                        id: z6Field
+                        text:""
+                        placeholderText: "Enter Z2"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+                }
+
+                Row {
+                    spacing: 200/1423*Screen.width
+                    x:170
+                    Button {
+                        text: "SAVE 1"
+                        font.pixelSize: 40 // Increase font size
+                        width: 240/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#0076AE"
+                            radius: 10
+                        }
+                        contentItem: Text {
+                            text: "SAVE 1"
+                            color: "white"
+                            font.pixelSize: 40
+                            font.bold: true
+                            anchors.centerIn: parent
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                        onClicked: {
+                            x5Field.text=x.text;
+                            y5Field.text=y.text;
+                            z5Field.text=z.text;
+                        }
+                    }
+                    Button {
+                        text: "SAVE 2"
+                        font.pixelSize: 40 // Increase font size
+                        width: 240/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#0076AE"
+                            radius: 10
+                        }
+                        contentItem: Text {
+                            text: "SAVE 2"
+                            color: "white"
+                            font.pixelSize: 40
+                            font.bold: true
+                            anchors.centerIn: parent
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                        onClicked: {
+                            x6Field.text=x.text;
+                            y6Field.text=y.text;
+                            z6Field.text=z.text;
+                        }
+                    }
+                }
+                Row {
+                    spacing: 200/1423*Screen.width
+                    x:405
+                    Button {
+                        text: "START"
+                        font.pixelSize: 40 // Increase font size
+                        width: 240/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#0076AE"
+                            radius: 10
+                        }
+                        contentItem: Text {
+                            text: "START"
+                            color: "white"
+                            font.pixelSize: 40
+                            font.bold: true
+                            anchors.centerIn: parent
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                        onClicked: {
+                            // myRobot.khongGianThaoTac(Number(x4Field.text),Number(y4Field.text),Number(z4Field.text),curAngle,curPosition);
+                            // myRobot.writeToSerialPort("circle:"+Number(x3Field.text)+";"+Number(y3Field.text)+";"+Number(z3Field.text)+";"+Number(x4Field.text)+";"+Number(y4Field.text)+";"+Number(z4Field.text));
+                            // // console.log("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
+                            // windowmoveCI.visible = false;
+                            // // secondScreen.visible = true; // Assuming secondScreen is your main screen
+                        }
                     }
                 }
             }
