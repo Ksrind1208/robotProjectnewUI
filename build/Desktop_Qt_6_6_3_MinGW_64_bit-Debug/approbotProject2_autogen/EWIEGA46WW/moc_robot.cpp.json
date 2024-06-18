@@ -74,16 +74,6 @@
                 },
                 {
                     "access": "public",
-                    "name": "turnOnLed",
-                    "returnType": "void"
-                },
-                {
-                    "access": "public",
-                    "name": "turnOffLed",
-                    "returnType": "void"
-                },
-                {
-                    "access": "public",
                     "arguments": [
                         {
                             "name": "data",

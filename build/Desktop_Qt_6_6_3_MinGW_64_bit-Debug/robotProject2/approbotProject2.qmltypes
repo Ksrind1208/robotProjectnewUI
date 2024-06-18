@@ -37,8 +37,6 @@ Module {
             Parameter { name: "curAngle"; type: "QObject"; isPointer: true }
             Parameter { name: "curPosition"; type: "QObject"; isPointer: true }
         }
-        Method { name: "turnOnLed" }
-        Method { name: "turnOffLed" }
         Method {
             name: "writeToSerialPort"
             Parameter { name: "data"; type: "QByteArray" }

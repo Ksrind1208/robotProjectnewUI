@@ -1176,6 +1176,180 @@ Window {
                 border.width: 1.5/1423*Screen.width
                 radius: 10
 
+                property real curAngleQ2: root.curAngle.q2
+                property real curPositionY: root.curPosition.y
+                property real curPositionZ: root.curPosition.z
+
+                // First Canvas for yOz axis
+                Canvas {
+                    id: yOzCanvas
+                    anchors.left: parent.left
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: parent.width / 2 - 5
+                    onPaint: {
+                        var ctx = yOzCanvas.getContext("2d");
+                        ctx.clearRect(0, 0, yOzCanvas.width, yOzCanvas.height);
+
+                        // Set up styles
+                        ctx.strokeStyle = "white";
+                        ctx.lineWidth = 2;
+
+                        // Draw Y axis
+                        ctx.beginPath();
+                        ctx.moveTo(0, yOzCanvas.height / 2);
+                        ctx.lineTo(yOzCanvas.width, yOzCanvas.height / 2);
+                        ctx.stroke();
+
+                        // Draw Z axis
+                        ctx.beginPath();
+                        ctx.moveTo(yOzCanvas.width / 2, 0);
+                        ctx.lineTo(yOzCanvas.width / 2, yOzCanvas.height);
+                        ctx.stroke();
+
+                        // Set fill style for text
+                        ctx.fillStyle = "white";
+
+                        // Draw ticks and labels on Y axis
+                        var stepY = (yOzCanvas.width) / 40; // Each step represents 1 unit
+                        for (var j = -18; j <= 18; j += 2) {
+                            var y = yOzCanvas.width / 2 + j * stepY;
+                            ctx.beginPath();
+                            ctx.moveTo(y, yOzCanvas.height / 2 - 3);
+                            ctx.lineTo(y, yOzCanvas.height / 2 + 3);
+                            ctx.stroke();
+
+                            if (j !== 0) { // Skip the origin
+                                ctx.fillText(j.toString(), y - 5, yOzCanvas.height / 2 + 15);
+                            }
+                        }
+
+                        // Draw ticks and labels on Z axis
+                        var stepZ = yOzCanvas.height / 40; // Each step represents 1 unit
+                        for (var i = -18; i <= 18; i += 2) {
+                            var z = yOzCanvas.height / 2 - i * stepZ;
+                            ctx.beginPath();
+                            ctx.moveTo(yOzCanvas.width / 2 - 3, z);
+                            ctx.lineTo(yOzCanvas.width / 2 + 3, z);
+                            ctx.stroke();
+
+                            if (i !== 0) { // Skip the origin
+                                ctx.fillText(i.toString(), yOzCanvas.width / 2 + 10, z + 5);
+                            }
+                        }
+
+
+
+                        ctx.strokeStyle = "red";
+                        ctx.lineWidth=60;
+                        ctx.beginPath();
+                        ctx.moveTo(yOzCanvas.width / 2, yOzCanvas.height / 2);
+                        ctx.lineTo(yOzCanvas.width / 2, yOzCanvas.height / 2 -stepZ * 6.5); // Correct calculation
+                        ctx.stroke();
+
+                        ctx.strokeStyle = "green";
+                        ctx.lineWidth=20;
+                        ctx.beginPath();
+                        ctx.moveTo(yOzCanvas.width / 2, yOzCanvas.height / 2 -stepZ * 6.5);
+                        ctx.lineTo(yOzCanvas.width / 2+8*stepZ*Math.cos(Math.PI*(90-root.curAngle.q2)/180), yOzCanvas.height / 2 -stepZ * 6.5-8*stepZ*Math.sin((90-root.curAngle.q2)*Math.PI/180)); // Correct calculation
+                        ctx.stroke();
+
+                        ctx.strokeStyle = "blue";
+                        ctx.lineWidth=20;
+                        ctx.beginPath();
+                        ctx.moveTo(yOzCanvas.width / 2+8*stepZ*Math.cos(Math.PI*(90-root.curAngle.q2)/180), yOzCanvas.height / 2 -stepZ * 6.5-8*stepZ*Math.sin((90-root.curAngle.q2)*Math.PI/180));
+                        ctx.lineTo(yOzCanvas.width/2+stepZ*root.curPosition.y, yOzCanvas.height/2-stepZ*root.curPosition.z); // Correct calculation
+                        ctx.stroke();
+
+                        ctx.strokeStyle = "yellow";
+                        ctx.lineWidth=20;
+                        ctx.beginPath();
+                        ctx.moveTo(yOzCanvas.width/2+stepZ*root.curPosition.y, yOzCanvas.height/2-stepZ*root.curPosition.z);
+                        ctx.lineTo(yOzCanvas.width/2+stepZ*root.curPosition.y+30, yOzCanvas.height/2-stepZ*root.curPosition.z); // Correct calculation
+                        ctx.stroke();
+                    }
+
+                    Component.onCompleted: {
+                        yOzCanvas.requestPaint();
+                    }
+                }
+                onCurAngleQ2Changed: {
+                    yOzCanvas.requestPaint();
+                }
+                onCurPositionYChanged: {
+                    yOzCanvas.requestPaint();
+                }
+                onCurPositionZChanged: {
+                    yOzCanvas.requestPaint();
+                }
+
+                // Second Canvas for xOy axis
+                Canvas {
+                    id: xOyCanvas
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    width: parent.width / 2-5
+
+                    property real curAngleQ22: root.curAngle.q2
+                    property real curPositionXX:root.curPosition.x
+                    property real curPositionYY: root.curPosition.y
+                    onPaint: {
+                        var ctx = xOyCanvas.getContext("2d");
+                        ctx.clearRect(0, 0, xOyCanvas.width, xOyCanvas.height);
+
+                        // Set up styles
+                        ctx.strokeStyle = "white";
+                        ctx.lineWidth = 2;
+
+                        // Draw X axis
+                        ctx.beginPath();
+                        ctx.moveTo(0, xOyCanvas.height / 2);
+                        ctx.lineTo(xOyCanvas.width, xOyCanvas.height / 2);
+                        ctx.stroke();
+
+                        // Draw Y axis
+                        ctx.beginPath();
+                        ctx.moveTo(xOyCanvas.width / 2, 0);
+                        ctx.lineTo(xOyCanvas.width / 2, xOyCanvas.height);
+                        ctx.stroke();
+
+                        // Set fill style for text
+                        ctx.fillStyle = "white";
+
+                        // Draw ticks and labels on X axis
+                        var stepX = xOyCanvas.width / 40; // Each step represents 1 unit
+                        for (var i = -18; i <= 18; i+=2) {
+                            var x = xOyCanvas.width / 2 + i * stepX;
+                            ctx.beginPath();
+                            ctx.moveTo(x, xOyCanvas.height / 2 - 3);
+                            ctx.lineTo(x, xOyCanvas.height / 2 + 3);
+                            ctx.stroke();
+
+                            if (i !== 0) { // Skip the origin
+                                ctx.fillText(i.toString(), x - 5, xOyCanvas.height / 2 + 15);
+                            }
+                        }
+
+                        // Draw ticks and labels on Y axis
+                        var stepY = xOyCanvas.height / 40; // Each step represents 1 unit
+                        for (var j = -18; j <= 18; j+=2) {
+                            var y = xOyCanvas.height / 2 - j * stepY;
+                            ctx.beginPath();
+                            ctx.moveTo(xOyCanvas.width / 2 - 3, y);
+                            ctx.lineTo(xOyCanvas.width / 2 + 3, y);
+                            ctx.stroke();
+
+                            if (j !== 0) { // Skip the origin
+                                ctx.fillText(j.toString(), xOyCanvas.width / 2 + 10, y + 5);
+                            }
+                        }
+                    }
+
+                    Component.onCompleted: {
+                        xOyCanvas.requestPaint();
+                    }
+                }
 
             }
 

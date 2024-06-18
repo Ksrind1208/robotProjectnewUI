@@ -59,8 +59,6 @@ constexpr auto qt_meta_stringdata_CLASSRobotENDCLASS = QtMocHelpers::stringData(
     "a",
     "b",
     "c",
-    "turnOnLed",
-    "turnOffLed",
     "writeToSerialPort",
     "data",
     "closeSerialPort",
@@ -70,7 +68,7 @@ constexpr auto qt_meta_stringdata_CLASSRobotENDCLASS = QtMocHelpers::stringData(
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSRobotENDCLASS_t {
-    uint offsetsAndSizes[54];
+    uint offsetsAndSizes[50];
     char stringdata0[6];
     char stringdata1[12];
     char stringdata2[5];
@@ -90,14 +88,12 @@ struct qt_meta_stringdata_CLASSRobotENDCLASS_t {
     char stringdata16[2];
     char stringdata17[2];
     char stringdata18[2];
-    char stringdata19[10];
-    char stringdata20[11];
-    char stringdata21[18];
-    char stringdata22[5];
-    char stringdata23[16];
+    char stringdata19[18];
+    char stringdata20[5];
+    char stringdata21[16];
+    char stringdata22[3];
+    char stringdata23[3];
     char stringdata24[3];
-    char stringdata25[3];
-    char stringdata26[3];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSRobotENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -122,14 +118,12 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSRobotENDCLASS_t qt_meta_stringd
         QT_MOC_LITERAL(123, 1),  // "a"
         QT_MOC_LITERAL(125, 1),  // "b"
         QT_MOC_LITERAL(127, 1),  // "c"
-        QT_MOC_LITERAL(129, 9),  // "turnOnLed"
-        QT_MOC_LITERAL(139, 10),  // "turnOffLed"
-        QT_MOC_LITERAL(150, 17),  // "writeToSerialPort"
-        QT_MOC_LITERAL(168, 4),  // "data"
-        QT_MOC_LITERAL(173, 15),  // "closeSerialPort"
-        QT_MOC_LITERAL(189, 2),  // "l1"
-        QT_MOC_LITERAL(192, 2),  // "l2"
-        QT_MOC_LITERAL(195, 2)   // "l3"
+        QT_MOC_LITERAL(129, 17),  // "writeToSerialPort"
+        QT_MOC_LITERAL(147, 4),  // "data"
+        QT_MOC_LITERAL(152, 15),  // "closeSerialPort"
+        QT_MOC_LITERAL(168, 2),  // "l1"
+        QT_MOC_LITERAL(171, 2),  // "l2"
+        QT_MOC_LITERAL(174, 2)   // "l3"
     },
     "Robot",
     "QML.Element",
@@ -150,8 +144,6 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSRobotENDCLASS_t qt_meta_stringd
     "a",
     "b",
     "c",
-    "turnOnLed",
-    "turnOffLed",
     "writeToSerialPort",
     "data",
     "closeSerialPort",
@@ -169,8 +161,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
       12,       // revision
        0,       // classname
        1,   14, // classinfo
-      10,   16, // methods
-       3,  110, // properties
+       8,   16, // methods
+       3,   96, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
@@ -180,18 +172,16 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
        1,    2,
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    0,   76,    4, 0x06,    4 /* Public */,
-       5,    0,   77,    4, 0x06,    5 /* Public */,
-       6,    0,   78,    4, 0x06,    6 /* Public */,
+       3,    0,   64,    4, 0x06,    4 /* Public */,
+       5,    0,   65,    4, 0x06,    5 /* Public */,
+       6,    0,   66,    4, 0x06,    6 /* Public */,
 
  // methods: name, argc, parameters, tag, flags, initial metatype offsets
-       7,    0,   79,    4, 0x02,    7 /* Public */,
-       8,    6,   80,    4, 0x02,    8 /* Public */,
-      15,    5,   93,    4, 0x02,   15 /* Public */,
-      19,    0,  104,    4, 0x02,   21 /* Public */,
-      20,    0,  105,    4, 0x02,   22 /* Public */,
-      21,    1,  106,    4, 0x02,   23 /* Public */,
-      23,    0,  109,    4, 0x02,   25 /* Public */,
+       7,    0,   67,    4, 0x02,    7 /* Public */,
+       8,    6,   68,    4, 0x02,    8 /* Public */,
+      15,    5,   81,    4, 0x02,   15 /* Public */,
+      19,    1,   92,    4, 0x02,   21 /* Public */,
+      21,    0,   95,    4, 0x02,   23 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -202,15 +192,13 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::QObjectStar, QMetaType::QObjectStar,    9,   10,   11,   12,   13,   14,
     QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::QObjectStar, QMetaType::QObjectStar,   16,   17,   18,   13,   14,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QByteArray,   22,
+    QMetaType::Void, QMetaType::QByteArray,   20,
     QMetaType::Void,
 
  // properties: name, type, flags
-      24, QMetaType::Double, 0x00015103, uint(0), 0,
-      25, QMetaType::Double, 0x00015103, uint(1), 0,
-      26, QMetaType::Double, 0x00015103, uint(2), 0,
+      22, QMetaType::Double, 0x00015103, uint(0), 0,
+      23, QMetaType::Double, 0x00015103, uint(1), 0,
+      24, QMetaType::Double, 0x00015103, uint(2), 0,
 
        0        // eod
 };
@@ -253,10 +241,6 @@ Q_CONSTINIT const QMetaObject Robot::staticMetaObject = { {
         float,
         QObject *,
         QObject *,
-        // method 'turnOnLed'
-        void,
-        // method 'turnOffLed'
-        void,
         // method 'writeToSerialPort'
         void,
         const QByteArray &,
@@ -278,10 +262,8 @@ void Robot::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         case 3: _t->home(); break;
         case 4: _t->khongGianKhop((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[6]))); break;
         case 5: _t->khongGianThaoTac((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[5]))); break;
-        case 6: _t->turnOnLed(); break;
-        case 7: _t->turnOffLed(); break;
-        case 8: _t->writeToSerialPort((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
-        case 9: _t->closeSerialPort(); break;
+        case 6: _t->writeToSerialPort((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
+        case 7: _t->closeSerialPort(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -351,13 +333,13 @@ int Robot::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 10;
+        _id -= 8;
     }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {

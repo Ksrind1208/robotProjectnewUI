@@ -64,14 +64,14 @@ void Robot::setL3(double l3)
         return;
     }
 }
-void Robot::turnOnLed()
-{
-    writeToSerialPort("on\n");
-}
-void Robot::turnOffLed()
-{
-    writeToSerialPort("off\n");
-}
+// void Robot::turnOnLed()
+// {
+//     writeToSerialPort("on\n");
+// }
+// void Robot::turnOffLed()
+// {
+//     writeToSerialPort("off\n");
+// }
 void Robot::home(){
 }
 
@@ -119,4 +119,9 @@ void Robot::closeSerialPort()
         serialPort.close();
         qDebug() << "Serial port is closed";
     }
+}
+
+Robot::~Robot()
+{
+    qDebug()<<"Doi tuong da huy";
 }
