@@ -10,8 +10,8 @@ Window {
     width: Screen.width
     height: Screen.height
     visible: true
-    property QtObject curPosition: QtObject { property double x: 0; property double y: 3.44; property double z: 6.95 }
-    property QtObject curAngle: QtObject { property double q1: 90; property double q2: 5; property double q3: 35; property double q4: 120 }
+    property QtObject curPosition: QtObject { property double x: 0.01; property double y: 7.33; property double z: 7.46 }
+    property QtObject curAngle: QtObject { property double q1: 90; property double q2: 20; property double q3: 50; property double q4: 5 }
     title: qsTr("Robot Project")
 
     Item {
@@ -137,8 +137,8 @@ Window {
 
                                 onClicked: {
                                     myRobot.home();
-                                    myRobot.khongGianKhop(90,5,35,120,curAngle,curPosition);
-                                    myRobot.writeToSerialPort("q:90;5;35;120");
+                                    myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
+                                    myRobot.writeToSerialPort("q:90;20;50;5");
                                     // myRobot.khongGianThaoTac(8, 0, 0, curAngle, curPosition);
 
                                     // console.log(myRobot.l1+"/"+myRobot.l2+"/"+myRobot.l3);
@@ -1626,15 +1626,8 @@ Window {
                                     }
 
                                     onClicked: {
-                                        if((Number(root.curAngle.q4)-5)<120){
-                                            errormoveAngle.visible=true;
-                                            myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),120,curAngle,curPosition);
-                                            myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+120);
-                                        }else{
-                                            myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4)-5,curAngle,curPosition);
-                                            myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+(Number(root.curAngle.q4)-5));
-                                            console.log("Left arrow clicked");
-                                        }
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),5,curAngle,curPosition);
+                                        myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+5);
                                     }
                                 }
                             }
@@ -1685,15 +1678,8 @@ Window {
                                 }
 
                                 onClicked: {
-                                    if((Number(root.curAngle.q4)+5)>120){
-                                        errormoveAngle.visible=true;
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),120,curAngle,curPosition);
-                                        myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+120);
-                                    }else{
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4)+5,curAngle,curPosition);
-                                        myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+(Number(root.curAngle.q4)+5));
-                                        console.log("Right arrow clicked");
-                                    }
+                                    myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),90,curAngle,curPosition);
+                                    myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+90);
                                 }
                             }
                         }
@@ -2451,7 +2437,7 @@ Window {
                         }
                         onTextChanged: {
                             valueQ4=q4Field.text;
-                            if(Number(valueQ4)>=65 && Number(valueQ4)<=120){
+                            if(Number(valueQ4)>=5 && Number(valueQ4)<=90){
                                 textQ4.color="green"
                             }else{
                                 textQ4.color="red";
@@ -2460,7 +2446,7 @@ Window {
                     }
                     Text{
                         id:textQ4
-                        text:"0<=Q4<=180"
+                        text:"5<=Q4<=90"
                         color:"red";
                         anchors.verticalCenter: parent.verticalCenter
                         font.pointSize: 25
@@ -2491,7 +2477,7 @@ Window {
                         if(Number(q1Field.valueQ1)>=0&&Number(q1Field.valueQ1)<=180){
                             if(Number(q2Field.valueQ2)>=0&&Number(q2Field.valueQ2)<=90){
                                 if(Number(q3Field.valueQ3)>=10&&Number(q3Field.valueQ3)<=140){
-                                    if(Number(q4Field.valueQ4)>=65&&Number(q4Field.valueQ4)<=120){
+                                    if(Number(q4Field.valueQ4)>=5&&Number(q4Field.valueQ4)<=90){
                                         myRobot.khongGianKhop(Number(q1Field.text),Number(q2Field.text),Number(q3Field.text),Number(q4Field.text),curAngle,curPosition)
                                         myRobot.writeToSerialPort("q:"+q1Field.text+";"+q2Field.text+";"+q3Field.text+";"+q4Field.text);
                                         console.log("q:"+q1Field.text+";"+q2Field.text+";"+q3Field.text+";"+q4Field.text);
@@ -3243,11 +3229,15 @@ Window {
                             verticalAlignment: Text.AlignVCenter
                         }
                         onClicked: {
-                            // myRobot.khongGianThaoTac(Number(x4Field.text),Number(y4Field.text),Number(z4Field.text),curAngle,curPosition);
-                            // myRobot.writeToSerialPort("circle:"+Number(x3Field.text)+";"+Number(y3Field.text)+";"+Number(z3Field.text)+";"+Number(x4Field.text)+";"+Number(y4Field.text)+";"+Number(z4Field.text));
-                            // // console.log("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
-                            // windowmoveCI.visible = false;
-                            // // secondScreen.visible = true; // Assuming secondScreen is your main screen
+                            myRobot.writeToSerialPort("gap:"+x5Field.text+";"+y5Field.text+";"+z5Field.text+";"+x6Field.text+";"+y6Field.text+";"+z6Field.text);
+                            myRobot.khongGianThaoTac(Number(x5Field.text),Number(y5Field.text),Number(z5Field.text),curAngle,curPosition);
+                            delay(4000,function(){
+                                myRobot.khongGianThaoTac(Number(x6Field.text),Number(y6Field.text),Number(z6Field.text),curAngle,curPosition);
+                            });
+                            delay(2000,function(){
+                                myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition)
+                            })
+                            windowDragandDrop.visible=false;
                         }
                     }
                 }
