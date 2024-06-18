@@ -1351,15 +1351,22 @@ Window {
                         ctx.lineWidth=20;
                         ctx.beginPath();
                         ctx.moveTo(xOyCanvas.width/2,xOyCanvas.height/2);
-                        ctx.lineTo((yOzCanvas.width / 2+8*stepX*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180)),(yOzCanvas.height/2-stepZ*root.curPosition.z)*Math.cos(root.curAngle.q1*Math.PI/180)); // Correct calculation
+                        ctx.lineTo((yOzCanvas.width / 2+stepX*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180)),yOzCanvas.height/2+stepX*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.cos(root.curAngle.q1*Math.PI/180)); // Correct calculation
                         ctx.stroke();
 
-                        // ctx.strokeStyle = "blue";
-                        // ctx.lineWidth=20;
-                        // ctx.beginPath();
-                        // ctx.moveTo(xOyCanvas.width/2+8*stepX*Math.sin(root.curAngle.q1*Math.PI/180),xOyCanvas.height/2+8*stepX*Math.cos(root.curAngle.q1*Math.PI/180));
-                        // ctx.lineTo(xOyCanvas.width/2+stepX*root.curPosition.x,xOyCanvas.height/2+stepX*root.curPosition.y); // Correct calculation
-                        // ctx.stroke();
+                        ctx.strokeStyle = "blue";
+                        ctx.lineWidth=20;
+                        ctx.beginPath();
+                        ctx.moveTo((yOzCanvas.width / 2+stepX*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180)),yOzCanvas.height/2+stepX*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.cos(root.curAngle.q1*Math.PI/180));
+                        ctx.lineTo(xOyCanvas.width/2+stepX*root.curPosition.y,xOyCanvas.height/2+stepX*root.curPosition.x); // Correct calculation
+                        ctx.stroke();
+
+                        ctx.strokeStyle = "yellow";
+                        ctx.lineWidth=20;
+                        ctx.beginPath();
+                        ctx.moveTo(xOyCanvas.width/2+stepX*root.curPosition.y,xOyCanvas.height/2+stepX*root.curPosition.x);
+                        ctx.lineTo(xOyCanvas.width/2+stepX*root.curPosition.y+30,xOyCanvas.height/2+stepX*root.curPosition.x); // Correct calculation
+                        ctx.stroke();
 
                     }
 
@@ -2453,7 +2460,7 @@ Window {
                     }
                     Text{
                         id:textQ4
-                        text:"65<=Q4<=120"
+                        text:"0<=Q4<=180"
                         color:"red";
                         anchors.verticalCenter: parent.verticalCenter
                         font.pointSize: 25
