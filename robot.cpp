@@ -96,15 +96,19 @@ void Robot::khongGianThaoTac(float a, float b, float c, QObject* curAngle, QObje
     curPosition->setProperty("x", (round(a * 100.0) / 100.0));
     curPosition->setProperty("y", (round(b * 100.0) / 100.0));
     curPosition->setProperty("z", (round(c * 100.0) / 100.0));
+    c=c-6.5;
     float q1 = atan2(b, a);
-    float x2 = a / cos(q1);
+    float x2 = sqrt(a*a+b*b);
     float r = sqrt(x2 * x2 + c * c);
     float D = (r * r - m_l3 * m_l3 - m_l2 * m_l2) / (2 * m_l3 * m_l2);
-    float q3 = atan2(-sqrt(1 - D * D), D);
-    float q2 = atan2(c, x2) - q3 / 2;
-    curAngle->setProperty("q1", (round((q1 * 180 /  3.14) * 100.0) / 100.0));
-    curAngle->setProperty("q2", (round((90 - q2 * 180 /  3.14) * 100.0) / 100.0));
-    curAngle->setProperty("q3", (round((105 + q2 * 180 /  3.14 + q3 * 180 /  3.14) * 100.0) / 100.0));
+    double q3 = -abs(acos(D));
+    float q2 = atan(c/ x2) - q3 / 2;
+    q1 = q1 * 180 / 3.14;
+    q3 = 105 + q2 * 180 / 3.14 + q3 * 180 / 3.14;
+    q2 = 90 - q2 * 180 / 3.14;
+    curAngle->setProperty("q1", (round(q1*100.0) / 100.0));
+    curAngle->setProperty("q2", (round(q2*100.0) / 100.0));
+    curAngle->setProperty("q3", (round(q3*100.0) / 100.0));
     curAngle->setProperty("q4", 65);
 }
 

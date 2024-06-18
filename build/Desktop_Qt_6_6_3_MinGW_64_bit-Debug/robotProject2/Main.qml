@@ -1175,8 +1175,10 @@ Window {
                 border.color: "white"
                 border.width: 1.5/1423*Screen.width
                 radius: 10
-
+                property real curAngleQ1: root.curAngle.q1
                 property real curAngleQ2: root.curAngle.q2
+                property real curAngleQ3: root.curAngle.q3
+                property real curPositionX: root.curPosition.x
                 property real curPositionY: root.curPosition.y
                 property real curPositionZ: root.curPosition.z
 
@@ -1187,6 +1189,7 @@ Window {
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     width: parent.width / 2 - 5
+
                     onPaint: {
                         var ctx = yOzCanvas.getContext("2d");
                         ctx.clearRect(0, 0, yOzCanvas.width, yOzCanvas.height);
@@ -1251,14 +1254,14 @@ Window {
                         ctx.lineWidth=20;
                         ctx.beginPath();
                         ctx.moveTo(yOzCanvas.width / 2, yOzCanvas.height / 2 -stepZ * 6.5);
-                        ctx.lineTo(yOzCanvas.width / 2+8*stepZ*Math.cos(Math.PI*(90-root.curAngle.q2)/180), yOzCanvas.height / 2 -stepZ * 6.5-8*stepZ*Math.sin((90-root.curAngle.q2)*Math.PI/180)); // Correct calculation
+                        ctx.lineTo(yOzCanvas.width / 2+stepZ*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180), yOzCanvas.height / 2 -stepZ * 6.5-8*stepZ*Math.sin((90-root.curAngle.q2)*Math.PI/180)); // Correct calculation
                         ctx.stroke();
 
                         ctx.strokeStyle = "blue";
                         ctx.lineWidth=20;
                         ctx.beginPath();
-                        ctx.moveTo(yOzCanvas.width / 2+8*stepZ*Math.cos(Math.PI*(90-root.curAngle.q2)/180), yOzCanvas.height / 2 -stepZ * 6.5-8*stepZ*Math.sin((90-root.curAngle.q2)*Math.PI/180));
-                        ctx.lineTo(yOzCanvas.width/2+stepZ*root.curPosition.y, yOzCanvas.height/2-stepZ*root.curPosition.z); // Correct calculation
+                        ctx.moveTo(yOzCanvas.width / 2+stepZ*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180), yOzCanvas.height / 2 -stepZ * 6.5-8*stepZ*Math.sin((90-root.curAngle.q2)*Math.PI/180));
+                        ctx.lineTo(yOzCanvas.width/2+stepZ*root.curPosition.y, yOzCanvas.height/2-stepZ*(root.curPosition.z)); // Correct calculation
                         ctx.stroke();
 
                         ctx.strokeStyle = "yellow";
@@ -1273,15 +1276,7 @@ Window {
                         yOzCanvas.requestPaint();
                     }
                 }
-                onCurAngleQ2Changed: {
-                    yOzCanvas.requestPaint();
-                }
-                onCurPositionYChanged: {
-                    yOzCanvas.requestPaint();
-                }
-                onCurPositionZChanged: {
-                    yOzCanvas.requestPaint();
-                }
+
 
                 // Second Canvas for xOy axis
                 Canvas {
@@ -1289,7 +1284,11 @@ Window {
                     anchors.right: parent.right
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
-                    width: parent.width / 2-5
+                    width: parent.width / 2 -5
+
+                    property real curAngleQ11: root.curAngle.q1
+                    property real curPositionXX:root.curPosition.x
+                    property real curPositionYY: root.curPosition.y
                     onPaint: {
                         var ctx = xOyCanvas.getContext("2d");
                         ctx.clearRect(0, 0, xOyCanvas.width, xOyCanvas.height);
@@ -1313,38 +1312,85 @@ Window {
                         // Set fill style for text
                         ctx.fillStyle = "white";
 
-                        // Draw ticks and labels on X axis
-                        var stepX = xOyCanvas.width / 40; // Each step represents 1 unit
-                        for (var i = -18; i <= 18; i+=2) {
-                            var x = xOyCanvas.width / 2 + i * stepX;
-                            ctx.beginPath();
-                            ctx.moveTo(x, xOyCanvas.height / 2 - 3);
-                            ctx.lineTo(x, xOyCanvas.height / 2 + 3);
-                            ctx.stroke();
-
-                            if (i !== 0) { // Skip the origin
-                                ctx.fillText(i.toString(), x - 5, xOyCanvas.height / 2 + 15);
-                            }
-                        }
-
                         // Draw ticks and labels on Y axis
-                        var stepY = xOyCanvas.height / 40; // Each step represents 1 unit
-                        for (var j = -18; j <= 18; j+=2) {
-                            var y = xOyCanvas.height / 2 - j * stepY;
+                        var stepY = (xOyCanvas.width) / 40; // Each step represents 1 unit
+                        for (var j = -18; j <= 18; j += 2) {
+                            var y = xOyCanvas.width / 2 + j * stepY;
                             ctx.beginPath();
-                            ctx.moveTo(xOyCanvas.width / 2 - 3, y);
-                            ctx.lineTo(xOyCanvas.width / 2 + 3, y);
+                            ctx.moveTo(y, xOyCanvas.height / 2 - 3);
+                            ctx.lineTo(y, xOyCanvas.height / 2 + 3);
                             ctx.stroke();
 
                             if (j !== 0) { // Skip the origin
-                                ctx.fillText(j.toString(), xOyCanvas.width / 2 + 10, y + 5);
+                                ctx.fillText(j.toString(), y - 5, xOyCanvas.height / 2 + 15);
                             }
                         }
+
+                        // Draw ticks and labels on X axis
+                        var stepX = xOyCanvas.height / 40; // Each step represents 1 unit
+                        for (var i = 18; i >= -18; i -= 2) {
+                            var x = xOyCanvas.height/2 + i * stepX;
+                            ctx.beginPath();
+                            ctx.moveTo(xOyCanvas.width / 2 - 3, x);
+                            ctx.lineTo(xOyCanvas.width / 2 + 3, x);
+                            ctx.stroke();
+
+                            if (i !== 0) { // Skip the origin
+                                ctx.fillText(i.toString(), xOyCanvas.width / 2 + 10, x + 5);
+                            }
+                        }
+
+                        ctx.beginPath();
+                        ctx.fillStyle = "red";
+                        ctx.moveTo(xOyCanvas.width/2,xOyCanvas.height/2);
+                        ctx.arc(xOyCanvas.width/2,xOyCanvas.height/2,2*stepY*1.3,0,-2*Math.PI,true);
+                        ctx.lineTo(xOyCanvas.width/2,xOyCanvas.height/2);
+                        ctx.fill();
+
+                        ctx.strokeStyle = "green";
+                        ctx.lineWidth=20;
+                        ctx.beginPath();
+                        ctx.moveTo(xOyCanvas.width/2,xOyCanvas.height/2);
+                        ctx.lineTo((yOzCanvas.width / 2+8*stepX*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180)),(yOzCanvas.height/2-stepZ*root.curPosition.z)*Math.cos(root.curAngle.q1*Math.PI/180)); // Correct calculation
+                        ctx.stroke();
+
+                        // ctx.strokeStyle = "blue";
+                        // ctx.lineWidth=20;
+                        // ctx.beginPath();
+                        // ctx.moveTo(xOyCanvas.width/2+8*stepX*Math.sin(root.curAngle.q1*Math.PI/180),xOyCanvas.height/2+8*stepX*Math.cos(root.curAngle.q1*Math.PI/180));
+                        // ctx.lineTo(xOyCanvas.width/2+stepX*root.curPosition.x,xOyCanvas.height/2+stepX*root.curPosition.y); // Correct calculation
+                        // ctx.stroke();
+
                     }
 
                     Component.onCompleted: {
                         xOyCanvas.requestPaint();
                     }
+                }
+
+                onCurAngleQ1Changed: {
+                    xOyCanvas.requestPaint();
+                    yOzCanvas.requestPaint();
+                }
+                onCurAngleQ2Changed: {
+                    xOyCanvas.requestPaint();
+                    yOzCanvas.requestPaint();
+                }
+                onCurAngleQ3Changed: {
+                    xOyCanvas.requestPaint();
+                    yOzCanvas.requestPaint();
+                }
+                onCurPositionXChanged: {
+                    xOyCanvas.requestPaint();
+                    yOzCanvas.requestPaint();
+                }
+                onCurPositionYChanged: {
+                    xOyCanvas.requestPaint();
+                    yOzCanvas.requestPaint();
+                }
+                onCurPositionZChanged: {
+                    xOyCanvas.requestPaint();
+                    yOzCanvas.requestPaint();
                 }
 
             }
