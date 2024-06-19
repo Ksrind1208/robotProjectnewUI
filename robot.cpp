@@ -73,6 +73,7 @@ void Robot::setL3(double l3)
 //     writeToSerialPort("off\n");
 // }
 void Robot::home(){
+
 }
 
 void Robot::khongGianKhop(float q1, float q2, float q3, float q4,QObject* curAngle,QObject *curPosition)

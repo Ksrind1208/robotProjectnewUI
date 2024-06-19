@@ -137,8 +137,9 @@ Window {
 
                                 onClicked: {
                                     myRobot.home();
-                                    myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
-                                    myRobot.writeToSerialPort("q:90;20;50;5");
+                                    //myRobot.writeToSerialPort("home:");
+                                    // myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
+                                     myRobot.writeToSerialPort("q:90;20;50;5");
                                     // myRobot.khongGianThaoTac(8, 0, 0, curAngle, curPosition);
 
                                     // console.log(myRobot.l1+"/"+myRobot.l2+"/"+myRobot.l3);
@@ -2849,11 +2850,11 @@ Window {
     Window {
         id: windowmoveCI
         visible: false
-        width:800/1423*Screen.width*1.3
-        height:600/800*Screen.height*1.3
+        width:800/1423*Screen.width*1.8
+        height:600/800*Screen.height*1.5
         Rectangle {
-            width: 800/1423*Screen.width*1.3
-            height: 600/800*Screen.height*1.3
+            width: 800/1423*Screen.width*1.8
+            height: 600/800*Screen.height*1.5
             radius: 10
             color: "white"
             border.color: "gray"
@@ -2862,8 +2863,8 @@ Window {
 
             // Shadow effect using a semi-transparent Rectangle
             Rectangle {
-                width: 800/1423*Screen.width*1.3
-                height: 600/800*Screen.height*1.3
+                width: 800/1423*Screen.width*1.8
+                height: 600/800*Screen.height*1.5
                 radius: 10
                 color: "black"
                 opacity: 0.2
@@ -2887,7 +2888,7 @@ Window {
                     }
                     TextField {
                         id: x3Field
-                        placeholderText: "Enter X3"
+                        placeholderText: "Enter X1"
                         font.pixelSize: 40 // Increase font size
                         width: 400/1423*Screen.width // Adjust width
                         height: 100/800*Screen.height
@@ -2900,7 +2901,19 @@ Window {
 
                     TextField {
                         id: x4Field
-                        placeholderText: "Enter X4"
+                        placeholderText: "Enter X2"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+                    TextField {
+                        id: x7Field
+                        placeholderText: "Enter X3"
                         font.pixelSize: 40 // Increase font size
                         width: 400/1423*Screen.width // Adjust width
                         height: 100/800*Screen.height
@@ -2923,7 +2936,7 @@ Window {
                     }
                     TextField {
                         id: y3Field
-                        placeholderText: "Enter Y3"
+                        placeholderText: "Enter Y1"
                         font.pixelSize: 40 // Increase font size
                         width: 400/1423*Screen.width // Adjust width
                         height: 100/800*Screen.height
@@ -2935,7 +2948,19 @@ Window {
                     }
                     TextField {
                         id: y4Field
-                        placeholderText: "Enter Y4"
+                        placeholderText: "Enter Y2"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+                    TextField {
+                        id: y7Field
+                        placeholderText: "Enter Y3"
                         font.pixelSize: 40 // Increase font size
                         width: 400/1423*Screen.width // Adjust width
                         height: 100/800*Screen.height
@@ -2958,7 +2983,7 @@ Window {
                     }
                     TextField {
                         id: z3Field
-                        placeholderText: "Enter Z3"
+                        placeholderText: "Enter Z1"
                         font.pixelSize: 40 // Increase font size
                         width: 400/1423*Screen.width // Adjust width
                         height: 100/800*Screen.height
@@ -2970,7 +2995,19 @@ Window {
                     }
                     TextField {
                         id: z4Field
-                        placeholderText: "Enter Z4"
+                        placeholderText: "Enter Z2"
+                        font.pixelSize: 40 // Increase font size
+                        width: 400/1423*Screen.width // Adjust width
+                        height: 100/800*Screen.height
+                        background: Rectangle {
+                            color: "#E8EAF6"
+                            radius: 10
+                            border.color: "#0076AE"
+                        }
+                    }
+                    TextField {
+                        id: z7Field
+                        placeholderText: "Enter Z3"
                         font.pixelSize: 40 // Increase font size
                         width: 400/1423*Screen.width // Adjust width
                         height: 100/800*Screen.height
@@ -3002,8 +3039,8 @@ Window {
                         verticalAlignment: Text.AlignVCenter
                     }
                     onClicked: {
-                        myRobot.khongGianThaoTac(Number(x4Field.text),Number(y4Field.text),Number(z4Field.text),curAngle,curPosition);
-                        myRobot.writeToSerialPort("circle:"+Number(x3Field.text)+";"+Number(y3Field.text)+";"+Number(z3Field.text)+";"+Number(x4Field.text)+";"+Number(y4Field.text)+";"+Number(z4Field.text));
+                        myRobot.khongGianThaoTac(Number(x7Field.text),Number(y7Field.text),Number(z7Field.text),curAngle,curPosition);
+                        myRobot.writeToSerialPort("circle:"+Number(x3Field.text)+";"+Number(y3Field.text)+";"+Number(z3Field.text)+";"+Number(x4Field.text)+";"+Number(y4Field.text)+";"+Number(z4Field.text)+";"+Number(x7Field.text)+";"+Number(y7Field.text)+";"+Number(z7Field.text));
                         // console.log("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
                         windowmoveCI.visible = false;
                         // secondScreen.visible = true; // Assuming secondScreen is your main screen
@@ -3210,6 +3247,7 @@ Window {
                 Row {
                     spacing: 200/1423*Screen.width
                     x:405
+
                     Button {
                         text: "START"
                         font.pixelSize: 40 // Increase font size
@@ -3230,14 +3268,22 @@ Window {
                         }
                         onClicked: {
                             myRobot.writeToSerialPort("gap:"+x5Field.text+";"+y5Field.text+";"+z5Field.text+";"+x6Field.text+";"+y6Field.text+";"+z6Field.text);
-                            myRobot.khongGianThaoTac(Number(x5Field.text),Number(y5Field.text),Number(z5Field.text),curAngle,curPosition);
-                            delay(4000,function(){
-                                myRobot.khongGianThaoTac(Number(x6Field.text),Number(y6Field.text),Number(z6Field.text),curAngle,curPosition);
-                            });
-                            delay(2000,function(){
-                                myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition)
-                            })
                             windowDragandDrop.visible=false;
+                            myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
+                            delay(2000);
+                            myRobot.khongGianThaoTac(Number(x5Field.text),Number(y5Field.text),Number(z5Field.text),curAngle,curPosition);
+                            delay(2000);
+                            myRobot.khongGianKhop(root.curAngle.q1,root.curAngle.q2,root.curAngle.q3,50,curAngle,curPosition);
+                            delay(2000);
+                            myRobot.khongGianThaoTac(Number(x5Field.text),Number(y5Field.text),Number(z5Field.text)-2,curAngle,curPosition);
+                            delay(2000);
+                            myRobot.khongGianKhop(root.curAngle.q1,root.curAngle.q2,root.curAngle.q3,5,curAngle,curPosition);
+                            delay(2000);
+                            myRobot.khongGianThaoTac(Number(x6Field.text),Number(y6Field.text),Number(z6Field.text),curAngle,curPosition);
+                            delay(2000);
+                            myRobot.khongGianKhop(root.curAngle.q1,root.curAngle.q2,root.curAngle.q3,50,curAngle,curPosition);
+                            delay(2000);
+                            myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
                         }
                     }
                 }
