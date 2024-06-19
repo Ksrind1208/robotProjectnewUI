@@ -138,8 +138,9 @@ Window {
                                 onClicked: {
                                     myRobot.home();
                                     //myRobot.writeToSerialPort("home:");
-                                    // myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
-                                     myRobot.writeToSerialPort("q:90;20;50;5");
+
+                                    myRobot.writeToSerialPort("q:90;20;50;5");
+                                    myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
                                     // myRobot.khongGianThaoTac(8, 0, 0, curAngle, curPosition);
 
                                     // console.log(myRobot.l1+"/"+myRobot.l2+"/"+myRobot.l3);
@@ -1094,74 +1095,74 @@ Window {
                             }
                         }
 
-                        Rectangle{
-                            id:save
-                            width: 88/1423*Screen.width
-                            height: 88/800*Screen.height
-                            color:"#6C757D"
-                            radius: 10
-                            Text{
-                                text:"SAVE"
-                                color:"white"
-                                font.pointSize: 24
-                                anchors.centerIn: parent
-                            }
+                        // Rectangle{
+                        //     id:save
+                        //     width: 88/1423*Screen.width
+                        //     height: 88/800*Screen.height
+                        //     color:"#6C757D"
+                        //     radius: 10
+                        //     Text{
+                        //         text:"SAVE"
+                        //         color:"white"
+                        //         font.pointSize: 24
+                        //         anchors.centerIn: parent
+                        //     }
 
-                            MouseArea{
-                                id:mouseSave
-                                anchors.fill: parent
-                                hoverEnabled:true
+                        //     MouseArea{
+                        //         id:mouseSave
+                        //         anchors.fill: parent
+                        //         hoverEnabled:true
 
-                                property int mouseX9: 0
-                                property int mouseY9: 0
+                        //         property int mouseX9: 0
+                        //         property int mouseY9: 0
 
-                                onPositionChanged: (mouse)=>{
-                                    mouseX9=mouse.x;
-                                    mouseY9=mouse.y;
-                                }
+                        //         onPositionChanged: (mouse)=>{
+                        //             mouseX9=mouse.x;
+                        //             mouseY9=mouse.y;
+                        //         }
 
-                                onHoveredChanged: {
-                                    if(containsMouse==true){
-                                        save.color="black"
-                                        shadowSave.color="#6C757D"
-                                    }else{
-                                        save.color="#6C757D"
-                                        shadowSave.color="black"
-                                    }
-                                }
-                                ToolTip {
-                                    Text{
-                                        id:textSave
-                                        text:"Lưu vị trí hiện tại"
-                                        color:"black"
-                                        font.pointSize: 24
-                                    }
-                                    visible: mouseSave.containsMouse
-                                    x: mouseSave.mouseX9 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
-                                    y: mouseSave.mouseY9 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
-                                    width:textSave.implicitWidth+10
-                                    height:textSave.implicitHeight+10
-                                }
+                        //         onHoveredChanged: {
+                        //             if(containsMouse==true){
+                        //                 save.color="black"
+                        //                 shadowSave.color="#6C757D"
+                        //             }else{
+                        //                 save.color="#6C757D"
+                        //                 shadowSave.color="black"
+                        //             }
+                        //         }
+                        //         ToolTip {
+                        //             Text{
+                        //                 id:textSave
+                        //                 text:"Lưu vị trí hiện tại"
+                        //                 color:"black"
+                        //                 font.pointSize: 24
+                        //             }
+                        //             visible: mouseSave.containsMouse
+                        //             x: mouseSave.mouseX9 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                        //             y: mouseSave.mouseY9 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                        //             width:textSave.implicitWidth+10
+                        //             height:textSave.implicitHeight+10
+                        //         }
 
-                                onClicked: {
+                        //         onClicked: {
 
-                                }
-                            }
+                        //         }
+                        //     }
 
 
-                            // Hiệu ứng đổ bóng bằng một Rectangle mờ
-                            Rectangle {
-                                id:shadowSave
-                                width: save.width
-                                height: save.height
-                                radius: 10
-                                color: "black"
-                                opacity: 0.3
-                                anchors.centerIn: save
-                                anchors.horizontalCenterOffset: 5
-                                anchors.verticalCenterOffset: 5
-                            }
-                        }
+
+                        //     Rectangle {
+                        //         id:shadowSave
+                        //         width: save.width
+                        //         height: save.height
+                        //         radius: 10
+                        //         color: "black"
+                        //         opacity: 0.3
+                        //         anchors.centerIn: save
+                        //         anchors.horizontalCenterOffset: 5
+                        //         anchors.verticalCenterOffset: 5
+                        //     }
+                        // }
                     }
                 }
             }
@@ -1505,15 +1506,13 @@ Window {
                                     if((Number(root.curAngle.q1)-10)<0){
                                         console.log(Number(root.curAngle.q1)-10<0);
                                         errormoveAngle.visible=true;
-                                        myRobot.khongGianKhop(0,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+0+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        myRobot.khongGianKhop(0,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                     }else{
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1)-10,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1)-10)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1)-10,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         console.log("Left arrow clicked");
                                     }
-
-
                                 }
                             }
                         }
@@ -1566,11 +1565,11 @@ Window {
                                 onClicked: {
                                     if((Number(root.curAngle.q1)+10)>180){
                                         errormoveAngle.visible=true;
-                                        myRobot.khongGianKhop(180,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+180+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        myRobot.khongGianKhop(180,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                     }else{
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1)+10,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1)+10)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1)+10,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         console.log("Right arrow clicked");
                                     }
                                 }
@@ -1627,8 +1626,8 @@ Window {
                                     }
 
                                     onClicked: {
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),5,curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+5);
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),5,curAngle,curPosition);
                                     }
                                 }
                             }
@@ -1679,8 +1678,9 @@ Window {
                                 }
 
                                 onClicked: {
-                                    myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),90,curAngle,curPosition);
                                     myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+90);
+                                    myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),90,curAngle,curPosition);
+
                                 }
                             }
                         }
@@ -1853,11 +1853,11 @@ Window {
                                 onClicked: {
                                     if((Number(root.curAngle.q2)-10)<0){
                                         errormoveAngle.visible=true;
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1),0,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+0+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1),0,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                     }else{
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2)-10,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2)-10)+";"+Number(root.curAngle.q3)+";"+(Number(root.curAngle.q4)));
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2)-10,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         console.log("Up arrow clicked");
                                     }
                                 }
@@ -1911,11 +1911,12 @@ Window {
                                 onClicked: {
                                     if((Number(root.curAngle.q3)+10)>140){
                                         errormoveAngle.visible=true;
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),140,Number(root.curAngle.q4),curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+140+";"+Number(root.curAngle.q4));
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),140,Number(root.curAngle.q4),curAngle,curPosition);
+
                                     }else{
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3)+10,Number(root.curAngle.q4),curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2))+";"+(Number(root.curAngle.q3)+10)+";"+(Number(root.curAngle.q4)));
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3)+10,Number(root.curAngle.q4),curAngle,curPosition);
                                         console.log("Up arrow clicked");
                                     }
                                 }
@@ -1975,11 +1976,12 @@ Window {
                                 onClicked: {
                                     if((Number(root.curAngle.q2)+10)>90){
                                         errormoveAngle.visible=true;
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1),90,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+90+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1),90,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
+
                                     }else{
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2)+10,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2)+10)+";"+(Number(root.curAngle.q3))+";"+(Number(root.curAngle.q4)));
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2)+10,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         console.log("Down arrow clicked");
                                     }
                                 }
@@ -2034,11 +2036,13 @@ Window {
                                 onClicked: {
                                     if((Number(root.curAngle.q3)-10)<0){
                                         errormoveAngle.visible=true;
-                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),10,Number(root.curAngle.q4),curAngle,curPosition);
                                         myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+10+";"+Number(root.curAngle.q4));
+                                        myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),10,Number(root.curAngle.q4),curAngle,curPosition);
+
                                     }
-                                    myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3)-10,Number(root.curAngle.q4),curAngle,curPosition);
                                     myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2))+";"+(Number(root.curAngle.q3)-10)+";"+(Number(root.curAngle.q4)));
+                                    myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3)-10,Number(root.curAngle.q4),curAngle,curPosition);
+
                                     console.log("Down arrow clicked");
                                 }
                             }
@@ -2479,8 +2483,8 @@ Window {
                             if(Number(q2Field.valueQ2)>=0&&Number(q2Field.valueQ2)<=90){
                                 if(Number(q3Field.valueQ3)>=10&&Number(q3Field.valueQ3)<=140){
                                     if(Number(q4Field.valueQ4)>=5&&Number(q4Field.valueQ4)<=90){
-                                        myRobot.khongGianKhop(Number(q1Field.text),Number(q2Field.text),Number(q3Field.text),Number(q4Field.text),curAngle,curPosition)
                                         myRobot.writeToSerialPort("q:"+q1Field.text+";"+q2Field.text+";"+q3Field.text+";"+q4Field.text);
+                                        myRobot.khongGianKhop(Number(q1Field.text),Number(q2Field.text),Number(q3Field.text),Number(q4Field.text),curAngle,curPosition)
                                         console.log("q:"+q1Field.text+";"+q2Field.text+";"+q3Field.text+";"+q4Field.text);
                                         windowmoveJoint.visible = false;
                                         secondScreen.visible = true; // Assuming secondScreen is your main screen
@@ -2669,8 +2673,8 @@ Window {
                         verticalAlignment: Text.AlignVCenter
                     }
                     onClicked: {
-                        myRobot.khongGianThaoTac(Number(xField.text),Number(yField.text),Number(zField.text),curAngle,curPosition);
                         myRobot.writeToSerialPort("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
+                        myRobot.khongGianThaoTac(Number(xField.text),Number(yField.text),Number(zField.text),curAngle,curPosition);
                         console.log("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
                         windowmoveTCP.visible = false;
                         secondScreen.visible = true; // Assuming secondScreen is your main screen
@@ -2836,8 +2840,8 @@ Window {
                         verticalAlignment: Text.AlignVCenter
                     }
                     onClicked: {
-                        myRobot.khongGianThaoTac(Number(x2Field.text),Number(y2Field.text),Number(z2Field.text),curAngle,curPosition);
                         myRobot.writeToSerialPort("line:"+Number(x1Field.text)+";"+Number(y1Field.text)+";"+Number(z1Field.text)+";"+Number(x2Field.text)+";"+Number(y2Field.text)+";"+Number(z2Field.text));
+                        myRobot.khongGianThaoTac(Number(x2Field.text),Number(y2Field.text),Number(z2Field.text),curAngle,curPosition);
                         // console.log("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
                         windowmoveSLI.visible = false;
                         // secondScreen.visible = true; // Assuming secondScreen is your main screen
@@ -3039,8 +3043,8 @@ Window {
                         verticalAlignment: Text.AlignVCenter
                     }
                     onClicked: {
-                        myRobot.khongGianThaoTac(Number(x7Field.text),Number(y7Field.text),Number(z7Field.text),curAngle,curPosition);
                         myRobot.writeToSerialPort("circle:"+Number(x3Field.text)+";"+Number(y3Field.text)+";"+Number(z3Field.text)+";"+Number(x4Field.text)+";"+Number(y4Field.text)+";"+Number(z4Field.text)+";"+Number(x7Field.text)+";"+Number(y7Field.text)+";"+Number(z7Field.text));
+                        myRobot.khongGianThaoTac(Number(x7Field.text),Number(y7Field.text),Number(z7Field.text),curAngle,curPosition);
                         // console.log("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
                         windowmoveCI.visible = false;
                         // secondScreen.visible = true; // Assuming secondScreen is your main screen
@@ -3269,21 +3273,6 @@ Window {
                         onClicked: {
                             myRobot.writeToSerialPort("gap:"+x5Field.text+";"+y5Field.text+";"+z5Field.text+";"+x6Field.text+";"+y6Field.text+";"+z6Field.text);
                             windowDragandDrop.visible=false;
-                            myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
-                            delay(2000);
-                            myRobot.khongGianThaoTac(Number(x5Field.text),Number(y5Field.text),Number(z5Field.text),curAngle,curPosition);
-                            delay(2000);
-                            myRobot.khongGianKhop(root.curAngle.q1,root.curAngle.q2,root.curAngle.q3,50,curAngle,curPosition);
-                            delay(2000);
-                            myRobot.khongGianThaoTac(Number(x5Field.text),Number(y5Field.text),Number(z5Field.text)-2,curAngle,curPosition);
-                            delay(2000);
-                            myRobot.khongGianKhop(root.curAngle.q1,root.curAngle.q2,root.curAngle.q3,5,curAngle,curPosition);
-                            delay(2000);
-                            myRobot.khongGianThaoTac(Number(x6Field.text),Number(y6Field.text),Number(z6Field.text),curAngle,curPosition);
-                            delay(2000);
-                            myRobot.khongGianKhop(root.curAngle.q1,root.curAngle.q2,root.curAngle.q3,50,curAngle,curPosition);
-                            delay(2000);
-                            myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
                         }
                     }
                 }

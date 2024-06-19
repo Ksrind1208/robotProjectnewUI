@@ -86,6 +86,11 @@
                     },
                     {
                         "access": "public",
+                        "name": "readFromSerialPort",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
                         "name": "closeSerialPort",
                         "returnType": "void"
                     }

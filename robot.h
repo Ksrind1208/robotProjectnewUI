@@ -27,6 +27,7 @@ public:
     Q_INVOKABLE void khongGianKhop(float q1, float q2, float q3, float q4,QObject* curAngle,QObject *curPosition);
     Q_INVOKABLE void khongGianThaoTac(float a, float b, float c, QObject* curAngle, QObject* curPosition);
     Q_INVOKABLE void writeToSerialPort(const QByteArray &data);
+    Q_INVOKABLE void readFromSerialPort();
     Q_INVOKABLE void closeSerialPort();
     Q_INVOKABLE ~Robot();
 signals:
