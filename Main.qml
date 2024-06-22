@@ -763,7 +763,7 @@ Window {
                                 ToolTip {
                                     Text{
                                         id:textSimulation
-                                        text:"Khởi động lại mô phỏng"
+                                        text:"Teaching"
                                         color:"black"
                                         font.pointSize: 24
                                     }
@@ -3431,7 +3431,17 @@ Window {
                         }
                         console.log("teaching:"+dataToSend);
                         serialPort.writeToSerialPort("teaching:"+dataToSend);
+                        myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
                     }
+                }
+                Button {
+                    text: "Stop"
+                    onClicked: {
+                        serialPort.writeToSerialPort("stop:");
+                    }
+                    width: 120
+                    height: 40
+                    font.pixelSize: 16
                 }
             }
 
