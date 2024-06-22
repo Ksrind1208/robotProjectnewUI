@@ -1,1 +1,2 @@
 D:/File_code/QT/robotProject2/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/approbotProject2_autogen/include/../EWIEGA46WW/moc_robot.cpp.json
+D:/File_code/QT/robotProject2/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/approbotProject2_autogen/include/../EWIEGA46WW/moc_serialport.cpp.json

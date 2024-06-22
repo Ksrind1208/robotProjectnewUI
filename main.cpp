@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include<QQmlContext>
 #include<robot.h>
+#include<serialport.h>
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
@@ -10,13 +11,13 @@ int main(int argc, char *argv[])
     const QUrl url(QStringLiteral("qrc:/robotProject2/Main.qml"));
 
     qmlRegisterType<Robot>("Data",1,0,"Robot");
-
+    qmlRegisterType<SerialPort>("Data1",1,0,"SerialPort");
     double l1 = 6.5;
     double l2 = 8.0;
     double l3 = 8.0;
 
     Robot myRobot(nullptr,l1,l2,l3);
-
+    SerialPort serialPort;
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,
@@ -28,5 +29,6 @@ int main(int argc, char *argv[])
 
     QQmlContext *rootContext=engine.rootContext();
     rootContext->setContextProperty("myRobot",&myRobot);
+    rootContext->setContextProperty("serialPort",&serialPort);
     return app.exec();
 }

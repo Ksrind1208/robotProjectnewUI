@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Data 1.0
-
+import Data1 1.0
 Window {
     id: root
     // w:1423
@@ -64,36 +64,32 @@ Window {
                                     var width = canvasHome.width;
                                     var height = canvasHome.height;
 
-                                    // Clear the canvas
                                     ctx.clearRect(0, 0, width, height);
 
-                                    // Set the styles for the house
                                     ctx.fillStyle = "#6C757D";
                                     ctx.strokeStyle = "white";
                                     ctx.lineWidth = 2;
 
-                                    // Calculate the dimensions of the house (smaller size)
                                     var houseWidth = width / 3;
                                     var houseHeight = height / 3;
                                     var houseX = (width - houseWidth) / 2.5;
                                     var houseY = (height - houseHeight) / 1.5;
 
-                                    // Calculate the dimensions of the roof
-                                    var roofWidth = houseWidth * 2; // Base of the triangle is twice the width of the square
-                                    var roofHeight = houseHeight; // Height of the roof is equal to the height of the square
+                                    var roofWidth = houseWidth * 2;
+                                    var roofHeight = houseHeight;
 
-                                    // Calculate the coordinates for the roof
+
                                     var roofX1 = (width - roofWidth) / 2;
-                                    var roofY1 = houseY; // Top edge of the square
+                                    var roofY1 = houseY;
 
-                                    // Draw the square base of the house
+
                                     ctx.strokeRect(houseX, houseY, houseWidth*1.4, houseHeight*1.2);
 
-                                    // Draw the triangular roof
+
                                     ctx.beginPath();
-                                    ctx.moveTo(roofX1, roofY1); // Left corner of the roof
-                                    ctx.lineTo(roofX1 + roofWidth / 2, roofY1 - roofHeight); // Top of the roof
-                                    ctx.lineTo(roofX1 + roofWidth, roofY1); // Right corner of the roof
+                                    ctx.moveTo(roofX1, roofY1);
+                                    ctx.lineTo(roofX1 + roofWidth / 2, roofY1 - roofHeight);
+                                    ctx.lineTo(roofX1 + roofWidth, roofY1);
                                     ctx.closePath();
                                     ctx.stroke();
                                 }
@@ -129,17 +125,18 @@ Window {
                                         font.pointSize: 24
                                     }
                                     visible: mouseHome.containsMouse
-                                    x: mouseHome.mouseX1 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
-                                    y: mouseHome.mouseY1 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    x: mouseHome.mouseX1 + 10
+                                    y: mouseHome.mouseY1 + 10
                                     width:textHome.implicitWidth+10
                                     height:textHome.implicitHeight+10
                                 }
 
                                 onClicked: {
-                                    myRobot.home();
                                     //myRobot.writeToSerialPort("home:");
-
-                                    myRobot.writeToSerialPort("q:90;20;50;5");
+                                    serialPort.writeToSerialPort("home:");
+                                    //myRobot.writeToSerialPort("home:");
+                                    // myRobot.home();
+                                    //myRobot.writeToSerialPort("q:90;20;50;5");
                                     myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
                                     // myRobot.khongGianThaoTac(8, 0, 0, curAngle, curPosition);
 
@@ -149,7 +146,7 @@ Window {
                             }
 
 
-                            // Hiệu ứng đổ bóng bằng một Rectangle mờ
+
                             Rectangle {
                                 id:shadowSetting
                                 width: home.width
@@ -179,19 +176,19 @@ Window {
                                     var width = canvasJoint.width;
                                     var height = canvasJoint.height;
 
-                                    // Clear the canvas
+
                                     ctx.clearRect(0, 0, width, height);
 
-                                    // Set the styles for the joint drawing
+
                                     ctx.strokeStyle = "white";
                                     ctx.lineWidth = 2;
 
-                                    // Calculate the dimensions and positions for the joint drawing
+
                                     var centerX = width / 2;
                                     var centerY = height / 2;
                                     var lineLength = Math.min(width, height) / 3;
 
-                                    // Draw the lines
+
                                     ctx.beginPath();
                                     ctx.moveTo(centerX - lineLength, centerY + lineLength);
                                     ctx.lineTo(centerX + lineLength, centerY - lineLength);
@@ -202,7 +199,7 @@ Window {
                                     ctx.lineTo(centerX + lineLength, centerY + lineLength);
                                     ctx.stroke();
 
-                                    // Draw the arc
+
                                     ctx.beginPath();
                                     ctx.arc(centerX - lineLength, centerY + lineLength, lineLength , 0, -Math.PI / 4, true);
                                     ctx.stroke();
@@ -244,14 +241,14 @@ Window {
                                         font.pointSize: 24
                                     }
                                     visible: mousemoveJoint.containsMouse
-                                    x: mousemoveJoint.mouseX2 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
-                                    y: mousemoveJoint.mouseY2 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    x: mousemoveJoint.mouseX2 + 10
+                                    y: mousemoveJoint.mouseY2 + 10
                                     width:textmoveJoint.implicitWidth+10
                                     height:textmoveJoint.implicitHeight+10
                                 }
                             }
 
-                            // Hiệu ứng đổ bóng bằng một Rectangle mờ
+
                             Rectangle {
                                 id:shadowJoint
                                 width: moveJoint.width
@@ -281,24 +278,24 @@ Window {
                                     var width = canvasTCP.width;
                                     var height = canvasTCP.height;
 
-                                    // Clear the canvas
+
                                     ctx.clearRect(0, 0, width, height);
 
-                                    // Set the styles for the cube
+
                                     ctx.strokeStyle = "white";
                                     ctx.lineWidth = 2;
 
-                                    // Calculate the dimensions of the cube (larger size)
+
                                     var cubeSize = Math.min(width, height) / 2;
                                     var startX = (width - cubeSize) / 3.2;
                                     var startY = (height - cubeSize) / 1.3;
 
-                                    // Draw the front face of the cube
+
                                     ctx.beginPath();
                                     ctx.rect(startX, startY, cubeSize, cubeSize);
                                     ctx.stroke();
 
-                                    // Draw the top face of the cube
+
                                     ctx.beginPath();
                                     ctx.moveTo(startX, startY);
                                     ctx.lineTo(startX + cubeSize / 2, startY - cubeSize / 2);
@@ -307,7 +304,7 @@ Window {
                                     ctx.closePath();
                                     ctx.stroke();
 
-                                    // Draw the side face of the cube
+
                                     ctx.beginPath();
                                     ctx.moveTo(startX + cubeSize, startY);
                                     ctx.lineTo(startX + cubeSize + cubeSize / 2, startY - cubeSize / 2);
@@ -316,7 +313,7 @@ Window {
                                     ctx.closePath();
                                     ctx.stroke();
 
-                                    // Draw the edges connecting the faces
+
                                     ctx.beginPath();
                                     ctx.moveTo(startX, startY + cubeSize);
                                     ctx.lineTo(startX + cubeSize / 2, startY + cubeSize / 2);
@@ -358,7 +355,7 @@ Window {
                                 }
 
                                 onClicked: {
-                                    // Toggle visibility of windowmoveTCP
+
                                     windowmoveTCP.visible = true;
                                 }
                                 ToolTip {
@@ -369,14 +366,14 @@ Window {
                                         font.pointSize: 24
                                     }
                                     visible: mousemoveTCP.containsMouse
-                                    x: mousemoveTCP.mouseX3 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
-                                    y: mousemoveTCP.mouseY3 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    x: mousemoveTCP.mouseX3 + 10
+                                    y: mousemoveTCP.mouseY3 + 10
                                     width:textmoveTCP.implicitWidth+10
                                     height:textmoveTCP.implicitHeight+10
                                 }
                             }
 
-                            // Hiệu ứng đổ bóng bằng một Rectangle mờ
+
                             Rectangle {
                                 id:shadowTCP
                                 width: moveTCP.width
@@ -407,19 +404,19 @@ Window {
                                     var width = canvasSLI.width;
                                     var height = canvasSLI.height;
 
-                                    // Clear the canvas
+
                                     ctx.clearRect(0, 0, width, height);
 
-                                    // Set the styles for the joint drawing
+
                                     ctx.strokeStyle = "white";
                                     ctx.lineWidth = 2;
 
-                                    // Calculate the dimensions and positions for the joint drawing
+
                                     var centerX = width / 2;
                                     var centerY = height / 2;
                                     var lineLength = Math.min(width, height) / 3;
 
-                                    // Draw the lines
+
                                     ctx.beginPath();
                                     ctx.moveTo(centerX - lineLength, centerY + lineLength);
                                     ctx.lineTo(centerX + lineLength, centerY - lineLength);
@@ -458,8 +455,8 @@ Window {
                                         font.pointSize: 24
                                     }
                                     visible: mousemoveSLI.containsMouse
-                                    x: mousemoveSLI.mouseX4 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
-                                    y: mousemoveSLI.mouseY4 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    x: mousemoveSLI.mouseX4 + 10
+                                    y: mousemoveSLI.mouseY4 + 10
                                     width:textmoveSLI.implicitWidth+10
                                     height:textmoveSLI.implicitHeight+10
                                 }
@@ -469,7 +466,7 @@ Window {
                                 }
                             }
 
-                            // Hiệu ứng đổ bóng bằng một Rectangle mờ
+
                             Rectangle {
                                 id:shadowSLI
                                 width: moveSLI.width
@@ -502,19 +499,19 @@ Window {
                                     var width = canvasCI.width;
                                     var height = canvasCI.height;
 
-                                    // Clear the canvas
+
                                     ctx.clearRect(0, 0, width, height);
 
-                                    // Set the styles for the joint drawing
+
                                     ctx.strokeStyle = "white";
                                     ctx.lineWidth = 2;
 
-                                    // Calculate the dimensions and positions for the joint drawing
+
                                     var centerX = width / 2;
                                     var centerY = height / 2;
                                     var lineLength = Math.min(width, height) / 3;
 
-                                    // Draw the arc
+
                                     ctx.beginPath();
                                     ctx.arc(centerX , centerY , lineLength , 0, -2*Math.PI, true);
                                     ctx.stroke();
@@ -551,8 +548,8 @@ Window {
                                         font.pointSize: 24
                                     }
                                     visible: mousemoveCI.containsMouse
-                                    x: mousemoveCI.mouseX5 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
-                                    y: mousemoveCI.mouseY5 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    x: mousemoveCI.mouseX5 + 10
+                                    y: mousemoveCI.mouseY5 + 10
                                     width:textmoveCI.implicitWidth+10
                                     height:textmoveCI.implicitHeight+10
                                 }
@@ -562,7 +559,7 @@ Window {
                                 }
                             }
 
-                            // Hiệu ứng đổ bóng bằng một Rectangle mờ
+
                             Rectangle {
                                 id:shadowCI
                                 width: moveCI.width
@@ -594,26 +591,25 @@ Window {
                                     var width = canvasDragAndDrop.width;
                                     var height = canvasDragAndDrop.height;
 
-                                    // Clear canvas
+
                                     ctx.clearRect(0, 0, width, height);
 
-                                    // Set styles
+
                                     ctx.strokeStyle = "white";
                                     ctx.fillStyle = "white";
                                     ctx.lineWidth = 3;
 
-                                    // Calculate dimensions and position
+
                                     var centerX = width / 2;
                                     var centerY = height / 2;
                                     var iconSize = Math.min(width, height) / 3;
 
-                                    // Draw hand icon
                                     var handRadius = iconSize / 2;
                                     ctx.beginPath();
                                     ctx.arc(centerX, centerY - handRadius / 2, handRadius, 0, 2 * Math.PI);
                                     ctx.stroke();
 
-                                    // Draw fingers
+
                                     ctx.beginPath();
                                     ctx.moveTo(centerX - handRadius / 2, centerY - handRadius / 0.5);
                                     ctx.lineTo(centerX - handRadius / 2, centerY - handRadius / 0.3);
@@ -623,9 +619,9 @@ Window {
                                     ctx.lineTo(centerX + handRadius / 2, centerY - handRadius / 0.3);
                                     ctx.stroke();
 
-                                    // Draw parallelogram below hand
-                                    var parallelogramWidth = iconSize * 0.8; // Adjust the width of parallelogram
-                                    var parallelogramHeight = parallelogramWidth * 0.6; // Adjust the height ratio here
+
+                                    var parallelogramWidth = iconSize * 0.8;
+                                    var parallelogramHeight = parallelogramWidth * 0.6;
 
                                     ctx.beginPath();
                                     ctx.moveTo(centerX - parallelogramWidth / 2, centerY + handRadius * 2);
@@ -671,14 +667,14 @@ Window {
                                         font.pointSize: 24
                                     }
                                     visible: mouseDragandDrop.containsMouse
-                                    x: mouseDragandDrop.mouseX6 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
-                                    y: mouseDragandDrop.mouseY6 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    x: mouseDragandDrop.mouseX6 + 10
+                                    y: mouseDragandDrop.mouseY6 + 10
                                     width:textdraganddrop.implicitWidth+10
                                     height:textdraganddrop.implicitHeight+10
                                 }
                             }
 
-                            // Hiệu ứng đổ bóng bằng một Rectangle mờ
+
                             Rectangle {
                                 id:shadowdraganddrop
                                 width: draganddrop.width
@@ -708,25 +704,24 @@ Window {
                                     var width = canvasSimulation.width;
                                     var height = canvasSimulation.height;
 
-                                    // Clear the canvas
+
                                     ctx.clearRect(0, 0, width, height);
 
-                                    // Set the styles for the simulation icon
+
                                     ctx.strokeStyle = "white";
                                     ctx.fillStyle = "white";
                                     ctx.lineWidth = 2;
 
-                                    // Calculate the dimensions and position of the icon
+
                                     var iconSize = Math.min(width, height) / 2;
                                     var centerX = width / 2;
                                     var centerY = height / 2;
 
-                                    // Draw a circle
+
                                     ctx.beginPath();
                                     ctx.arc(centerX, centerY, iconSize / 1.5, 0, 2 * Math.PI);
                                     ctx.stroke();
 
-                                    // Draw an arrow inside the circle
                                     var arrowLength = iconSize / 2;
                                     ctx.beginPath();
                                     ctx.moveTo(centerX, centerY - arrowLength / 2);
@@ -762,6 +757,8 @@ Window {
                                 }
 
                                 onClicked: {
+                                    myRobot.writeToSerialPort("home:");
+                                    myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
                                     console.log("Simulated");
                                 }
                                 ToolTip {
@@ -772,14 +769,14 @@ Window {
                                         font.pointSize: 24
                                     }
                                     visible: mouseSimulation.containsMouse
-                                    x: mouseSimulation.mouseX7 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
-                                    y: mouseSimulation.mouseY7 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    x: mouseSimulation.mouseX7 + 10
+                                    y: mouseSimulation.mouseY7 + 10
                                     width:textSimulation.implicitWidth+10
                                     height:textSimulation.implicitHeight+10
                                 }
                             }
 
-                            // Hiệu ứng đổ bóng bằng một Rectangle mờ
+
                             Rectangle {
                                 id:shadowSimulation
                                 width: simulation.width
@@ -809,19 +806,19 @@ Window {
                                     var width = canvasQuit.width;
                                     var height = canvasQuit.height;
 
-                                    // Clear the canvas
+
                                     ctx.clearRect(0, 0, width, height);
 
-                                    // Set the styles for the joint drawing
+
                                     ctx.strokeStyle = "white";
                                     ctx.lineWidth = 2;
 
-                                    // Calculate the dimensions and positions for the joint drawing
+
                                     var centerX = width / 2;
                                     var centerY = height / 2;
                                     var lineLength = Math.min(width, height) / 3;
 
-                                    // Draw the lines
+
                                     ctx.beginPath();
                                     ctx.moveTo(centerX - lineLength, centerY + lineLength);
                                     ctx.lineTo(centerX + lineLength, centerY + lineLength);
@@ -867,14 +864,14 @@ Window {
                                         font.pointSize: 24
                                     }
                                     visible: mouseQuit.containsMouse
-                                    x: mouseQuit.mouseX8 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
-                                    y: mouseQuit.mouseY8 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                                    x: mouseQuit.mouseX8 + 10
+                                    y: mouseQuit.mouseY8 + 10
                                     width:textQuit.implicitWidth+10
                                     height:textQuit.implicitHeight+10
                                 }
                             }
 
-                            // Hiệu ứng đổ bóng bằng một Rectangle mờ
+
                             Rectangle {
                                 id:shadowQuit
                                 width: quit.width
@@ -1138,8 +1135,8 @@ Window {
                         //                 font.pointSize: 24
                         //             }
                         //             visible: mouseSave.containsMouse
-                        //             x: mouseSave.mouseX9 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
-                        //             y: mouseSave.mouseY9 + 10 // Offset by 10 pixels to avoid overlapping with the cursor
+                        //             x: mouseSave.mouseX9 + 10
+                        //             y: mouseSave.mouseY9 + 10
                         //             width:textSave.implicitWidth+10
                         //             height:textSave.implicitHeight+10
                         //         }
@@ -1184,7 +1181,7 @@ Window {
                 property real curPositionY: root.curPosition.y
                 property real curPositionZ: root.curPosition.z
 
-                // First Canvas for yOz axis
+
                 Canvas {
                     id: yOzCanvas
                     anchors.left: parent.left
@@ -1196,27 +1193,27 @@ Window {
                         var ctx = yOzCanvas.getContext("2d");
                         ctx.clearRect(0, 0, yOzCanvas.width, yOzCanvas.height);
 
-                        // Set up styles
+
                         ctx.strokeStyle = "white";
                         ctx.lineWidth = 2;
 
-                        // Draw Y axis
+
                         ctx.beginPath();
                         ctx.moveTo(0, yOzCanvas.height / 2);
                         ctx.lineTo(yOzCanvas.width, yOzCanvas.height / 2);
                         ctx.stroke();
 
-                        // Draw Z axis
+
                         ctx.beginPath();
                         ctx.moveTo(yOzCanvas.width / 2, 0);
                         ctx.lineTo(yOzCanvas.width / 2, yOzCanvas.height);
                         ctx.stroke();
 
-                        // Set fill style for text
+
                         ctx.fillStyle = "white";
 
-                        // Draw ticks and labels on Y axis
-                        var stepY = (yOzCanvas.width) / 40; // Each step represents 1 unit
+
+                        var stepY = (yOzCanvas.width) / 40;
                         for (var j = -18; j <= 18; j += 2) {
                             var y = yOzCanvas.width / 2 + j * stepY;
                             ctx.beginPath();
@@ -1224,13 +1221,13 @@ Window {
                             ctx.lineTo(y, yOzCanvas.height / 2 + 3);
                             ctx.stroke();
 
-                            if (j !== 0) { // Skip the origin
+                            if (j !== 0) {
                                 ctx.fillText(j.toString(), y - 5, yOzCanvas.height / 2 + 15);
                             }
                         }
 
-                        // Draw ticks and labels on Z axis
-                        var stepZ = yOzCanvas.height / 40; // Each step represents 1 unit
+
+                        var stepZ = yOzCanvas.height / 40;
                         for (var i = -18; i <= 18; i += 2) {
                             var z = yOzCanvas.height / 2 - i * stepZ;
                             ctx.beginPath();
@@ -1238,7 +1235,7 @@ Window {
                             ctx.lineTo(yOzCanvas.width / 2 + 3, z);
                             ctx.stroke();
 
-                            if (i !== 0) { // Skip the origin
+                            if (i !== 0) {
                                 ctx.fillText(i.toString(), yOzCanvas.width / 2 + 10, z + 5);
                             }
                         }
@@ -1246,31 +1243,31 @@ Window {
 
 
                         ctx.strokeStyle = "red";
-                        ctx.lineWidth=60;
+                        ctx.lineWidth=30;
                         ctx.beginPath();
                         ctx.moveTo(yOzCanvas.width / 2, yOzCanvas.height / 2);
-                        ctx.lineTo(yOzCanvas.width / 2, yOzCanvas.height / 2 -stepZ * 6.5); // Correct calculation
+                        ctx.lineTo(yOzCanvas.width / 2, yOzCanvas.height / 2 -stepZ * 6.5);
                         ctx.stroke();
 
                         ctx.strokeStyle = "green";
-                        ctx.lineWidth=20;
+                        ctx.lineWidth=15;
                         ctx.beginPath();
                         ctx.moveTo(yOzCanvas.width / 2, yOzCanvas.height / 2 -stepZ * 6.5);
-                        ctx.lineTo(yOzCanvas.width / 2+stepZ*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180), yOzCanvas.height / 2 -stepZ * 6.5-8*stepZ*Math.sin((90-root.curAngle.q2)*Math.PI/180)); // Correct calculation
+                        ctx.lineTo(yOzCanvas.width / 2+stepZ*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180), yOzCanvas.height / 2 -stepZ * 6.5-8*stepZ*Math.sin((90-root.curAngle.q2)*Math.PI/180));
                         ctx.stroke();
 
                         ctx.strokeStyle = "blue";
-                        ctx.lineWidth=20;
+                        ctx.lineWidth=15;
                         ctx.beginPath();
                         ctx.moveTo(yOzCanvas.width / 2+stepZ*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180), yOzCanvas.height / 2 -stepZ * 6.5-8*stepZ*Math.sin((90-root.curAngle.q2)*Math.PI/180));
-                        ctx.lineTo(yOzCanvas.width/2+stepZ*root.curPosition.y, yOzCanvas.height/2-stepZ*(root.curPosition.z)); // Correct calculation
+                        ctx.lineTo(yOzCanvas.width/2+stepZ*root.curPosition.y, yOzCanvas.height/2-stepZ*(root.curPosition.z));
                         ctx.stroke();
 
                         ctx.strokeStyle = "yellow";
-                        ctx.lineWidth=20;
+                        ctx.lineWidth=15;
                         ctx.beginPath();
                         ctx.moveTo(yOzCanvas.width/2+stepZ*root.curPosition.y, yOzCanvas.height/2-stepZ*root.curPosition.z);
-                        ctx.lineTo(yOzCanvas.width/2+stepZ*root.curPosition.y+30, yOzCanvas.height/2-stepZ*root.curPosition.z); // Correct calculation
+                        ctx.lineTo(yOzCanvas.width/2+stepZ*root.curPosition.y+15, yOzCanvas.height/2-stepZ*root.curPosition.z);
                         ctx.stroke();
                     }
 
@@ -1280,7 +1277,7 @@ Window {
                 }
 
 
-                // Second Canvas for xOy axis
+
                 Canvas {
                     id: xOyCanvas
                     anchors.right: parent.right
@@ -1295,27 +1292,27 @@ Window {
                         var ctx = xOyCanvas.getContext("2d");
                         ctx.clearRect(0, 0, xOyCanvas.width, xOyCanvas.height);
 
-                        // Set up styles
+
                         ctx.strokeStyle = "white";
                         ctx.lineWidth = 2;
 
-                        // Draw X axis
+
                         ctx.beginPath();
                         ctx.moveTo(0, xOyCanvas.height / 2);
                         ctx.lineTo(xOyCanvas.width, xOyCanvas.height / 2);
                         ctx.stroke();
 
-                        // Draw Y axis
+
                         ctx.beginPath();
                         ctx.moveTo(xOyCanvas.width / 2, 0);
                         ctx.lineTo(xOyCanvas.width / 2, xOyCanvas.height);
                         ctx.stroke();
 
-                        // Set fill style for text
+
                         ctx.fillStyle = "white";
 
-                        // Draw ticks and labels on Y axis
-                        var stepY = (xOyCanvas.width) / 40; // Each step represents 1 unit
+
+                        var stepY = (xOyCanvas.width) / 40;
                         for (var j = -18; j <= 18; j += 2) {
                             var y = xOyCanvas.width / 2 + j * stepY;
                             ctx.beginPath();
@@ -1323,13 +1320,13 @@ Window {
                             ctx.lineTo(y, xOyCanvas.height / 2 + 3);
                             ctx.stroke();
 
-                            if (j !== 0) { // Skip the origin
+                            if (j !== 0) {
                                 ctx.fillText(j.toString(), y - 5, xOyCanvas.height / 2 + 15);
                             }
                         }
 
-                        // Draw ticks and labels on X axis
-                        var stepX = xOyCanvas.height / 40; // Each step represents 1 unit
+
+                        var stepX = xOyCanvas.height / 40;
                         for (var i = 18; i >= -18; i -= 2) {
                             var x = xOyCanvas.height/2 + i * stepX;
                             ctx.beginPath();
@@ -1337,7 +1334,7 @@ Window {
                             ctx.lineTo(xOyCanvas.width / 2 + 3, x);
                             ctx.stroke();
 
-                            if (i !== 0) { // Skip the origin
+                            if (i !== 0) {
                                 ctx.fillText(i.toString(), xOyCanvas.width / 2 + 10, x + 5);
                             }
                         }
@@ -1345,29 +1342,29 @@ Window {
                         ctx.beginPath();
                         ctx.fillStyle = "red";
                         ctx.moveTo(xOyCanvas.width/2,xOyCanvas.height/2);
-                        ctx.arc(xOyCanvas.width/2,xOyCanvas.height/2,2*stepY*1.3,0,-2*Math.PI,true);
+                        ctx.arc(xOyCanvas.width/2,xOyCanvas.height/2,2*stepY*0.75,0,-2*Math.PI,true);
                         ctx.lineTo(xOyCanvas.width/2,xOyCanvas.height/2);
                         ctx.fill();
 
                         ctx.strokeStyle = "green";
-                        ctx.lineWidth=20;
+                        ctx.lineWidth=15;
                         ctx.beginPath();
                         ctx.moveTo(xOyCanvas.width/2,xOyCanvas.height/2);
-                        ctx.lineTo((yOzCanvas.width / 2+stepX*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180)),yOzCanvas.height/2+stepX*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.cos(root.curAngle.q1*Math.PI/180)); // Correct calculation
+                        ctx.lineTo((yOzCanvas.width / 2+stepX*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180)),yOzCanvas.height/2+stepX*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.cos(root.curAngle.q1*Math.PI/180));
                         ctx.stroke();
 
                         ctx.strokeStyle = "blue";
-                        ctx.lineWidth=20;
+                        ctx.lineWidth=15;
                         ctx.beginPath();
                         ctx.moveTo((yOzCanvas.width / 2+stepX*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.sin(root.curAngle.q1*Math.PI/180)),yOzCanvas.height/2+stepX*8*Math.cos(Math.PI*(90-root.curAngle.q2)/180)*Math.cos(root.curAngle.q1*Math.PI/180));
-                        ctx.lineTo(xOyCanvas.width/2+stepX*root.curPosition.y,xOyCanvas.height/2+stepX*root.curPosition.x); // Correct calculation
+                        ctx.lineTo(xOyCanvas.width/2+stepX*root.curPosition.y,xOyCanvas.height/2+stepX*root.curPosition.x);
                         ctx.stroke();
 
                         ctx.strokeStyle = "yellow";
-                        ctx.lineWidth=20;
+                        ctx.lineWidth=15;
                         ctx.beginPath();
                         ctx.moveTo(xOyCanvas.width/2+stepX*root.curPosition.y,xOyCanvas.height/2+stepX*root.curPosition.x);
-                        ctx.lineTo(xOyCanvas.width/2+stepX*root.curPosition.y+30,xOyCanvas.height/2+stepX*root.curPosition.x); // Correct calculation
+                        ctx.lineTo(xOyCanvas.width/2+stepX*root.curPosition.y+15,xOyCanvas.height/2+stepX*root.curPosition.x);
                         ctx.stroke();
 
                     }
@@ -1462,7 +1459,7 @@ Window {
 
                             property color arrowColor: "white"
                             property string arrowText: "J1-"
-                            property color textColor: "black" // Color of the text
+                            property color textColor: "black"
                             onPaint: {
                                 var ctx = getContext("2d");
                                 ctx.clearRect(0, 0, width, height);
@@ -1476,13 +1473,13 @@ Window {
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
 
-                                // Add the text
+
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial";
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
-                                // Calculate the center position of the triangle
+
                                 var centerX = width / 2+5;
                                 var centerY = height / 2;
 
@@ -1506,10 +1503,10 @@ Window {
                                     if((Number(root.curAngle.q1)-10)<0){
                                         console.log(Number(root.curAngle.q1)-10<0);
                                         errormoveAngle.visible=true;
-                                        myRobot.writeToSerialPort("q:"+0+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        serialPort.writeToSerialPort("q:"+0+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
                                         myRobot.khongGianKhop(0,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                     }else{
-                                        myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1)-10)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        serialPort.writeToSerialPort("q:"+(Number(root.curAngle.q1)-10)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
                                         myRobot.khongGianKhop(Number(root.curAngle.q1)-10,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         console.log("Left arrow clicked");
                                     }
@@ -1522,7 +1519,7 @@ Window {
                             height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
                             property string arrowText: "J1+"
-                            property color textColor: "black" // Color of the text
+                            property color textColor: "black"
                             onPaint: {
                                 var ctx = getContext("2d");
                                 ctx.clearRect(0, 0, width, height);
@@ -1536,13 +1533,13 @@ Window {
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
 
-                                // Add the text
+
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial";
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
-                                // Calculate the center position of the triangle
+
                                 var centerX = width / 2-5;
                                 var centerY = height / 2;
 
@@ -1565,10 +1562,10 @@ Window {
                                 onClicked: {
                                     if((Number(root.curAngle.q1)+10)>180){
                                         errormoveAngle.visible=true;
-                                        myRobot.writeToSerialPort("q:"+180+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        serialPort.writeToSerialPort("q:"+180+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
                                         myRobot.khongGianKhop(180,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                     }else{
-                                        myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1)+10)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        serialPort.writeToSerialPort("q:"+(Number(root.curAngle.q1)+10)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
                                         myRobot.khongGianKhop(Number(root.curAngle.q1)+10,Number(root.curAngle.q2),Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         console.log("Right arrow clicked");
                                     }
@@ -1585,7 +1582,7 @@ Window {
                                 height: 0.08*controllRectangle.width
                                 property color arrowColor: "white"
                                 property string arrowText: "J4-"
-                                property color textColor: "black" // Color of the text
+                                property color textColor: "black"
                                 onPaint: {
                                     var ctx = getContext("2d");
                                     ctx.clearRect(0, 0, width, height);
@@ -1599,13 +1596,13 @@ Window {
                                     ctx.fillStyle = arrowColor;
                                     ctx.fill();
 
-                                    // Add the text
+
                                     ctx.fillStyle = textColor;
-                                    ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                                    ctx.font = "bold 35px Arial";
                                     ctx.textAlign = "center";
                                     ctx.textBaseline = "middle";
 
-                                    // Calculate the center position of the triangle
+
                                     var centerX = width / 2+5;
                                     var centerY = height / 2;
 
@@ -1626,7 +1623,7 @@ Window {
                                     }
 
                                     onClicked: {
-                                        myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+5);
+                                        serialPort.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+5);
                                         myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),5,curAngle,curPosition);
                                     }
                                 }
@@ -1637,7 +1634,7 @@ Window {
                             height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
                             property string arrowText: "J4+"
-                            property color textColor: "black" // Color of the text
+                            property color textColor: "black"
                             onPaint: {
                                 var ctx = getContext("2d");
                                 ctx.clearRect(0, 0, width, height);
@@ -1650,13 +1647,12 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
-                                // Add the text
+
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial";
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
-                                // Calculate the center position of the triangle
                                 var centerX = width / 2-5;
                                 var centerY = height / 2;
 
@@ -1678,7 +1674,7 @@ Window {
                                 }
 
                                 onClicked: {
-                                    myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+90);
+                                    serialPort.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+Number(root.curAngle.q3)+";"+90);
                                     myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3),90,curAngle,curPosition);
 
                                 }
@@ -1696,7 +1692,7 @@ Window {
                             height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
                             property string arrowText: "Y-"
-                            property color textColor: "black" // Color of the text
+                            property color textColor: "black"
                             onPaint: {
                                 var ctx = getContext("2d");
                                 ctx.clearRect(0, 0, width, height);
@@ -1709,13 +1705,13 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
-                                // Add the text
+
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial";
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
-                                // Calculate the center position of the triangle
+
                                 var centerX = width / 2+5;
                                 var centerY = height / 2;
 
@@ -1738,7 +1734,7 @@ Window {
 
                                 onClicked: {
                                     myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y)-1,Number(root.curPosition.z),curAngle,curPosition);
-                                    myRobot.writeToSerialPort("kg:"+(Number(root.curPosition.x))+";"+(Number(root.curPosition.y)-1)+";"+Number(root.curPosition.z));
+                                    serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x))+";"+(Number(root.curPosition.y)-1)+";"+Number(root.curPosition.z));
                                     console.log("left arrow clicked");
                                 }
                             }
@@ -1749,7 +1745,7 @@ Window {
                         height: 0.08*controllRectangle.width
                         property color arrowColor: "white"
                         property string arrowText: "Y+"
-                        property color textColor: "black" // Color of the text
+                        property color textColor: "black"
                         onPaint: {
                             var ctx = getContext("2d");
                             ctx.clearRect(0, 0, width, height);
@@ -1763,13 +1759,13 @@ Window {
                             ctx.fillStyle = arrowColor;
                             ctx.fill();
 
-                            // Add the text
+
                             ctx.fillStyle = textColor;
-                            ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                            ctx.font = "bold 35px Arial";
                             ctx.textAlign = "center";
                             ctx.textBaseline = "middle";
 
-                            // Calculate the center position of the triangle
+
                             var centerX = width / 2-5;
                             var centerY = height / 2;
 
@@ -1793,7 +1789,7 @@ Window {
 
                             onClicked: {
                                 myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y)+1,Number(root.curPosition.z),curAngle,curPosition);
-                                myRobot.writeToSerialPort("kg:"+(Number(root.curPosition.x))+";"+(Number(root.curPosition.y)+1)+";"+Number(root.curPosition.z));
+                                serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x))+";"+(Number(root.curPosition.y)+1)+";"+Number(root.curPosition.z));
                                 console.log("Up arrow clicked");
                             }
                         }
@@ -1810,7 +1806,7 @@ Window {
                             height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
                             property string arrowText: "J2+"
-                            property color textColor: "black" // Color of the text
+                            property color textColor: "black"
                             onPaint: {
                                 var ctx = getContext("2d");
                                 ctx.clearRect(0, 0, width, height);
@@ -1823,13 +1819,12 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
-                                // Add the text
+
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial";
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
-                                // Calculate the center position of the triangle
                                 var centerX = width / 2;
                                 var centerY = height / 2+20;
 
@@ -1853,10 +1848,10 @@ Window {
                                 onClicked: {
                                     if((Number(root.curAngle.q2)-10)<0){
                                         errormoveAngle.visible=true;
-                                        myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+0+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        serialPort.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+0+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
                                         myRobot.khongGianKhop(Number(root.curAngle.q1),0,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                     }else{
-                                        myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2)-10)+";"+Number(root.curAngle.q3)+";"+(Number(root.curAngle.q4)));
+                                        serialPort.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2)-10)+";"+Number(root.curAngle.q3)+";"+(Number(root.curAngle.q4)));
                                         myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2)-10,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         console.log("Up arrow clicked");
                                     }
@@ -1869,7 +1864,7 @@ Window {
                             height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
                             property string arrowText: "J3+"
-                            property color textColor: "black" // Color of the text
+                            property color textColor: "black"
                             onPaint: {
                                 var ctx = getContext("2d");
                                 ctx.clearRect(0, 0, width, height);
@@ -1882,13 +1877,13 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
-                                // Add the text
+
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial";
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
-                                // Calculate the center position of the triangle
+
                                 var centerX = width / 2;
                                 var centerY = height / 2+20;
 
@@ -1911,11 +1906,11 @@ Window {
                                 onClicked: {
                                     if((Number(root.curAngle.q3)+10)>140){
                                         errormoveAngle.visible=true;
-                                        myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+140+";"+Number(root.curAngle.q4));
+                                        serialPort.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+140+";"+Number(root.curAngle.q4));
                                         myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),140,Number(root.curAngle.q4),curAngle,curPosition);
 
                                     }else{
-                                        myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2))+";"+(Number(root.curAngle.q3)+10)+";"+(Number(root.curAngle.q4)));
+                                        serialPort.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2))+";"+(Number(root.curAngle.q3)+10)+";"+(Number(root.curAngle.q4)));
                                         myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3)+10,Number(root.curAngle.q4),curAngle,curPosition);
                                         console.log("Up arrow clicked");
                                     }
@@ -1933,7 +1928,7 @@ Window {
                             height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
                             property string arrowText: "J2-"
-                            property color textColor: "black" // Color of the text
+                            property color textColor: "black"
 
                             onPaint: {
                                 var ctx = getContext("2d");
@@ -1947,13 +1942,13 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
-                                // Add the text
+
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial";
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
-                                // Calculate the center position of the triangle
+
                                 var centerX = width / 2;
                                 var centerY = height / 2-20;
 
@@ -1976,11 +1971,11 @@ Window {
                                 onClicked: {
                                     if((Number(root.curAngle.q2)+10)>90){
                                         errormoveAngle.visible=true;
-                                        myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+90+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
+                                        serialPort.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+90+";"+Number(root.curAngle.q3)+";"+Number(root.curAngle.q4));
                                         myRobot.khongGianKhop(Number(root.curAngle.q1),90,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
 
                                     }else{
-                                        myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2)+10)+";"+(Number(root.curAngle.q3))+";"+(Number(root.curAngle.q4)));
+                                        serialPort.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2)+10)+";"+(Number(root.curAngle.q3))+";"+(Number(root.curAngle.q4)));
                                         myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2)+10,Number(root.curAngle.q3),Number(root.curAngle.q4),curAngle,curPosition);
                                         console.log("Down arrow clicked");
                                     }
@@ -1993,7 +1988,7 @@ Window {
                             height: 0.08*controllRectangle.width
                             property color arrowColor: "white"
                             property string arrowText: "J3-"
-                            property color textColor: "black" // Color of the text
+                            property color textColor: "black"
 
                             onPaint: {
                                 var ctx = getContext("2d");
@@ -2007,13 +2002,13 @@ Window {
 
                                 ctx.fillStyle = arrowColor;
                                 ctx.fill();
-                                // Add the text
+
                                 ctx.fillStyle = textColor;
-                                ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                                ctx.font = "bold 35px Arial";
                                 ctx.textAlign = "center";
                                 ctx.textBaseline = "middle";
 
-                                // Calculate the center position of the triangle
+
                                 var centerX = width / 2;
                                 var centerY = height / 2-20;
 
@@ -2036,11 +2031,11 @@ Window {
                                 onClicked: {
                                     if((Number(root.curAngle.q3)-10)<0){
                                         errormoveAngle.visible=true;
-                                        myRobot.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+10+";"+Number(root.curAngle.q4));
+                                        serialPort.writeToSerialPort("q:"+Number(root.curAngle.q1)+";"+Number(root.curAngle.q2)+";"+10+";"+Number(root.curAngle.q4));
                                         myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),10,Number(root.curAngle.q4),curAngle,curPosition);
 
                                     }
-                                    myRobot.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2))+";"+(Number(root.curAngle.q3)-10)+";"+(Number(root.curAngle.q4)));
+                                    serialPort.writeToSerialPort("q:"+(Number(root.curAngle.q1))+";"+(Number(root.curAngle.q2))+";"+(Number(root.curAngle.q3)-10)+";"+(Number(root.curAngle.q4)));
                                     myRobot.khongGianKhop(Number(root.curAngle.q1),Number(root.curAngle.q2),Number(root.curAngle.q3)-10,Number(root.curAngle.q4),curAngle,curPosition);
 
                                     console.log("Down arrow clicked");
@@ -2057,7 +2052,7 @@ Window {
                         height: 0.08*controllRectangle.width
                         property color arrowColor: "white"
                         property string arrowText: "X-"
-                        property color textColor: "black" // Color of the text
+                        property color textColor: "black"
                         onPaint: {
                             var ctx = getContext("2d");
                             ctx.clearRect(0, 0, width, height);
@@ -2070,13 +2065,13 @@ Window {
 
                             ctx.fillStyle = arrowColor;
                             ctx.fill();
-                            // Add the text
+
                             ctx.fillStyle = textColor;
-                            ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                            ctx.font = "bold 35px Arial";
                             ctx.textAlign = "center";
                             ctx.textBaseline = "middle";
 
-                            // Calculate the center position of the triangle
+
                             var centerX = width / 2;
                             var centerY = height / 2+20;
 
@@ -2098,7 +2093,7 @@ Window {
 
                             onClicked: {
                                 myRobot.khongGianThaoTac(Number(root.curPosition.x)-1,Number(root.curPosition.y),Number(root.curPosition.z),curAngle,curPosition);
-                                myRobot.writeToSerialPort("kg:"+(Number(root.curPosition.x)-1)+";"+(Number(root.curPosition.y))+";"+Number(root.curPosition.z));
+                                serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x)-1)+";"+(Number(root.curPosition.y))+";"+Number(root.curPosition.z));
                                 console.log("Down arrow clicked");
                             }
                         }
@@ -2111,7 +2106,7 @@ Window {
                         height: 0.08*controllRectangle.width
                         property color arrowColor: "white"
                         property string arrowText: "X+"
-                        property color textColor: "black" // Color of the text
+                        property color textColor: "black"
 
                         onPaint: {
                             var ctx = getContext("2d");
@@ -2125,13 +2120,13 @@ Window {
 
                             ctx.fillStyle = arrowColor;
                             ctx.fill();
-                            // Add the text
+
                             ctx.fillStyle = textColor;
-                            ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                            ctx.font = "bold 35px Arial";
                             ctx.textAlign = "center";
                             ctx.textBaseline = "middle";
 
-                            // Calculate the center position of the triangle
+
                             var centerX = width / 2;
                             var centerY = height / 2-20;
 
@@ -2153,7 +2148,7 @@ Window {
 
                             onClicked: {
                                 myRobot.khongGianThaoTac(Number(root.curPosition.x)+1,Number(root.curPosition.y),Number(root.curPosition.z),curAngle,curPosition);
-                               myRobot.writeToSerialPort("kg:"+(Number(root.curPosition.x)+1)+";"+(Number(root.curPosition.y))+";"+Number(root.curPosition.z));
+                               serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x)+1)+";"+(Number(root.curPosition.y))+";"+Number(root.curPosition.z));
                                 console.log("Down arrow clicked");
                             }
                         }
@@ -2166,7 +2161,7 @@ Window {
                         height: 0.08*controllRectangle.width
                         property color arrowColor: "white"
                         property string arrowText: "Z+"
-                        property color textColor: "black" // Color of the text
+                        property color textColor: "black"
                         onPaint: {
                             var ctx = getContext("2d");
                             ctx.clearRect(0, 0, width, height);
@@ -2179,13 +2174,12 @@ Window {
 
                             ctx.fillStyle = arrowColor;
                             ctx.fill();
-                            // Add the text
+
                             ctx.fillStyle = textColor;
-                            ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                            ctx.font = "bold 35px Arial";
                             ctx.textAlign = "center";
                             ctx.textBaseline = "middle";
 
-                            // Calculate the center position of the triangle
                             var centerX = width / 2;
                             var centerY = height / 2+20;
 
@@ -2207,7 +2201,7 @@ Window {
 
                             onClicked: {
                                 myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y),Number(root.curPosition.z)+1,curAngle,curPosition);
-                                myRobot.writeToSerialPort("kg:"+Number(root.curPosition.x)+";"+Number(root.curPosition.y)+";"+(Number(root.curPosition.z)+1));
+                                serialPort.writeToSerialPort("kg:"+Number(root.curPosition.x)+";"+Number(root.curPosition.y)+";"+(Number(root.curPosition.z)+1));
                                 console.log("Down arrow clicked");
                             }
                         }
@@ -2220,7 +2214,7 @@ Window {
                         height: 0.08*controllRectangle.width
                         property color arrowColor: "white"
                         property string arrowText: "Z-"
-                        property color textColor: "black" // Color of the text
+                        property color textColor: "black"
 
                         onPaint: {
                             var ctx = getContext("2d");
@@ -2234,13 +2228,13 @@ Window {
 
                             ctx.fillStyle = arrowColor;
                             ctx.fill();
-                            // Add the text
+
                             ctx.fillStyle = textColor;
-                            ctx.font = "bold 35px Arial"; // Adjust the font size and style as needed
+                            ctx.font = "bold 35px Arial";
                             ctx.textAlign = "center";
                             ctx.textBaseline = "middle";
 
-                            // Calculate the center position of the triangle
+
                             var centerX = width / 2;
                             var centerY = height / 2-20;
 
@@ -2262,7 +2256,7 @@ Window {
 
                             onClicked: {
                                 myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y),Number(root.curPosition.z)-1,curAngle,curPosition);
-                                myRobot.writeToSerialPort("kg:"+Number(root.curPosition.x)+";"+Number(root.curPosition.y)+";"+(Number(root.curPosition.z)-1));
+                                serialPort.writeToSerialPort("kg:"+Number(root.curPosition.x)+";"+Number(root.curPosition.y)+";"+(Number(root.curPosition.z)-1));
                                 console.log("Down arrow clicked");
                             }
                         }
@@ -2285,7 +2279,7 @@ Window {
             border.width: 2/1423*Screen.width
             anchors.centerIn: parent
 
-            // Shadow effect using a semi-transparent Rectangle
+
             Rectangle {
                 width: 800/1423*Screen.width
                 height: 750/800*Screen.height
@@ -2305,16 +2299,16 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Q1:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         property string valueQ1: ""
                         id: q1Field
                         placeholderText: "Enter Q1"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2345,16 +2339,16 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Q2:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: q2Field
                         property string valueQ2: ""
                         placeholderText: "Enter Q2"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2384,16 +2378,16 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Q3:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: q3Field
                         property string valueQ3: ""
                         placeholderText: "Enter Q3"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2424,16 +2418,16 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Q4:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: q4Field
                         property string valueQ4: ""
                         placeholderText: "Enter Q4"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2461,8 +2455,8 @@ Window {
 
                 Button {
                     text: "Move"
-                    font.pixelSize: 40 // Increase font size
-                    width: 240/1423*Screen.width // Adjust width
+                    font.pixelSize: 40
+                    width: 240/1423*Screen.width
                     height: 100/800*Screen.height
                     anchors.horizontalCenter: parent.horizontalCenter
                     background: Rectangle {
@@ -2483,11 +2477,11 @@ Window {
                             if(Number(q2Field.valueQ2)>=0&&Number(q2Field.valueQ2)<=90){
                                 if(Number(q3Field.valueQ3)>=10&&Number(q3Field.valueQ3)<=140){
                                     if(Number(q4Field.valueQ4)>=5&&Number(q4Field.valueQ4)<=90){
-                                        myRobot.writeToSerialPort("q:"+q1Field.text+";"+q2Field.text+";"+q3Field.text+";"+q4Field.text);
+                                        serialPort.writeToSerialPort("q:"+q1Field.text+";"+q2Field.text+";"+q3Field.text+";"+q4Field.text);
                                         myRobot.khongGianKhop(Number(q1Field.text),Number(q2Field.text),Number(q3Field.text),Number(q4Field.text),curAngle,curPosition)
                                         console.log("q:"+q1Field.text+";"+q2Field.text+";"+q3Field.text+";"+q4Field.text);
                                         windowmoveJoint.visible = false;
-                                        secondScreen.visible = true; // Assuming secondScreen is your main screen
+                                        secondScreen.visible = true;
                                     }else{
                                         errorAngle.visible=true;
                                     }
@@ -2513,7 +2507,7 @@ Window {
             border.color: "darkred"
             border.width: 2
             anchors.centerIn: parent
-            visible: false // Initially hidden
+            visible: false
 
             Column {
                 spacing: 20 / 800 * Screen.height
@@ -2568,7 +2562,7 @@ Window {
             border.width: 2/1423*Screen.width
             anchors.centerIn: parent
 
-            // Shadow effect using a semi-transparent Rectangle
+
             Rectangle {
                 width: 800/1423*Screen.width
                 height: 600/800*Screen.height
@@ -2589,15 +2583,15 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "X:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: xField
                         placeholderText: "Enter X"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2612,15 +2606,15 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Y:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: yField
                         placeholderText: "Enter Y"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2635,15 +2629,15 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Z:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: zField
                         placeholderText: "Enter Z"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2655,8 +2649,8 @@ Window {
 
                 Button {
                     text: "Move"
-                    font.pixelSize: 40 // Increase font size
-                    width: 240/1423*Screen.width // Adjust width
+                    font.pixelSize: 40
+                    width: 240/1423*Screen.width
                     height: 100/800*Screen.height
                     anchors.horizontalCenter: parent.horizontalCenter
                     background: Rectangle {
@@ -2673,11 +2667,11 @@ Window {
                         verticalAlignment: Text.AlignVCenter
                     }
                     onClicked: {
-                        myRobot.writeToSerialPort("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
+                        serialPort.writeToSerialPort("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
                         myRobot.khongGianThaoTac(Number(xField.text),Number(yField.text),Number(zField.text),curAngle,curPosition);
                         console.log("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
                         windowmoveTCP.visible = false;
-                        secondScreen.visible = true; // Assuming secondScreen is your main screen
+                        secondScreen.visible = true;
                     }
                 }
             }
@@ -2698,7 +2692,7 @@ Window {
             border.width: 2/1423*Screen.width
             anchors.centerIn: parent
 
-            // Shadow effect using a semi-transparent Rectangle
+
             Rectangle {
                 width: 800/1423*Screen.width*1.3
                 height: 600/800*Screen.height*1.3
@@ -2719,15 +2713,15 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "X:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: x1Field
                         placeholderText: "Enter X1"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2739,8 +2733,8 @@ Window {
                     TextField {
                         id: x2Field
                         placeholderText: "Enter X2"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2755,15 +2749,15 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Y:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: y1Field
                         placeholderText: "Enter Y1"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2774,8 +2768,8 @@ Window {
                     TextField {
                         id: y2Field
                         placeholderText: "Enter Y2"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2790,15 +2784,15 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Z:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: z1Field
                         placeholderText: "Enter Z"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2809,8 +2803,8 @@ Window {
                     TextField {
                         id: z2Field
                         placeholderText: "Enter Z2"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2822,8 +2816,8 @@ Window {
 
                 Button {
                     text: "Move"
-                    font.pixelSize: 40 // Increase font size
-                    width: 240/1423*Screen.width // Adjust width
+                    font.pixelSize: 40
+                    width: 240/1423*Screen.width
                     height: 100/800*Screen.height
                     anchors.horizontalCenter: parent.horizontalCenter
                     background: Rectangle {
@@ -2840,11 +2834,11 @@ Window {
                         verticalAlignment: Text.AlignVCenter
                     }
                     onClicked: {
-                        myRobot.writeToSerialPort("line:"+Number(x1Field.text)+";"+Number(y1Field.text)+";"+Number(z1Field.text)+";"+Number(x2Field.text)+";"+Number(y2Field.text)+";"+Number(z2Field.text));
+                        serialPort.writeToSerialPort("line:"+Number(x1Field.text)+";"+Number(y1Field.text)+";"+Number(z1Field.text)+";"+Number(x2Field.text)+";"+Number(y2Field.text)+";"+Number(z2Field.text));
                         myRobot.khongGianThaoTac(Number(x2Field.text),Number(y2Field.text),Number(z2Field.text),curAngle,curPosition);
                         // console.log("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
                         windowmoveSLI.visible = false;
-                        // secondScreen.visible = true; // Assuming secondScreen is your main screen
+                        // secondScreen.visible = true;
                     }
                 }
             }
@@ -2865,7 +2859,7 @@ Window {
             border.width: 2/1423*Screen.width
             anchors.centerIn: parent
 
-            // Shadow effect using a semi-transparent Rectangle
+
             Rectangle {
                 width: 800/1423*Screen.width*1.8
                 height: 600/800*Screen.height*1.5
@@ -2886,15 +2880,15 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "X:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: x3Field
                         placeholderText: "Enter X1"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2906,8 +2900,8 @@ Window {
                     TextField {
                         id: x4Field
                         placeholderText: "Enter X2"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2918,8 +2912,8 @@ Window {
                     TextField {
                         id: x7Field
                         placeholderText: "Enter X3"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2934,15 +2928,15 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Y:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: y3Field
                         placeholderText: "Enter Y1"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2953,8 +2947,8 @@ Window {
                     TextField {
                         id: y4Field
                         placeholderText: "Enter Y2"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2965,8 +2959,8 @@ Window {
                     TextField {
                         id: y7Field
                         placeholderText: "Enter Y3"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -2981,15 +2975,15 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Z:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: z3Field
                         placeholderText: "Enter Z1"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -3000,8 +2994,8 @@ Window {
                     TextField {
                         id: z4Field
                         placeholderText: "Enter Z2"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -3012,8 +3006,8 @@ Window {
                     TextField {
                         id: z7Field
                         placeholderText: "Enter Z3"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -3025,8 +3019,8 @@ Window {
 
                 Button {
                     text: "Move"
-                    font.pixelSize: 40 // Increase font size
-                    width: 240/1423*Screen.width // Adjust width
+                    font.pixelSize: 40
+                    width: 240/1423*Screen.width
                     height: 100/800*Screen.height
                     anchors.horizontalCenter: parent.horizontalCenter
                     background: Rectangle {
@@ -3043,11 +3037,11 @@ Window {
                         verticalAlignment: Text.AlignVCenter
                     }
                     onClicked: {
-                        myRobot.writeToSerialPort("circle:"+Number(x3Field.text)+";"+Number(y3Field.text)+";"+Number(z3Field.text)+";"+Number(x4Field.text)+";"+Number(y4Field.text)+";"+Number(z4Field.text)+";"+Number(x7Field.text)+";"+Number(y7Field.text)+";"+Number(z7Field.text));
+                        serialPort.writeToSerialPort("circle:"+Number(x3Field.text)+";"+Number(y3Field.text)+";"+Number(z3Field.text)+";"+Number(x4Field.text)+";"+Number(y4Field.text)+";"+Number(z4Field.text)+";"+Number(x7Field.text)+";"+Number(y7Field.text)+";"+Number(z7Field.text));
                         myRobot.khongGianThaoTac(Number(x7Field.text),Number(y7Field.text),Number(z7Field.text),curAngle,curPosition);
                         // console.log("kg:"+Number(xField.text)+";"+Number(yField.text)+";"+Number(zField.text));
                         windowmoveCI.visible = false;
-                        // secondScreen.visible = true; // Assuming secondScreen is your main screen
+                        // secondScreen.visible = true;
                     }
                 }
             }
@@ -3068,7 +3062,7 @@ Window {
             border.width: 2/1423*Screen.width
             anchors.centerIn: parent
 
-            // Shadow effect using a semi-transparent Rectangle
+
             Rectangle {
                 width: 800/1423*Screen.width*1.3
                 height: 600/800*Screen.height*1.3
@@ -3089,16 +3083,16 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "X:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: x5Field
                         text:""
                         placeholderText: "Enter X1"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -3111,8 +3105,8 @@ Window {
                         id: x6Field
                         text:""
                         placeholderText: "Enter X2"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -3127,16 +3121,16 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Y:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: y5Field
                         text:""
                         placeholderText: "Enter Y1"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -3148,8 +3142,8 @@ Window {
                         id: y6Field
                         text:""
                         placeholderText: "Enter Y2"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -3164,16 +3158,16 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     Text {
                         text: "Z:"
-                        font.pixelSize: 40 // Increase font size
-                        font.bold: true // Optionally make it bold
+                        font.pixelSize: 40
+                        font.bold: true
                         color: "#0076AE"
                     }
                     TextField {
                         id: z5Field
                         text:""
                         placeholderText: "Enter Z1"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -3185,8 +3179,8 @@ Window {
                         id: z6Field
                         text:""
                         placeholderText: "Enter Z2"
-                        font.pixelSize: 40 // Increase font size
-                        width: 400/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 400/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#E8EAF6"
@@ -3201,8 +3195,8 @@ Window {
                     x:170
                     Button {
                         text: "SAVE 1"
-                        font.pixelSize: 40 // Increase font size
-                        width: 240/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 240/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#0076AE"
@@ -3225,8 +3219,8 @@ Window {
                     }
                     Button {
                         text: "SAVE 2"
-                        font.pixelSize: 40 // Increase font size
-                        width: 240/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 240/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#0076AE"
@@ -3254,8 +3248,8 @@ Window {
 
                     Button {
                         text: "START"
-                        font.pixelSize: 40 // Increase font size
-                        width: 240/1423*Screen.width // Adjust width
+                        font.pixelSize: 40
+                        width: 240/1423*Screen.width
                         height: 100/800*Screen.height
                         background: Rectangle {
                             color: "#0076AE"
@@ -3271,7 +3265,7 @@ Window {
                             verticalAlignment: Text.AlignVCenter
                         }
                         onClicked: {
-                            myRobot.writeToSerialPort("gap:"+x5Field.text+";"+y5Field.text+";"+z5Field.text+";"+x6Field.text+";"+y6Field.text+";"+z6Field.text);
+                            serialPort.writeToSerialPort("gap:"+x5Field.text+";"+y5Field.text+";"+z5Field.text+";"+x6Field.text+";"+y6Field.text+";"+z6Field.text);
                             windowDragandDrop.visible=false;
                         }
                     }
@@ -3289,7 +3283,7 @@ Window {
         border.color: "darkred"
         border.width: 2
         anchors.centerIn: parent
-        visible: false // Initially hidden
+        visible: false
 
         Column {
             spacing: 20 / 800 * Screen.height

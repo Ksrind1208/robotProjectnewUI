@@ -8,18 +8,18 @@ Robot::Robot(QObject *parent,double l1,double l2,double l3)
     m_l1=l1;
     m_l2=l2;
     m_l3=l3;
-    serialPort.setPortName("COM3");
-    bool success = serialPort.open(QSerialPort::ReadWrite);
-    serialPort.setBaudRate(QSerialPort::Baud9600);
-    serialPort.setDataBits(QSerialPort::Data8);
-    serialPort.setParity(QSerialPort::NoParity);
-    serialPort.setStopBits(QSerialPort::OneStop);
-    serialPort.setFlowControl(QSerialPort::NoFlowControl);
-    if (success) {
-        qDebug() << "Serial port is opened";
-    }else{
-        qDebug()<<"Serial port is not available";
-    }
+    // serialPort.setPortName("COM3");
+    // bool success = serialPort.open(QSerialPort::ReadWrite);
+    // serialPort.setBaudRate(QSerialPort::Baud9600);
+    // serialPort.setDataBits(QSerialPort::Data8);
+    // serialPort.setParity(QSerialPort::NoParity);
+    // serialPort.setStopBits(QSerialPort::OneStop);
+    // serialPort.setFlowControl(QSerialPort::NoFlowControl);
+    // if (success) {
+    //     qDebug() << "Serial port is opened";
+    // }else{
+    //     qDebug()<<"Serial port is not available";
+    // }
 }
 double Robot::l1()
 {
@@ -64,14 +64,6 @@ void Robot::setL3(double l3)
         return;
     }
 }
-// void Robot::turnOnLed()
-// {
-//     writeToSerialPort("on\n");
-// }
-// void Robot::turnOffLed()
-// {
-//     writeToSerialPort("off\n");
-// }
 void Robot::home(){
 
 }
@@ -113,28 +105,28 @@ void Robot::khongGianThaoTac(float a, float b, float c, QObject* curAngle, QObje
     curAngle->setProperty("q4", curAngle->property("q4"));
 }
 
-void Robot::writeToSerialPort(const QByteArray &data)
-{
-    serialPort.write(data);
-}
-void Robot::readFromSerialPort()
-{
-    const QByteArray data = serialPort.readAll();
-    qDebug() << "Du lieu doc duoc la" << data;
+// void Robot::writeToSerialPort(const QByteArray &data)
+// {
+//     serialPort.write(data);
+// }
+// void Robot::readFromSerialPort()
+// {
+//     const QByteArray data = serialPort.readAll();
+//     qDebug() << "Du lieu doc duoc la" << data;
 
-    // // Xử lý dữ liệu nhận được ở đây
-    // // Ví dụ: Chuyển đổi thành chuỗi và xử lý
-    // QString dataStr(data);
-    // // Xử lý dữ liệu từ dataStr theo nhu cầu của bạn
-    // qDebug() << "Du lieu sau khi chuyen doi la" << dataStr;
-}
-void Robot::closeSerialPort()
-{
-    if (serialPort.isOpen()) {
-        serialPort.close();
-        qDebug() << "Serial port is closed";
-    }
-}
+//     // // Xử lý dữ liệu nhận được ở đây
+//     // // Ví dụ: Chuyển đổi thành chuỗi và xử lý
+//     // QString dataStr(data);
+//     // // Xử lý dữ liệu từ dataStr theo nhu cầu của bạn
+//     // qDebug() << "Du lieu sau khi chuyen doi la" << dataStr;
+// }
+// void Robot::closeSerialPort()
+// {
+//     if (serialPort.isOpen()) {
+//         serialPort.close();
+//         qDebug() << "Serial port is closed";
+//     }
+// }
 
 Robot::~Robot()
 {

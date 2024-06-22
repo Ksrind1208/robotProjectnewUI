@@ -724,6 +724,12 @@
 			"MU",
 			"EWIEGA46WW/moc_robot.cpp",
 			null
+		],
+		[
+			"D:/File_code/QT/robotProject2/serialport.h",
+			"MU",
+			"EWIEGA46WW/moc_serialport.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -824,7 +830,8 @@
 			null
 		],
 		[ "D:/File_code/QT/robotProject2/main.cpp", "MU", null ],
-		[ "D:/File_code/QT/robotProject2/robot.cpp", "MU", null ]
+		[ "D:/File_code/QT/robotProject2/robot.cpp", "MU", null ],
+		[ "D:/File_code/QT/robotProject2/serialport.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

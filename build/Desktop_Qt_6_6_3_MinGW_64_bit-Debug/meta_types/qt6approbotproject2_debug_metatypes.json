@@ -72,27 +72,6 @@
                         ],
                         "name": "khongGianThaoTac",
                         "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "data",
-                                "type": "QByteArray"
-                            }
-                        ],
-                        "name": "writeToSerialPort",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "readFromSerialPort",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "closeSerialPort",
-                        "returnType": "void"
                     }
                 ],
                 "object": true,
@@ -170,6 +149,46 @@
             }
         ],
         "inputFile": "robot.h",
+        "outputRevision": 68
+    },
+    {
+        "classes": [
+            {
+                "className": "SerialPort",
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "data",
+                                "type": "QByteArray"
+                            }
+                        ],
+                        "name": "writeToSerialPort",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "readFromSerialPort",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "name": "closeSerialPort",
+                        "returnType": "void"
+                    }
+                ],
+                "object": true,
+                "qualifiedClassName": "SerialPort",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "serialport.h",
         "outputRevision": 68
     }
 ]

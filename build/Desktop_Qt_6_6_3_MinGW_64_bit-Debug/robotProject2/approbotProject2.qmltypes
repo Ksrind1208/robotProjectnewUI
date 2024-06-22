@@ -37,11 +37,5 @@ Module {
             Parameter { name: "curAngle"; type: "QObject"; isPointer: true }
             Parameter { name: "curPosition"; type: "QObject"; isPointer: true }
         }
-        Method {
-            name: "writeToSerialPort"
-            Parameter { name: "data"; type: "QByteArray" }
-        }
-        Method { name: "readFromSerialPort" }
-        Method { name: "closeSerialPort" }
     }
 }

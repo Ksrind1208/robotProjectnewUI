@@ -9,6 +9,8 @@ approbotProject2_autogen/timestamp: \
 	D:/File_code/QT/robotProject2/main.cpp \
 	D:/File_code/QT/robotProject2/robot.cpp \
 	D:/File_code/QT/robotProject2/robot.h \
+	D:/File_code/QT/robotProject2/serialport.cpp \
+	D:/File_code/QT/robotProject2/serialport.h \
 	D:/SystemFile/QT/6.6.3/mingw_64/include/QtCore/QByteArray \
 	D:/SystemFile/QT/6.6.3/mingw_64/include/QtCore/QCryptographicHash \
 	D:/SystemFile/QT/6.6.3/mingw_64/include/QtCore/QDeadlineTimer \

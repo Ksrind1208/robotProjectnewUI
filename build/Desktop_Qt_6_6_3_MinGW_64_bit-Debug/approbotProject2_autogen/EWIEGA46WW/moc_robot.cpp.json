@@ -71,27 +71,6 @@
                     ],
                     "name": "khongGianThaoTac",
                     "returnType": "void"
-                },
-                {
-                    "access": "public",
-                    "arguments": [
-                        {
-                            "name": "data",
-                            "type": "QByteArray"
-                        }
-                    ],
-                    "name": "writeToSerialPort",
-                    "returnType": "void"
-                },
-                {
-                    "access": "public",
-                    "name": "readFromSerialPort",
-                    "returnType": "void"
-                },
-                {
-                    "access": "public",
-                    "name": "closeSerialPort",
-                    "returnType": "void"
                 }
             ],
             "object": true,

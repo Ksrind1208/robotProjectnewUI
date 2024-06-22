@@ -20,6 +20,7 @@ qt_add_qml_module(approbotProject2
         Main.qml
         SOURCES robot.h robot.cpp
         QML_FILES
+        SOURCES serialport.h serialport.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
