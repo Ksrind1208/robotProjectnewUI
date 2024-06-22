@@ -133,9 +133,10 @@ Window {
 
                                 onClicked: {
                                     //myRobot.writeToSerialPort("home:");
-                                    serialPort.writeToSerialPort("home:");
+                                    //serialPort.writeToSerialPort("home:");
                                     //myRobot.writeToSerialPort("home:");
-                                    // myRobot.home();
+                                    myRobot.home("home:");
+
                                     //myRobot.writeToSerialPort("q:90;20;50;5");
                                     myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
                                     // myRobot.khongGianThaoTac(8, 0, 0, curAngle, curPosition);
@@ -1734,7 +1735,8 @@ Window {
 
                                 onClicked: {
                                     myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y)-1,Number(root.curPosition.z),curAngle,curPosition);
-                                    serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x))+";"+(Number(root.curPosition.y)-1)+";"+Number(root.curPosition.z));
+                                    //serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x))+";"+(Number(root.curPosition.y)-1)+";"+Number(root.curPosition.z));
+                                    serialPort.writeToSerialPort("q:"+root.curAngle.q1+";"+root.curAngle.q2+";"+root.curAngle.q3+";"+root.curAngle.q4);
                                     console.log("left arrow clicked");
                                 }
                             }
@@ -1789,7 +1791,8 @@ Window {
 
                             onClicked: {
                                 myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y)+1,Number(root.curPosition.z),curAngle,curPosition);
-                                serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x))+";"+(Number(root.curPosition.y)+1)+";"+Number(root.curPosition.z));
+                                //serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x))+";"+(Number(root.curPosition.y)+1)+";"+Number(root.curPosition.z));
+                                serialPort.writeToSerialPort("q:"+root.curAngle.q1+";"+root.curAngle.q2+";"+root.curAngle.q3+";"+root.curAngle.q4);
                                 console.log("Up arrow clicked");
                             }
                         }
@@ -2093,7 +2096,8 @@ Window {
 
                             onClicked: {
                                 myRobot.khongGianThaoTac(Number(root.curPosition.x)-1,Number(root.curPosition.y),Number(root.curPosition.z),curAngle,curPosition);
-                                serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x)-1)+";"+(Number(root.curPosition.y))+";"+Number(root.curPosition.z));
+                                //serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x)-1)+";"+(Number(root.curPosition.y))+";"+Number(root.curPosition.z));
+                                serialPort.writeToSerialPort("q:"+root.curAngle.q1+";"+root.curAngle.q2+";"+root.curAngle.q3+";"+root.curAngle.q4);
                                 console.log("Down arrow clicked");
                             }
                         }
@@ -2148,7 +2152,8 @@ Window {
 
                             onClicked: {
                                 myRobot.khongGianThaoTac(Number(root.curPosition.x)+1,Number(root.curPosition.y),Number(root.curPosition.z),curAngle,curPosition);
-                               serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x)+1)+";"+(Number(root.curPosition.y))+";"+Number(root.curPosition.z));
+                               //serialPort.writeToSerialPort("kg:"+(Number(root.curPosition.x)+1)+";"+(Number(root.curPosition.y))+";"+Number(root.curPosition.z));
+                                serialPort.writeToSerialPort("q:"+root.curAngle.q1+";"+root.curAngle.q2+";"+root.curAngle.q3+";"+root.curAngle.q4);
                                 console.log("Down arrow clicked");
                             }
                         }
@@ -2201,7 +2206,8 @@ Window {
 
                             onClicked: {
                                 myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y),Number(root.curPosition.z)+1,curAngle,curPosition);
-                                serialPort.writeToSerialPort("kg:"+Number(root.curPosition.x)+";"+Number(root.curPosition.y)+";"+(Number(root.curPosition.z)+1));
+                                //serialPort.writeToSerialPort("kg:"+Number(root.curPosition.x)+";"+Number(root.curPosition.y)+";"+(Number(root.curPosition.z)+1));
+                                serialPort.writeToSerialPort("q:"+root.curAngle.q1+";"+root.curAngle.q2+";"+root.curAngle.q3+";"+root.curAngle.q4);
                                 console.log("Down arrow clicked");
                             }
                         }
@@ -2256,7 +2262,8 @@ Window {
 
                             onClicked: {
                                 myRobot.khongGianThaoTac(Number(root.curPosition.x),Number(root.curPosition.y),Number(root.curPosition.z)-1,curAngle,curPosition);
-                                serialPort.writeToSerialPort("kg:"+Number(root.curPosition.x)+";"+Number(root.curPosition.y)+";"+(Number(root.curPosition.z)-1));
+                                //serialPort.writeToSerialPort("kg:"+Number(root.curPosition.x)+";"+Number(root.curPosition.y)+";"+(Number(root.curPosition.z)-1));
+                                serialPort.writeToSerialPort("q:"+root.curAngle.q1+";"+root.curAngle.q2+";"+root.curAngle.q3+";"+root.curAngle.q4);
                                 console.log("Down arrow clicked");
                             }
                         }
@@ -3266,6 +3273,7 @@ Window {
                         }
                         onClicked: {
                             serialPort.writeToSerialPort("gap:"+x5Field.text+";"+y5Field.text+";"+z5Field.text+";"+x6Field.text+";"+y6Field.text+";"+z6Field.text);
+                            //myRobot.gap(Number(x5Field.text),Number(y5Field.text),Number(z5Field.text),Number(x6Field.text),Number(y6Field.text),Number(z6Field.text),curAngle,curPosition);
                             windowDragandDrop.visible=false;
                         }
                     }

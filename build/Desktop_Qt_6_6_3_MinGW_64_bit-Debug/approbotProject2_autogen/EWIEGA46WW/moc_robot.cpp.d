@@ -1,5 +1,6 @@
 D:/File_code/QT/robotProject2/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/approbotProject2_autogen/EWIEGA46WW/moc_robot.cpp: D:/File_code/QT/robotProject2/robot.h \
   D:/File_code/QT/robotProject2/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/approbotProject2_autogen/moc_predefs.h \
+  D:/File_code/QT/robotProject2/serialport.h \
   D:/SystemFile/QT/6.6.3/mingw_64/include/QtCore/QByteArray \
   D:/SystemFile/QT/6.6.3/mingw_64/include/QtCore/QCryptographicHash \
   D:/SystemFile/QT/6.6.3/mingw_64/include/QtCore/QDeadlineTimer \

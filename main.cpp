@@ -16,8 +16,9 @@ int main(int argc, char *argv[])
     double l2 = 8.0;
     double l3 = 8.0;
 
-    Robot myRobot(nullptr,l1,l2,l3);
     SerialPort serialPort;
+    Robot myRobot(nullptr,l1,l2,l3,&serialPort);
+
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,

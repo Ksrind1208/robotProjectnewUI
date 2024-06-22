@@ -48,6 +48,7 @@ constexpr auto qt_meta_stringdata_CLASSRobotENDCLASS = QtMocHelpers::stringData(
     "l2Changed",
     "l3Changed",
     "home",
+    "data",
     "khongGianKhop",
     "q1",
     "q2",
@@ -65,7 +66,7 @@ constexpr auto qt_meta_stringdata_CLASSRobotENDCLASS = QtMocHelpers::stringData(
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSRobotENDCLASS_t {
-    uint offsetsAndSizes[44];
+    uint offsetsAndSizes[46];
     char stringdata0[6];
     char stringdata1[12];
     char stringdata2[5];
@@ -74,20 +75,21 @@ struct qt_meta_stringdata_CLASSRobotENDCLASS_t {
     char stringdata5[10];
     char stringdata6[10];
     char stringdata7[5];
-    char stringdata8[14];
-    char stringdata9[3];
+    char stringdata8[5];
+    char stringdata9[14];
     char stringdata10[3];
     char stringdata11[3];
     char stringdata12[3];
-    char stringdata13[9];
-    char stringdata14[12];
-    char stringdata15[17];
-    char stringdata16[2];
+    char stringdata13[3];
+    char stringdata14[9];
+    char stringdata15[12];
+    char stringdata16[17];
     char stringdata17[2];
     char stringdata18[2];
-    char stringdata19[3];
+    char stringdata19[2];
     char stringdata20[3];
     char stringdata21[3];
+    char stringdata22[3];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSRobotENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -101,20 +103,21 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSRobotENDCLASS_t qt_meta_stringd
         QT_MOC_LITERAL(34, 9),  // "l2Changed"
         QT_MOC_LITERAL(44, 9),  // "l3Changed"
         QT_MOC_LITERAL(54, 4),  // "home"
-        QT_MOC_LITERAL(59, 13),  // "khongGianKhop"
-        QT_MOC_LITERAL(73, 2),  // "q1"
-        QT_MOC_LITERAL(76, 2),  // "q2"
-        QT_MOC_LITERAL(79, 2),  // "q3"
-        QT_MOC_LITERAL(82, 2),  // "q4"
-        QT_MOC_LITERAL(85, 8),  // "curAngle"
-        QT_MOC_LITERAL(94, 11),  // "curPosition"
-        QT_MOC_LITERAL(106, 16),  // "khongGianThaoTac"
-        QT_MOC_LITERAL(123, 1),  // "a"
-        QT_MOC_LITERAL(125, 1),  // "b"
-        QT_MOC_LITERAL(127, 1),  // "c"
-        QT_MOC_LITERAL(129, 2),  // "l1"
-        QT_MOC_LITERAL(132, 2),  // "l2"
-        QT_MOC_LITERAL(135, 2)   // "l3"
+        QT_MOC_LITERAL(59, 4),  // "data"
+        QT_MOC_LITERAL(64, 13),  // "khongGianKhop"
+        QT_MOC_LITERAL(78, 2),  // "q1"
+        QT_MOC_LITERAL(81, 2),  // "q2"
+        QT_MOC_LITERAL(84, 2),  // "q3"
+        QT_MOC_LITERAL(87, 2),  // "q4"
+        QT_MOC_LITERAL(90, 8),  // "curAngle"
+        QT_MOC_LITERAL(99, 11),  // "curPosition"
+        QT_MOC_LITERAL(111, 16),  // "khongGianThaoTac"
+        QT_MOC_LITERAL(128, 1),  // "a"
+        QT_MOC_LITERAL(130, 1),  // "b"
+        QT_MOC_LITERAL(132, 1),  // "c"
+        QT_MOC_LITERAL(134, 2),  // "l1"
+        QT_MOC_LITERAL(137, 2),  // "l2"
+        QT_MOC_LITERAL(140, 2)   // "l3"
     },
     "Robot",
     "QML.Element",
@@ -124,6 +127,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSRobotENDCLASS_t qt_meta_stringd
     "l2Changed",
     "l3Changed",
     "home",
+    "data",
     "khongGianKhop",
     "q1",
     "q2",
@@ -150,7 +154,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
        0,       // classname
        1,   14, // classinfo
        6,   16, // methods
-       3,   80, // properties
+       3,   82, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
@@ -165,9 +169,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
        6,    0,   54,    4, 0x06,    6 /* Public */,
 
  // methods: name, argc, parameters, tag, flags, initial metatype offsets
-       7,    0,   55,    4, 0x02,    7 /* Public */,
-       8,    6,   56,    4, 0x02,    8 /* Public */,
-      15,    5,   69,    4, 0x02,   15 /* Public */,
+       7,    1,   55,    4, 0x02,    7 /* Public */,
+       9,    6,   58,    4, 0x02,    9 /* Public */,
+      16,    5,   71,    4, 0x02,   16 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -175,14 +179,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSRobotENDCLASS[] = {
     QMetaType::Void,
 
  // methods: parameters
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::QObjectStar, QMetaType::QObjectStar,    9,   10,   11,   12,   13,   14,
-    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::QObjectStar, QMetaType::QObjectStar,   16,   17,   18,   13,   14,
+    QMetaType::Void, QMetaType::QByteArray,    8,
+    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::QObjectStar, QMetaType::QObjectStar,   10,   11,   12,   13,   14,   15,
+    QMetaType::Void, QMetaType::Float, QMetaType::Float, QMetaType::Float, QMetaType::QObjectStar, QMetaType::QObjectStar,   17,   18,   19,   14,   15,
 
  // properties: name, type, flags
-      19, QMetaType::Double, 0x00015103, uint(0), 0,
-      20, QMetaType::Double, 0x00015103, uint(1), 0,
-      21, QMetaType::Double, 0x00015103, uint(2), 0,
+      20, QMetaType::Double, 0x00015103, uint(0), 0,
+      21, QMetaType::Double, 0x00015103, uint(1), 0,
+      22, QMetaType::Double, 0x00015103, uint(2), 0,
 
        0        // eod
 };
@@ -210,6 +214,7 @@ Q_CONSTINIT const QMetaObject Robot::staticMetaObject = { {
         void,
         // method 'home'
         void,
+        const QByteArray &,
         // method 'khongGianKhop'
         void,
         float,
@@ -238,7 +243,7 @@ void Robot::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         case 0: _t->l1Changed(); break;
         case 1: _t->l2Changed(); break;
         case 2: _t->l3Changed(); break;
-        case 3: _t->home(); break;
+        case 3: _t->home((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
         case 4: _t->khongGianKhop((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[6]))); break;
         case 5: _t->khongGianThaoTac((*reinterpret_cast< std::add_pointer_t<float>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QObject*>>(_a[5]))); break;
         default: ;

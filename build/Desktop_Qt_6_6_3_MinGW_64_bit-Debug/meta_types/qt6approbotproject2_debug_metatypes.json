@@ -12,6 +12,12 @@
                 "methods": [
                     {
                         "access": "public",
+                        "arguments": [
+                            {
+                                "name": "data",
+                                "type": "QByteArray"
+                            }
+                        ],
                         "name": "home",
                         "returnType": "void"
                     },

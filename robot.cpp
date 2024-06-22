@@ -1,25 +1,13 @@
 #include "robot.h"
-#include <sstream>
-#include <string>
-#include <iomanip>
-Robot::Robot(QObject *parent,double l1,double l2,double l3)
+#include <serialport.h>
+#include <QTimer>
+Robot::Robot(QObject *parent,double l1,double l2,double l3,SerialPort *serialPort)
     : QObject{parent}
 {
     m_l1=l1;
     m_l2=l2;
     m_l3=l3;
-    // serialPort.setPortName("COM3");
-    // bool success = serialPort.open(QSerialPort::ReadWrite);
-    // serialPort.setBaudRate(QSerialPort::Baud9600);
-    // serialPort.setDataBits(QSerialPort::Data8);
-    // serialPort.setParity(QSerialPort::NoParity);
-    // serialPort.setStopBits(QSerialPort::OneStop);
-    // serialPort.setFlowControl(QSerialPort::NoFlowControl);
-    // if (success) {
-    //     qDebug() << "Serial port is opened";
-    // }else{
-    //     qDebug()<<"Serial port is not available";
-    // }
+    m_serialPort=serialPort;
 }
 double Robot::l1()
 {
@@ -64,8 +52,14 @@ void Robot::setL3(double l3)
         return;
     }
 }
-void Robot::home(){
+void Robot::home(const QByteArray &data){
+    m_serialPort->writeToSerialPort(data);
+    qDebug() << "xin chao";
 
+    QTimer::singleShot(2000, this, [this](){
+
+    });
+            qDebug() << "da het 2s";
 }
 
 void Robot::khongGianKhop(float q1, float q2, float q3, float q4,QObject* curAngle,QObject *curPosition)
@@ -127,7 +121,6 @@ void Robot::khongGianThaoTac(float a, float b, float c, QObject* curAngle, QObje
 //         qDebug() << "Serial port is closed";
 //     }
 // }
-
 Robot::~Robot()
 {
     qDebug()<<"Doi tuong da huy";

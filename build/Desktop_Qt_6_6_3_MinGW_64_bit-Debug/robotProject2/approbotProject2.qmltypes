@@ -19,7 +19,10 @@ Module {
         Signal { name: "l1Changed" }
         Signal { name: "l2Changed" }
         Signal { name: "l3Changed" }
-        Method { name: "home" }
+        Method {
+            name: "home"
+            Parameter { name: "data"; type: "QByteArray" }
+        }
         Method {
             name: "khongGianKhop"
             Parameter { name: "q1"; type: "float" }

@@ -5,6 +5,7 @@
 #include <QString>
 #include <QtQml>
 #include <QSerialPort>
+#include <serialport.h>
 class Robot : public QObject
 {
     Q_OBJECT
@@ -13,7 +14,7 @@ class Robot : public QObject
     Q_PROPERTY(double l3 READ l3 WRITE setL3 NOTIFY l3Changed)
     QML_ELEMENT
 public:
-    explicit Robot(QObject *parent = nullptr,double l1=0,double l2=0,double l3=0);
+    explicit Robot(QObject *parent = nullptr,double l1=0,double l2=0,double l3=0,SerialPort *serialPort = nullptr);
     double l1();
     void setL1(double l1);
 
@@ -23,7 +24,7 @@ public:
     double l3();
     void setL3(double l3);
 
-    Q_INVOKABLE void home();
+    Q_INVOKABLE void home(const QByteArray &data);
     Q_INVOKABLE void khongGianKhop(float q1, float q2, float q3, float q4,QObject* curAngle,QObject *curPosition);
     Q_INVOKABLE void khongGianThaoTac(float a, float b, float c, QObject* curAngle, QObject* curPosition);
     // Q_INVOKABLE void writeToSerialPort(const QByteArray &data);
@@ -38,7 +39,7 @@ private:
     double m_l1;
     double m_l2;
     double m_l3;
-    // QSerialPort serialPort;
+    SerialPort *m_serialPort;
 };
 
 #endif // ROBOT_H
