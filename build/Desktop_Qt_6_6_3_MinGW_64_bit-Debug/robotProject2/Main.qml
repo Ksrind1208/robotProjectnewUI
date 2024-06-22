@@ -758,9 +758,7 @@ Window {
                                 }
 
                                 onClicked: {
-                                    myRobot.writeToSerialPort("home:");
-                                    myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
-                                    console.log("Simulated");
+                                    windowTeaching.visible=true;
                                 }
                                 ToolTip {
                                     Text{
@@ -3273,6 +3271,7 @@ Window {
                         }
                         onClicked: {
                             serialPort.writeToSerialPort("gap:"+x5Field.text+";"+y5Field.text+";"+z5Field.text+";"+x6Field.text+";"+y6Field.text+";"+z6Field.text);
+                            myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
                             //myRobot.gap(Number(x5Field.text),Number(y5Field.text),Number(z5Field.text),Number(x6Field.text),Number(y6Field.text),Number(z6Field.text),curAngle,curPosition);
                             windowDragandDrop.visible=false;
                         }
@@ -3281,6 +3280,191 @@ Window {
             }
         }
     }
+
+    Window {
+        id: windowTeaching
+        visible: false
+        width: 800
+        height: 600
+        color: "white"
+
+
+        property var curAngle: {
+            "q1": "Angle 1",
+            "q2": "Angle 2",
+            "q3": "Angle 3",
+            "q4": "Angle 4"
+        }
+        ListModel {
+            id: textListModel
+        }
+
+
+        Column {
+            anchors.centerIn: parent
+            spacing: 10
+
+
+            Rectangle {
+                width: parent.width
+                height: 2
+                color: "gray"
+            }
+
+
+            Row {
+                spacing: 10
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Column {
+                    spacing: 5
+                    Text {
+                        text: "Q1"
+                        color: "black"
+                        font.pointSize: 20
+                    }
+                    Text {
+                        id: q1Teaching
+                        text: root.curAngle.q1
+                        color: "black"
+                        font.pointSize: 20
+                    }
+                }
+
+                Column {
+                    spacing: 5
+                    Text {
+                        text: "Q2"
+                        color: "black"
+                        font.pointSize: 20
+                    }
+                    Text {
+                        id: q2Teaching
+                        text: root.curAngle.q2
+                        color: "black"
+                        font.pointSize: 20
+                    }
+                }
+
+                Column {
+                    spacing: 5
+                    Text {
+                        text: "Q3"
+                        color: "black"
+                        font.pointSize: 20
+                    }
+                    Text {
+                        id: q3Teaching
+                        text: root.curAngle.q3
+                        color: "black"
+                        font.pointSize: 20
+                    }
+                }
+
+                Column {
+                    spacing: 5
+                    Text {
+                        text: "Q4"
+                        color: "black"
+                        font.pointSize: 20
+                    }
+                    Text {
+                        id: q4Teaching
+                        text: root.curAngle.q4
+                        color: "black"
+                        font.pointSize: 20
+                    }
+                }
+            }
+
+
+            Rectangle {
+                width: parent.width
+                height: 2
+                color: "gray"
+            }
+
+
+            Row {
+                spacing: 10
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Button {
+                    text: "Add Text"
+                    onClicked: {
+                        textListModel.append({
+                            "text": root.curAngle.q1 + ", " + root.curAngle.q2 + ", " + root.curAngle.q3 + ", " + root.curAngle.q4
+                        });
+                    }
+                    width: 120
+                    height: 40
+                    font.pixelSize: 16
+                }
+                Button {
+                    text: "Delete Last"
+                    onClicked: {
+                        if (textListModel.count > 0) {
+                            textListModel.remove(textListModel.count - 1);
+                        }
+                    }
+                    width: 120
+                    height: 40
+                    font.pixelSize: 16
+                }
+                Button {
+                    text: "Move"
+                    width: 120
+                    height: 40
+                    font.pixelSize: 16
+                    onClicked: {
+                        var dataToSend = "";
+                        for (var i = 0; i < textListModel.count; ++i) {
+                            var angleSet = textListModel.get(i).text.split(",");
+                            var q1 = angleSet[0].trim();
+                            var q2 = angleSet[1].trim();
+                            var q3 = angleSet[2].trim();
+                            var q4 = angleSet[3].trim();
+                            dataToSend += q1 + ";" + q2 + ";" + q3 + ";" + q4 + ";";
+                            if(i==textListModel.count-1){
+                                dataToSend += q1 + ";" + q2 + ";" + q3 + ";" + q4;
+                            }
+                        }
+                        console.log("teaching:"+dataToSend);
+                        serialPort.writeToSerialPort("teaching:"+dataToSend);
+                    }
+                }
+            }
+
+
+            Rectangle {
+                width: parent.width
+                height: 2
+                color: "gray"
+            }
+
+
+            ListView {
+                width: parent.width
+                height: 200
+                model: textListModel
+                clip: true
+                delegate: Rectangle {
+                    width: parent.width
+                    height: 40
+                    border.color: "black"
+                    Text {
+                        text: model.text
+                        color: "black"
+                        font.pointSize: 20
+                        anchors.centerIn: parent
+                    }
+                }
+            }
+        }
+    }
+
+
+
 
     Rectangle {
         id: errormoveAngle
