@@ -11,7 +11,7 @@ Window {
     height: Screen.height
     visible: true
     property QtObject curPosition: QtObject { property double x: 0.01; property double y: 7.33; property double z: 7.46 }
-    property QtObject curAngle: QtObject { property double q1: 90; property double q2: 20; property double q3: 50; property double q4: 5 }
+    property QtObject curAngle: QtObject { property double q1: 90; property double q2: 20; property double q3: 65; property double q4: 5 }
     title: qsTr("Robot Project")
 
     Item {
@@ -138,7 +138,7 @@ Window {
                                     myRobot.home("home:");
 
                                     //myRobot.writeToSerialPort("q:90;20;50;5");
-                                    myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
+                                    myRobot.khongGianKhop(90,20,65,5,curAngle,curPosition);
                                     // myRobot.khongGianThaoTac(8, 0, 0, curAngle, curPosition);
 
                                     // console.log(myRobot.l1+"/"+myRobot.l2+"/"+myRobot.l3);
@@ -2401,7 +2401,7 @@ Window {
                         }
                         onTextChanged: {
                             valueQ3=q3Field.text;
-                            if(Number(valueQ3)>=10 && Number(valueQ3)<=140){
+                            if(Number(valueQ3)>=55 && Number(valueQ3)<=155){
                                 textQ3.color="green"
                             }else{
                                 textQ3.color="red";
@@ -2410,7 +2410,7 @@ Window {
                     }
                     Text{
                         id:textQ3
-                        text:"10<=Q3<=140"
+                        text:"55<=Q3<=155"
                         color:"red";
                         anchors.verticalCenter: parent.verticalCenter
                         font.pointSize: 25
@@ -2480,7 +2480,7 @@ Window {
                     onClicked: {
                         if(Number(q1Field.valueQ1)>=0&&Number(q1Field.valueQ1)<=180){
                             if(Number(q2Field.valueQ2)>=0&&Number(q2Field.valueQ2)<=90){
-                                if(Number(q3Field.valueQ3)>=10&&Number(q3Field.valueQ3)<=140){
+                                if(Number(q3Field.valueQ3)>=55&&Number(q3Field.valueQ3)<=155){
                                     if(Number(q4Field.valueQ4)>=5&&Number(q4Field.valueQ4)<=90){
                                         serialPort.writeToSerialPort("q:"+q1Field.text+";"+q2Field.text+";"+q3Field.text+";"+q4Field.text);
                                         myRobot.khongGianKhop(Number(q1Field.text),Number(q2Field.text),Number(q3Field.text),Number(q4Field.text),curAngle,curPosition)
@@ -3390,7 +3390,7 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Button {
-                    text: "Add Text"
+                    text: "Lưu điểm"
                     onClicked: {
                         textListModel.append({
                             "text": root.curAngle.q1 + ", " + root.curAngle.q2 + ", " + root.curAngle.q3 + ", " + root.curAngle.q4
@@ -3401,7 +3401,7 @@ Window {
                     font.pixelSize: 16
                 }
                 Button {
-                    text: "Delete Last"
+                    text: "Xóa điểm vừa thêm"
                     onClicked: {
                         if (textListModel.count > 0) {
                             textListModel.remove(textListModel.count - 1);

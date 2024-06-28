@@ -69,7 +69,7 @@ void Robot::khongGianKhop(float q1, float q2, float q3, float q4,QObject* curAng
     curAngle->setProperty("q3",round(q3*100.0)/100.0);
     curAngle->setProperty("q4",round(q4*100.0)/100.0);
     q2=90-q2;
-    q3=-(105+q2-q3);
+    q3=-(125+q2-q3);
     float x=(m_l2*cos(q2*3.14/180)+m_l3*cos((q2+q3)*3.14/180))*cos(q1*3.14/180);
     float y=(m_l2*cos(q2*3.14/180)+m_l3*cos((q2+q3)*3.14/180))*sin(q1*3.14/180);
     float z=m_l2*sin(q2*3.14/180)+m_l3*sin((q2+q3)*3.14/180)+6.5;
@@ -91,7 +91,7 @@ void Robot::khongGianThaoTac(float a, float b, float c, QObject* curAngle, QObje
     double q3 = -abs(acos(D));
     float q2 = atan(c/ x2) - q3 / 2;
     q1 = q1 * 180 / 3.14;
-    q3 = 105 + q2 * 180 / 3.14 + q3 * 180 / 3.14;
+    q3 = 125 + q2 * 180 / 3.14 + q3 * 180 / 3.14;
     q2 = 90 - q2 * 180 / 3.14;
     curAngle->setProperty("q1", (round(q1*100.0) / 100.0));
     curAngle->setProperty("q2", (round(q2*100.0) / 100.0));
