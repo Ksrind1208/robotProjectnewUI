@@ -11,7 +11,7 @@ Window {
     height: Screen.height
     visible: true
     property QtObject curPosition: QtObject { property double x: 0.01; property double y: 7.33; property double z: 7.46 }
-    property QtObject curAngle: QtObject { property double q1: 90; property double q2: 20; property double q3: 65; property double q4: 5 }
+    property QtObject curAngle: QtObject { property double q1: 90; property double q2: 20; property double q3: 70; property double q4: 5 }
     title: qsTr("Robot Project")
 
     Item {
@@ -138,7 +138,7 @@ Window {
                                     myRobot.home("home:");
 
                                     //myRobot.writeToSerialPort("q:90;20;50;5");
-                                    myRobot.khongGianKhop(90,20,65,5,curAngle,curPosition);
+                                    myRobot.khongGianKhop(90,20,70,5,curAngle,curPosition);
                                     // myRobot.khongGianThaoTac(8, 0, 0, curAngle, curPosition);
 
                                     // console.log(myRobot.l1+"/"+myRobot.l2+"/"+myRobot.l3);
