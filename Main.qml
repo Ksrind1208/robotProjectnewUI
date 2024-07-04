@@ -3431,7 +3431,7 @@ Window {
                         }
                         console.log("teaching:"+dataToSend);
                         serialPort.writeToSerialPort("teaching:"+dataToSend);
-                        myRobot.khongGianKhop(90,20,50,5,curAngle,curPosition);
+                        myRobot.khongGianKhop(90,20,70,5,curAngle,curPosition);
                     }
                 }
                 Button {
