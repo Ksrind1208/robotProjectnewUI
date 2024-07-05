@@ -54,12 +54,6 @@ void Robot::setL3(double l3)
 }
 void Robot::home(const QByteArray &data){
     m_serialPort->writeToSerialPort(data);
-    qDebug() << "xin chao";
-
-    QTimer::singleShot(2000, this, [this](){
-
-    });
-            qDebug() << "da het 2s";
 }
 
 void Robot::khongGianKhop(float q1, float q2, float q3, float q4,QObject* curAngle,QObject *curPosition)
@@ -99,28 +93,6 @@ void Robot::khongGianThaoTac(float a, float b, float c, QObject* curAngle, QObje
     curAngle->setProperty("q4", curAngle->property("q4"));
 }
 
-// void Robot::writeToSerialPort(const QByteArray &data)
-// {
-//     serialPort.write(data);
-// }
-// void Robot::readFromSerialPort()
-// {
-//     const QByteArray data = serialPort.readAll();
-//     qDebug() << "Du lieu doc duoc la" << data;
-
-//     // // Xử lý dữ liệu nhận được ở đây
-//     // // Ví dụ: Chuyển đổi thành chuỗi và xử lý
-//     // QString dataStr(data);
-//     // // Xử lý dữ liệu từ dataStr theo nhu cầu của bạn
-//     // qDebug() << "Du lieu sau khi chuyen doi la" << dataStr;
-// }
-// void Robot::closeSerialPort()
-// {
-//     if (serialPort.isOpen()) {
-//         serialPort.close();
-//         qDebug() << "Serial port is closed";
-//     }
-// }
 Robot::~Robot()
 {
     qDebug()<<"Doi tuong da huy";

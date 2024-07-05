@@ -24,12 +24,6 @@ void SerialPort::readFromSerialPort()
 {
     const QByteArray data = serialPort.readAll();
     qDebug() << "Du lieu doc duoc la" << data;
-
-    // // Xử lý dữ liệu nhận được ở đây
-    // // Ví dụ: Chuyển đổi thành chuỗi và xử lý
-    // QString dataStr(data);
-    // // Xử lý dữ liệu từ dataStr theo nhu cầu của bạn
-    // qDebug() << "Du lieu sau khi chuyen doi la" << dataStr;
 }
 void SerialPort::closeSerialPort()
 {
